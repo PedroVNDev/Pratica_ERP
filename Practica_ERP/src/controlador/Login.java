@@ -10,6 +10,9 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
@@ -83,5 +86,15 @@ public class Login extends JFrame {
 		textField_1.setColumns(10);
 		textField_1.setBounds(363, 357, 96, 19);
 		contentPane.add(textField_1);
+		
+		JButton btnNewButton = new JButton("LOGIN");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
+		btnNewButton.setBounds(506, 318, 85, 21);
+		contentPane.add(btnNewButton);
 	}
 }
