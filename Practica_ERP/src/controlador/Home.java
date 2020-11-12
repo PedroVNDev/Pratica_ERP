@@ -31,6 +31,9 @@ public class Home extends JPanel {
 		JMenuItem menuItemGestion2 = new JMenuItem("Eliminar");
 		menu1.add(menuItemGestion2);
 		
+		JMenuItem menuItemGestion3 = new JMenuItem("Modificar");
+		menu1.add(menuItemGestion3);
+		
 		JMenu menu2 = new JMenu("Inventario");
 		menuBar.add(menu2);
 		
