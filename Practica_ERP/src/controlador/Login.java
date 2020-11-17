@@ -41,7 +41,7 @@ public class Login extends JFrame {
 	 */
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 824, 560);
+		setBounds(100, 100, 1299, 748);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -49,45 +49,48 @@ public class Login extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLUE);
-		panel.setBounds(0, 0, 66, 523);
+		panel.setBounds(234, 140, 29, 487);
 		contentPane.add(panel);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLUE);
-		panel_1.setBounds(48, 0, 772, 58);
+		panel_1.setBounds(235, 131, 828, 30);
 		contentPane.add(panel_1);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.BLUE);
-		panel_2.setBounds(738, 36, 82, 487);
+		panel_2.setBounds(1034, 157, 29, 470);
 		contentPane.add(panel_2);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.BLUE);
-		panel_3.setBounds(10, 465, 790, 58);
+		panel_3.setBounds(249, 597, 809, 30);
 		contentPane.add(panel_3);
 
 		JLabel lblNewLabel = new JLabel("Usuario:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(261, 272, 108, 63);
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblNewLabel.setBounds(542, 328, 108, 63);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblContrase = new JLabel("Contrase\u00F1a:");
-		lblContrase.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblContrase.setBounds(235, 332, 108, 63);
+		lblContrase.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblContrase.setBounds(515, 418, 108, 63);
 		contentPane.add(lblContrase);
 
 		usuario = new JTextField();
-		usuario.setBounds(363, 297, 96, 19);
+		usuario.setFont(new Font("Arial", Font.BOLD, 18));
+		usuario.setBounds(643, 347, 135, 30);
 		contentPane.add(usuario);
 		usuario.setColumns(10);
 
 		password = new JTextField();
+		password.setFont(new Font("Arial", Font.BOLD, 18));
 		password.setColumns(10);
-		password.setBounds(363, 357, 96, 19);
+		password.setBounds(643, 431, 135, 30);
 		contentPane.add(password);
 
 		JButton btnNewButton = new JButton("LOGIN");
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -108,8 +111,15 @@ public class Login extends JFrame {
 			}
 		});
 
-		btnNewButton.setBounds(506, 318, 85, 21);
+		btnNewButton.setBounds(607, 525, 135, 30);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("*Nota aclaratoria*");
+		lblNewLabel_1.setBounds(301, 187, 129, 30);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel(" la contrase\u00F1a para tabajadores ser\u00E1 1, la contrase\u00F1a para administradores ser\u00E1 2");
+		lblNewLabel_2.setBounds(298, 218, 379, 30);
+		contentPane.add(lblNewLabel_2);
 	}
-
 }
