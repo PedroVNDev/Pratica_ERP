@@ -43,6 +43,7 @@ public class Login extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1299, 748);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -119,7 +120,19 @@ public class Login extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel(" la contrase\u00F1a para tabajadores ser\u00E1 1, la contrase\u00F1a para administradores ser\u00E1 2");
-		lblNewLabel_2.setBounds(298, 218, 379, 30);
+		lblNewLabel_2.setBounds(298, 218, 560, 30);
 		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("SOTECARS");
+		lblNewLabel_3.setForeground(Color.BLUE);
+		lblNewLabel_3.setBackground(Color.WHITE);
+		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
+		lblNewLabel_3.setBounds(542, 26, 228, 52);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("THE POWER OF DREAMS");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_4.setBounds(577, 65, 152, 22);
+		contentPane.add(lblNewLabel_4);
 	}
 }

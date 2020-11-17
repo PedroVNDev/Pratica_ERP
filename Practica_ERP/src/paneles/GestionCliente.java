@@ -51,13 +51,13 @@ public class GestionCliente extends JPanel {
 		JLabel labelGestionCliente2 = new JLabel("Nombre Cliente:");
 		labelGestionCliente2.setForeground(SystemColor.textHighlight);
 		labelGestionCliente2.setFont(new Font("Arial", Font.BOLD, 16));
-		labelGestionCliente2.setBounds(10, 124, 149, 35);
+		labelGestionCliente2.setBounds(23, 134, 149, 35);
 		add(labelGestionCliente2);
 		
 		JLabel labelGestionCliente3 = new JLabel("DNI Cliente: ");
 		labelGestionCliente3.setForeground(SystemColor.textHighlight);
 		labelGestionCliente3.setFont(new Font("Arial", Font.BOLD, 16));
-		labelGestionCliente3.setBounds(39, 190, 108, 15);
+		labelGestionCliente3.setBounds(56, 190, 108, 15);
 		add(labelGestionCliente3);
 		
 		
@@ -68,10 +68,10 @@ public class GestionCliente extends JPanel {
 		});
 		
 		
-		btnAniadir.setFont(new Font("Arial", Font.BOLD, 15));
+		btnAniadir.setFont(new Font("Arial", Font.BOLD, 18));
 		btnAniadir.setForeground(Color.WHITE);
 		btnAniadir.setBackground(Color.BLUE);
-		btnAniadir.setBounds(102, 333, 150, 23);
+		btnAniadir.setBounds(104, 321, 172, 35);
 		add(btnAniadir);
 		
 		txtNombre = new JTextField();
@@ -95,7 +95,7 @@ public class GestionCliente extends JPanel {
 		JLabel labelGestionCliente5 = new JLabel("ID Cliente:");
 		labelGestionCliente5.setForeground(SystemColor.textHighlight);
 		labelGestionCliente5.setFont(new Font("Arial", Font.BOLD, 16));
-		labelGestionCliente5.setBounds(1009, 145, 115, 14);
+		labelGestionCliente5.setBounds(1019, 144, 115, 14);
 		add(labelGestionCliente5);
 		
 		JButton btnEliminar = new JButton("Eliminar Cliente");
@@ -106,9 +106,9 @@ public class GestionCliente extends JPanel {
 		});
 		
 		btnEliminar.setForeground(Color.WHITE);
-		btnEliminar.setFont(new Font("Arial", Font.BOLD, 15));
+		btnEliminar.setFont(new Font("Arial", Font.BOLD, 18));
 		btnEliminar.setBackground(Color.BLUE);
-		btnEliminar.setBounds(1060, 333, 150, 23);
+		btnEliminar.setBounds(1060, 321, 177, 35);
 		add(btnEliminar);
 		
 		JLabel labelGestionCliente6 = new JLabel("Lista de clientes");
@@ -116,13 +116,8 @@ public class GestionCliente extends JPanel {
 		labelGestionCliente6.setFont(new Font("Tahoma", Font.BOLD, 22));
 		labelGestionCliente6.setBounds(566, 393, 214, 40);
 		add(labelGestionCliente6);
-		
-		JLabel labelGestionCliente7 = new JLabel("");
 		Image img1 = new ImageIcon(this.getClass().getResource("/Sotecars.png")).getImage();
-		Image modifiedImage = img1.getScaledInstance(170, 100, java.awt.Image.SCALE_SMOOTH);
-		labelGestionCliente7.setIcon(new ImageIcon(modifiedImage));
-		labelGestionCliente7.setBounds(566, 170, 172, 111);
-		add(labelGestionCliente7);
+		Image modifiedImage = img1.getScaledInstance(243, 124, java.awt.Image.SCALE_SMOOTH);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(39, 452, 1218, 261);
@@ -137,7 +132,7 @@ public class GestionCliente extends JPanel {
 		JLabel lblTelefono = new JLabel("Telefono:");
 		lblTelefono.setForeground(SystemColor.textHighlight);
 		lblTelefono.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTelefono.setBounds(56, 241, 91, 14);
+		lblTelefono.setBounds(75, 240, 91, 14);
 		add(lblTelefono);
 		
 		txtTelefono = new JTextField();
@@ -149,8 +144,20 @@ public class GestionCliente extends JPanel {
 		txtIdEliminar = new JTextField();
 		txtIdEliminar.setColumns(10);
 		txtIdEliminar.setBackground(SystemColor.inactiveCaption);
-		txtIdEliminar.setBounds(1115, 144, 121, 20);
+		txtIdEliminar.setBounds(1116, 144, 121, 20);
 		add(txtIdEliminar);
+		
+		JLabel lblNewLabel_3 = new JLabel("SOTECARS");
+		lblNewLabel_3.setForeground(Color.BLUE);
+		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
+		lblNewLabel_3.setBackground(Color.WHITE);
+		lblNewLabel_3.setBounds(553, 137, 228, 52);
+		add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("THE POWER OF DREAMS");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_4.setBounds(587, 176, 152, 22);
+		add(lblNewLabel_4);
 		
 		modeloTabla.setRowCount(0);
 		
