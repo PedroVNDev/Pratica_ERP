@@ -147,7 +147,7 @@ public class Login extends JFrame {
 		lblNewLabel_5.setBounds(441, 347, 64, 80);
 		contentPane.add(lblNewLabel_5);
 
-		Image ico1 = new ImageIcon(this.getClass().getResource("/006-user.png")).getImage();
+		Image ico1 = new ImageIcon(this.getClass().getResource("/071-cocheazul.png")).getImage();
 		Image modifiedIco1 = ico1.getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH);
 		lblNewLabel_5.setIcon(new ImageIcon(modifiedIco1));
 	}

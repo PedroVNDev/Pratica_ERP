@@ -140,7 +140,7 @@ public class GestionCliente extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Telefono", "DNI" });
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Telefono", "DNI", "Domicilio" ,"CP", "Poblacion", "Provincia" });
 		table.setModel(modeloTabla);
 
 		JLabel lblTelefono = new JLabel("Telefono:");
