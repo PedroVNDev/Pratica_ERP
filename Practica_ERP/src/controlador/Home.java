@@ -131,9 +131,17 @@ public class Home extends JFrame {
 		contentPane.add(lblNewLabel_4, BorderLayout.SOUTH);
 	
 		
-		Image ico2 = new ImageIcon(this.getClass().getResource("/006-user.png")).getImage();
-		Image modifiedIco2 = ico2.getScaledInstance(16, 16, java.awt.Image.SCALE_SMOOTH);
-		menuItem1.setIcon(new ImageIcon(modifiedIco2));
+		Image ico1 = new ImageIcon(this.getClass().getResource("/006-user.png")).getImage();
+		Image modifiedIco1 = ico1.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		menuItem1.setIcon(new ImageIcon(modifiedIco1));
+		
+		Image ico2 = new ImageIcon(this.getClass().getResource("/050-protect.png")).getImage();
+		Image modifiedIco2 = ico2.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		menuItem2.setIcon(new ImageIcon(modifiedIco2));
+		
+		Image ico3 = new ImageIcon(this.getClass().getResource("/065-credit-card.png")).getImage();
+		Image modifiedIco3 = ico3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+		menuItem3.setIcon(new ImageIcon(modifiedIco3));
 		
 	}
 

@@ -3,9 +3,11 @@ package controlador;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -134,5 +136,14 @@ public class Login extends JFrame {
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_4.setBounds(577, 65, 152, 22);
 		contentPane.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_5.setBounds(441, 347, 64, 80);
+		contentPane.add(lblNewLabel_5);
+		
+		Image ico1 = new ImageIcon(this.getClass().getResource("/006-user.png")).getImage();
+		Image modifiedIco1 = ico1.getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH);
+		lblNewLabel_5.setIcon(new ImageIcon(modifiedIco1));
 	}
 }
