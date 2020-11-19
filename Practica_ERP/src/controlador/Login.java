@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,16 +22,18 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField usuario;
 	private JTextField password;
+	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() { 
 			public void run() {
 				try {
 					Login frame = new Login();
 					frame.setVisible(true);
+					frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/071-cocheazul.png")));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -42,6 +45,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1299, 748);
 		contentPane = new JPanel();
@@ -116,32 +120,33 @@ public class Login extends JFrame {
 
 		btnNewButton.setBounds(607, 525, 135, 30);
 		contentPane.add(btnNewButton);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("*Nota aclaratoria*");
 		lblNewLabel_1.setBounds(301, 187, 129, 30);
 		contentPane.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel(" la contrase\u00F1a para tabajadores ser\u00E1 1, la contrase\u00F1a para administradores ser\u00E1 2");
+
+		JLabel lblNewLabel_2 = new JLabel(
+				" la contrase\u00F1a para tabajadores ser\u00E1 1, la contrase\u00F1a para administradores ser\u00E1 2");
 		lblNewLabel_2.setBounds(298, 218, 560, 30);
 		contentPane.add(lblNewLabel_2);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("SOTECARS");
 		lblNewLabel_3.setForeground(Color.BLUE);
 		lblNewLabel_3.setBackground(Color.WHITE);
 		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
 		lblNewLabel_3.setBounds(542, 26, 228, 52);
 		contentPane.add(lblNewLabel_3);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("THE POWER OF DREAMS");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_4.setBounds(577, 65, 152, 22);
 		contentPane.add(lblNewLabel_4);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("");
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel_5.setBounds(441, 347, 64, 80);
 		contentPane.add(lblNewLabel_5);
-		
+
 		Image ico1 = new ImageIcon(this.getClass().getResource("/006-user.png")).getImage();
 		Image modifiedIco1 = ico1.getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH);
 		lblNewLabel_5.setIcon(new ImageIcon(modifiedIco1));
