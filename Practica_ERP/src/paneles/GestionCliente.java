@@ -72,7 +72,9 @@ public class GestionCliente extends JPanel {
 				aniadirCliente();
 				modeloTabla.setRowCount(0);
 				cargaClientes();
-
+				txtNombre.setText("");
+				txtDniCliente.setText("");
+				txtTelefono.setText("");
 			}
 		});
 
@@ -113,7 +115,7 @@ public class GestionCliente extends JPanel {
 				eliminarCliente();
 				modeloTabla.setRowCount(0);
 				cargaClientes();
-
+				txtIdEliminar.setText(" ");
 			}
 		});
 
