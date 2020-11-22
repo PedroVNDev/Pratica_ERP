@@ -38,7 +38,7 @@ La aplicación cuenta con un ejecutable .jar que se puede abrir haciendo doble c
 ## Construido con 🛠️
 
 * [Eclipse](https://www.eclipse.org/downloads/) - Entorno de desarrollo
-* [WindowBuilder](https://www.eclipse.org/windowbuilder/download.php) -Extension con la que se ha desarrollado el entorno gráfico de la app
+* [WindowBuilder](https://www.eclipse.org/windowbuilder/download.php) - Extension con la que se ha desarrollado el entorno gráfico de la app
 * [Xampp MySQl](https://www.apachefriends.org/es/index.html) - Base de datos
 
 ---En desarrollo---
