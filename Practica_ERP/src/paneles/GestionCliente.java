@@ -20,8 +20,6 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import clases.Clientes;
-
 import java.awt.Color;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
