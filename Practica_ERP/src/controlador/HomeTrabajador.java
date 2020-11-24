@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import paneles.GestionCliente;
 import paneles.ListadoClientes;
+import paneles.ListadoProveedores;
 
 import javax.swing.JMenu;
 import java.awt.Color;
@@ -96,6 +97,12 @@ public class HomeTrabajador extends JFrame {
 		mnNewMenu_2.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("  Listado de proveedores");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListadoProveedores listado= new ListadoProveedores();
+				nuevoPanel(listado);
+			}
+		});
 		mntmNewMenuItem_1.setForeground(Color.BLUE);
 		mntmNewMenuItem_1.setFont(new Font("Arial", Font.BOLD, 30));
 		mnNewMenu_2.add(mntmNewMenuItem_1);
