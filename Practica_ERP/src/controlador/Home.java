@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import paneles.GestionCliente;
+import paneles.GestionPersonal;
 import paneles.GestionProveedor;
 
 import javax.swing.JMenuBar;
@@ -78,7 +79,7 @@ public class Home extends JFrame {
 		JMenuItem menuItem2 = new JMenuItem("    Gesti\u00F3n Proveedor");
 		menuItem2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				GestionProveedor g2 = new GestionProveedor();
 				nuevoPanel(g2);
 			}
@@ -88,7 +89,15 @@ public class Home extends JFrame {
 		menuItem2.setBackground(Color.BLUE);
 		menu1.add(menuItem2);
 
-		JMenuItem menuItem3 = new JMenuItem("       Gesti\u00F3n Venta");
+		JMenuItem menuItem3 = new JMenuItem("       Gesti\u00F3n Trabajador");
+		menuItem3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				GestionPersonal g3 = new GestionPersonal();
+				nuevoPanel(g3);
+
+			}
+		});
 		menuItem3.setForeground(Color.WHITE);
 		menuItem3.setBackground(Color.BLUE);
 		menuItem3.setFont(new Font("Arial", Font.BOLD, 26));
@@ -128,31 +137,30 @@ public class Home extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JLabel lblNewLabel = new JLabel("                 SOTECARS");
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
 		lblNewLabel.setForeground(Color.WHITE);
 		contentPane.add(lblNewLabel, BorderLayout.CENTER);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("                                      THE POWER OF DREAMS");
 		lblNewLabel_4.setForeground(UIManager.getColor("MenuItem.selectionBackground"));
 		lblNewLabel_4.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_4.setFont(new Font("Yu Gothic", Font.PLAIN, 40));
 		contentPane.add(lblNewLabel_4, BorderLayout.SOUTH);
-	
-		
+
 		Image ico1 = new ImageIcon(this.getClass().getResource("/006-user.png")).getImage();
 		Image modifiedIco1 = ico1.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		menuItem1.setIcon(new ImageIcon(modifiedIco1));
-		
+
 		Image ico2 = new ImageIcon(this.getClass().getResource("/050-protect.png")).getImage();
 		Image modifiedIco2 = ico2.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		menuItem2.setIcon(new ImageIcon(modifiedIco2));
-		
-		Image ico3 = new ImageIcon(this.getClass().getResource("/065-credit-card.png")).getImage();
+
+		Image ico3 = new ImageIcon(this.getClass().getResource("/036-suitcase.png")).getImage();
 		Image modifiedIco3 = ico3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		menuItem3.setIcon(new ImageIcon(modifiedIco3));
-		
+
 	}
 
 	public void nuevoPanel(JPanel panelActual) {
