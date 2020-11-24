@@ -36,6 +36,10 @@ public class GestionCliente extends JPanel {
 	DefaultTableModel modeloTabla = new DefaultTableModel();
 	private JTextField txtTelefono;
 	private JTextField txtIdEliminar;
+	private JTextField txtCP;
+	private JTextField txtPoblacion;
+	private JTextField txtCalle;
+	private JTextField txtProvincia;
 
 	/**
 	 * Create the panel.
@@ -79,7 +83,7 @@ public class GestionCliente extends JPanel {
 		btnAniadir.setFont(new Font("Arial", Font.BOLD, 18));
 		btnAniadir.setForeground(Color.WHITE);
 		btnAniadir.setBackground(Color.BLUE);
-		btnAniadir.setBounds(104, 321, 172, 35);
+		btnAniadir.setBounds(118, 399, 172, 35);
 		add(btnAniadir);
 
 		txtNombre = new JTextField();
@@ -138,7 +142,8 @@ public class GestionCliente extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Telefono", "DNI", "Domicilio" ,"CP", "Poblacion", "Provincia" });
+		modeloTabla.setColumnIdentifiers(
+				new Object[] { "ID", "Nombre", "Telefono", "DNI", "Domicilio", "CP", "Poblacion", "Provincia" });
 		table.setModel(modeloTabla);
 
 		JLabel lblTelefono = new JLabel("Telefono:");
@@ -171,6 +176,54 @@ public class GestionCliente extends JPanel {
 		lblNewLabel_4.setBounds(587, 176, 152, 22);
 		add(lblNewLabel_4);
 
+		JLabel lblCP = new JLabel("CP:");
+		lblCP.setForeground(SystemColor.textHighlight);
+		lblCP.setFont(new Font("Arial", Font.BOLD, 16));
+		lblCP.setBounds(93, 277, 54, 14);
+		add(lblCP);
+
+		txtCP = new JTextField();
+		txtCP.setColumns(10);
+		txtCP.setBackground(SystemColor.inactiveCaption);
+		txtCP.setBounds(167, 276, 123, 20);
+		add(txtCP);
+
+		JLabel lblPoblacion = new JLabel("Poblaci\u00F3n:");
+		lblPoblacion.setForeground(SystemColor.textHighlight);
+		lblPoblacion.setFont(new Font("Arial", Font.BOLD, 16));
+		lblPoblacion.setBounds(56, 337, 91, 14);
+		add(lblPoblacion);
+
+		txtPoblacion = new JTextField();
+		txtPoblacion.setColumns(10);
+		txtPoblacion.setBackground(SystemColor.inactiveCaption);
+		txtPoblacion.setBounds(167, 336, 123, 20);
+		add(txtPoblacion);
+
+		txtCalle = new JTextField();
+		txtCalle.setColumns(10);
+		txtCalle.setBackground(SystemColor.inactiveCaption);
+		txtCalle.setBounds(167, 368, 123, 20);
+		add(txtCalle);
+
+		JLabel lblCalle = new JLabel("Calle:");
+		lblCalle.setForeground(SystemColor.textHighlight);
+		lblCalle.setFont(new Font("Arial", Font.BOLD, 16));
+		lblCalle.setBounds(75, 369, 66, 14);
+		add(lblCalle);
+
+		JLabel lblProvincia = new JLabel("Provincia:");
+		lblProvincia.setForeground(SystemColor.textHighlight);
+		lblProvincia.setFont(new Font("Arial", Font.BOLD, 16));
+		lblProvincia.setBounds(56, 307, 91, 14);
+		add(lblProvincia);
+
+		txtProvincia = new JTextField();
+		txtProvincia.setColumns(10);
+		txtProvincia.setBackground(SystemColor.inactiveCaption);
+		txtProvincia.setBounds(167, 306, 123, 20);
+		add(txtProvincia);
+
 		modeloTabla.setRowCount(0);
 
 		cargaClientes();
@@ -185,11 +238,12 @@ public class GestionCliente extends JPanel {
 			try {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
-				rs = sql.executeQuery("SELECT ID, Nombre, Telefono, DNI FROM Clientes");
+				rs = sql.executeQuery(
+						"SELECT ID, Nombre, Telefono, DNI, CP, Provincia, Poblacion, Calle FROM Clientes");
 
 				while (rs.next()) {
 					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Nombre"),
-							rs.getObject("Telefono"), rs.getObject("DNI") });
+							rs.getObject("Telefono"), rs.getObject("DNI"), rs.getObject("CP"), rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
 				}
 
 				conexion.close();
@@ -208,11 +262,17 @@ public class GestionCliente extends JPanel {
 			String nombre = txtNombre.getText();
 			int telefono = Integer.parseInt(txtTelefono.getText());
 			String dni = txtDniCliente.getText();
+			int cp = Integer.parseInt(txtCP.getText());
+			String provincia = txtProvincia.getText();
+			String poblacion = txtPoblacion.getText();
+			String calle = txtCalle.getText();
 
-			String agregar = "INSERT INTO Clientes (Nombre, Telefono, DNI) VALUES('" + nombre + "', '" + telefono
-					+ "', '" + dni + "')";
+			String agregar = "INSERT INTO Clientes (Nombre, Telefono, DNI, CP, Provincia, Poblacion, Calle) VALUES('"
+					+ nombre + "', '" + telefono + "', '" + dni + "', '" + cp + "', '" + provincia + "', '" + poblacion
+					+ "', '" + calle + "')";
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
+
 			Statement consulta = conexion.createStatement();
 
 			consulta.executeUpdate(agregar);
@@ -254,5 +314,4 @@ public class GestionCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "No se eliminara el cliente introducido");
 		}
 	}
-
 }
