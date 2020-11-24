@@ -104,13 +104,19 @@ public class Login extends JFrame {
 				String loginusuario = usuario.getText();
 				String loginpass = password.getText();
 
-				if (loginusuario.equals("1") && loginpass.equals("1")) {
+				if (loginpass.equals("1")) {
 
 					dispose();
 					Home home = new Home();
 					home.setVisible(true);
 
-				} else {
+				}else  if (loginpass.equals("2")) {
+
+					dispose();
+					HomeTrabajador home2 = new HomeTrabajador();
+					home2.setVisible(true);
+
+				} else{
 
 					Login frame = new Login();
 					JOptionPane.showMessageDialog(frame, "Usuario Incorrecto");
