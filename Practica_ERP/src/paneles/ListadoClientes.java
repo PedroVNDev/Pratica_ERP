@@ -50,11 +50,12 @@ public class ListadoClientes extends JPanel {
 			try {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
-				rs = sql.executeQuery("SELECT ID, Nombre, Telefono, DNI FROM Clientes");
+				rs = sql.executeQuery(
+						"SELECT ID, Nombre, Telefono, DNI, CP, Provincia, Poblacion, Calle FROM Clientes");
 
 				while (rs.next()) {
 					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Nombre"),
-							rs.getObject("Telefono"), rs.getObject("DNI") });
+							rs.getObject("Telefono"), rs.getObject("DNI"), rs.getObject("CP"), rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
 				}
 
 				conexion.close();
