@@ -7,6 +7,13 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -103,23 +110,33 @@ public class Login extends JFrame {
 
 				String loginusuario = usuario.getText();
 				String loginpass = password.getText();
+				boolean puesto = false;
+				// si es true es admin, si es false es trabajador
 
 				if (loginpass.equals("1")) {
 
 					dispose();
 					Home home = new Home();
 					home.setVisible(true);
-
+					puesto= true;
+					
 				}else  if (loginpass.equals("2")) {
 
 					dispose();
 					HomeTrabajador home2 = new HomeTrabajador();
 					home2.setVisible(true);
+					puesto= false;
 
 				} else{
 
 					Login frame = new Login();
 					JOptionPane.showMessageDialog(frame, "Usuario Incorrecto");
+				}
+				try {
+					crearTXT(loginusuario, puesto);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
@@ -156,5 +173,32 @@ public class Login extends JFrame {
 		Image ico1 = new ImageIcon(this.getClass().getResource("/071-cocheazul.png")).getImage();
 		Image modifiedIco1 = ico1.getScaledInstance(64, 64, java.awt.Image.SCALE_SMOOTH);
 		lblNewLabel_5.setIcon(new ImageIcon(modifiedIco1));
+	}
+	
+	public void crearTXT( String nombre, boolean puesto) throws IOException {
+		File fichero= new File("Accesos.txt");
+		BufferedWriter buffer= new BufferedWriter(new PrintWriter(fichero));
+		
+		Calendar calendario = Calendar.getInstance();
+		java.util.Date fecha = new Date();
+		
+		if (puesto) {
+		
+			buffer.write(nombre.toUpperCase()+ "               ACCEDIO A LAS: "
+					+ calendario.get(Calendar.HOUR_OF_DAY)+":"
+					+ calendario.get(Calendar.MINUTE)+
+					" A DIA: " +fecha.getDay()+" DEL MES: "+ fecha.getMonth()+ "               CON PERMISOS DE ADMINISTRADOR");
+			buffer.close();
+			
+		}else if(!puesto) { 
+			
+			
+			buffer.write(nombre.toUpperCase()+ "               ACCEDIO A LAS: "
+					+ calendario.get(Calendar.HOUR_OF_DAY)+":"
+					+ calendario.get(Calendar.MINUTE)+
+					" A DIA: " +fecha.getDay()+" DEL MES: "+ fecha.getMonth() + "               CON PERMISOS DE TRABAJADOR");
+			buffer.close();
+			
+		}
 	}
 }
