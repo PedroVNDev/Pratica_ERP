@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import paneles.GestionCliente;
+import paneles.GestionProveedor;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.SystemColor;
@@ -74,6 +76,13 @@ public class Home extends JFrame {
 		menu1.add(menuItem1);
 
 		JMenuItem menuItem2 = new JMenuItem("    Gesti\u00F3n Proveedor");
+		menuItem2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				GestionProveedor g2 = new GestionProveedor();
+				nuevoPanel(g2);
+			}
+		});
 		menuItem2.setFont(new Font("Arial", Font.BOLD, 26));
 		menuItem2.setForeground(Color.WHITE);
 		menuItem2.setBackground(Color.BLUE);
