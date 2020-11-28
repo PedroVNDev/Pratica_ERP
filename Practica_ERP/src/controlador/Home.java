@@ -28,7 +28,7 @@ import javax.swing.JButton;
 public class Home extends JFrame {
 
 	private JPanel contentPane;
-
+	private static Home frame;
 	/**
 	 * Launch the application.
 	 */
@@ -36,8 +36,10 @@ public class Home extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Home frame = new Home();
-					frame.setVisible(false);
+					frame = new Home();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+					frame.setUndecorated(true);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -57,8 +59,8 @@ public class Home extends JFrame {
 		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
 
-		JMenu menu1 = new JMenu("            Gesti\u00F3n             ");
-		menu1.setFont(new Font("Arial", Font.BOLD, 30));
+		JMenu menu1 = new JMenu("                 Gesti\u00F3n             ");
+		menu1.setFont(new Font("Arial", Font.BOLD, 35));
 		menu1.setForeground(Color.BLUE);
 		menu1.setBackground(SystemColor.text);
 		menuBar.add(menu1);
@@ -103,8 +105,8 @@ public class Home extends JFrame {
 		menuItem3.setFont(new Font("Arial", Font.BOLD, 26));
 		menu1.add(menuItem3);
 
-		JMenu menu2 = new JMenu("Inventario                 ");
-		menu2.setFont(new Font("Arial", Font.BOLD, 30));
+		JMenu menu2 = new JMenu("  Inventario                    ");
+		menu2.setFont(new Font("Arial", Font.BOLD, 35));
 		menu2.setForeground(Color.BLUE);
 		menu2.setBackground(SystemColor.text);
 		menuBar.add(menu2);
@@ -112,8 +114,8 @@ public class Home extends JFrame {
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("New menu item");
 		menu2.add(mntmNewMenuItem_3);
 
-		JMenu menu3 = new JMenu("Producci\u00F3n               ");
-		menu3.setFont(new Font("Arial", Font.BOLD, 30));
+		JMenu menu3 = new JMenu("   Producci\u00F3n               ");
+		menu3.setFont(new Font("Arial", Font.BOLD, 35));
 		menu3.setForeground(Color.BLUE);
 		menu3.setBackground(SystemColor.text);
 		menuBar.add(menu3);
@@ -125,7 +127,7 @@ public class Home extends JFrame {
 		menu3.add(mntmNewMenuItem_5);
 
 		JMenu menu4 = new JMenu("Informes                              ");
-		menu4.setFont(new Font("Arial", Font.BOLD, 30));
+		menu4.setFont(new Font("Arial", Font.BOLD, 35));
 		menu4.setForeground(Color.BLUE);
 		menu4.setBackground(SystemColor.text);
 		menuBar.add(menu4);
@@ -138,12 +140,12 @@ public class Home extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		JLabel lblNewLabel = new JLabel("                 SOTECARS");
+		JLabel lblNewLabel = new JLabel("                     SOTECARS");
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
 		lblNewLabel.setForeground(Color.WHITE);
 		contentPane.add(lblNewLabel, BorderLayout.CENTER);
 
-		JLabel lblNewLabel_4 = new JLabel("                                      THE POWER OF DREAMS");
+		JLabel lblNewLabel_4 = new JLabel("                                             THE POWER OF DREAMS");
 		lblNewLabel_4.setForeground(UIManager.getColor("MenuItem.selectionBackground"));
 		lblNewLabel_4.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_4.setFont(new Font("Yu Gothic", Font.PLAIN, 40));

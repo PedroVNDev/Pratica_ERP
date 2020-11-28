@@ -34,6 +34,8 @@ public class HomeTrabajador extends JFrame {
 			public void run() {
 				try {
 					HomeTrabajador frame = new HomeTrabajador();
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,13 +50,13 @@ public class HomeTrabajador extends JFrame {
 	public HomeTrabajador() {
 		getContentPane().setBackground(Color.BLUE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1298, 745);
+		setBounds(100, 100, 1614, 949);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("                         Venta               ");
-		mnNewMenu.setFont(new Font("Arial", Font.BOLD, 30));
+		JMenu mnNewMenu = new JMenu("                        Venta                      ");
+		mnNewMenu.setFont(new Font("Arial", Font.BOLD, 35));
 		mnNewMenu.setForeground(Color.BLUE);
 		menuBar.add(mnNewMenu);
 		
@@ -63,14 +65,14 @@ public class HomeTrabajador extends JFrame {
 		mntmNewMenuItem_3.setFont(new Font("Arial", Font.BOLD, 30));
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
-		JMenu mnNewMenu_1 = new JMenu("                Informe              ");
+		JMenu mnNewMenu_1 = new JMenu("                  Informe                ");
 		mnNewMenu_1.setForeground(Color.BLUE);
-		mnNewMenu_1.setFont(new Font("Arial", Font.BOLD, 30));
+		mnNewMenu_1.setFont(new Font("Arial", Font.BOLD, 35));
 		menuBar.add(mnNewMenu_1);
 		
 		JMenu mnNewMenu_2 = new JMenu("                  Listados              ");
 		mnNewMenu_2.setForeground(Color.BLUE);
-		mnNewMenu_2.setFont(new Font("Arial", Font.BOLD, 30));
+		mnNewMenu_2.setFont(new Font("Arial", Font.BOLD, 35));
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("       Listado de clientes      ");
@@ -113,7 +115,7 @@ public class HomeTrabajador extends JFrame {
 		mnNewMenu_2.add(mntmNewMenuItem_2);
 		getContentPane().setLayout(new CardLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("                 SOTECARS");
+		JLabel lblNewLabel = new JLabel("                          SOTECARS");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
 		getContentPane().add(lblNewLabel, "name_694056379123400");
