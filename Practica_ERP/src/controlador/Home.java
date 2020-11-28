@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import paneles.GestionCliente;
 import paneles.GestionPersonal;
 import paneles.GestionProveedor;
+import paneles.ListadoInventario;
+import paneles.GestionInventario;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -29,6 +31,7 @@ public class Home extends JFrame {
 
 	private JPanel contentPane;
 	private static Home frame;
+
 	/**
 	 * Launch the application.
 	 */
@@ -37,7 +40,7 @@ public class Home extends JFrame {
 			public void run() {
 				try {
 					frame = new Home();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -111,8 +114,31 @@ public class Home extends JFrame {
 		menu2.setBackground(SystemColor.text);
 		menuBar.add(menu2);
 
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("New menu item");
-		menu2.add(mntmNewMenuItem_3);
+		JMenuItem menuItem4 = new JMenuItem("Stock");
+		menuItem4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ListadoInventario g4 = new ListadoInventario();
+				nuevoPanel(g4);
+			}
+		});
+		menuItem4.setForeground(Color.WHITE);
+		menuItem4.setBackground(Color.BLUE);
+		menuItem4.setFont(new Font("Arial", Font.BOLD, 26));
+		menu2.add(menuItem4);
+		
+		JMenuItem menuItem5 = new JMenuItem("Gestion Inventario");
+		menuItem5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				GestionInventario g5 = new GestionInventario();
+				nuevoPanel(g5);
+			}
+		});
+		menuItem5.setForeground(Color.WHITE);
+		menuItem5.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItem5.setBackground(Color.BLUE);
+		menu2.add(menuItem5);
 
 		JMenu menu3 = new JMenu("   Producci\u00F3n               ");
 		menu3.setFont(new Font("Arial", Font.BOLD, 35));
