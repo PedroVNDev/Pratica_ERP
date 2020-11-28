@@ -57,45 +57,46 @@ public class Home extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1299, 749);
 
+		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setForeground(SystemColor.desktop);
 		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
 
-		JMenu menu1 = new JMenu("                 Gesti\u00F3n             ");
-		menu1.setFont(new Font("Arial", Font.BOLD, 35));
-		menu1.setForeground(Color.BLUE);
-		menu1.setBackground(SystemColor.text);
-		menuBar.add(menu1);
+		JMenu menuGestion = new JMenu("                 Gesti\u00F3n             ");
+		menuGestion.setFont(new Font("Arial", Font.BOLD, 35));
+		menuGestion.setForeground(Color.BLUE);
+		menuGestion.setBackground(SystemColor.text);
+		menuBar.add(menuGestion);
 
-		JMenuItem menuItem1 = new JMenuItem("       Gesti\u00F3n Cliente        ");
-		menuItem1.setBackground(Color.BLUE);
-		menuItem1.setForeground(Color.WHITE);
-		menuItem1.setFont(new Font("Arial", Font.BOLD, 26));
-		menuItem1.addActionListener(new ActionListener() {
+		JMenuItem menuItemGestionCliente = new JMenuItem("       Gesti\u00F3n Cliente        ");
+		menuItemGestionCliente.setBackground(Color.BLUE);
+		menuItemGestionCliente.setForeground(Color.WHITE);
+		menuItemGestionCliente.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItemGestionCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				GestionCliente g1 = new GestionCliente();
 				nuevoPanel(g1);
 			}
 		});
-		menu1.add(menuItem1);
+		menuGestion.add(menuItemGestionCliente);
 
-		JMenuItem menuItem2 = new JMenuItem("    Gesti\u00F3n Proveedor");
-		menuItem2.addActionListener(new ActionListener() {
+		JMenuItem menuItemGestionProveedor = new JMenuItem("    Gesti\u00F3n Proveedor");
+		menuItemGestionProveedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				GestionProveedor g2 = new GestionProveedor();
 				nuevoPanel(g2);
 			}
 		});
-		menuItem2.setFont(new Font("Arial", Font.BOLD, 26));
-		menuItem2.setForeground(Color.WHITE);
-		menuItem2.setBackground(Color.BLUE);
-		menu1.add(menuItem2);
+		menuItemGestionProveedor.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItemGestionProveedor.setForeground(Color.WHITE);
+		menuItemGestionProveedor.setBackground(Color.BLUE);
+		menuGestion.add(menuItemGestionProveedor);
 
-		JMenuItem menuItem3 = new JMenuItem("       Gesti\u00F3n Trabajador");
-		menuItem3.addActionListener(new ActionListener() {
+		JMenuItem menuItemGestionTrabajador = new JMenuItem("       Gesti\u00F3n Trabajador");
+		menuItemGestionTrabajador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				GestionPersonal g3 = new GestionPersonal();
@@ -103,34 +104,34 @@ public class Home extends JFrame {
 
 			}
 		});
-		menuItem3.setForeground(Color.WHITE);
-		menuItem3.setBackground(Color.BLUE);
-		menuItem3.setFont(new Font("Arial", Font.BOLD, 26));
-		menu1.add(menuItem3);
+		menuItemGestionTrabajador.setForeground(Color.WHITE);
+		menuItemGestionTrabajador.setBackground(Color.BLUE);
+		menuItemGestionTrabajador.setFont(new Font("Arial", Font.BOLD, 26));
+		menuGestion.add(menuItemGestionTrabajador);
 
-		JMenu menu2 = new JMenu("  Inventario                    ");
-		menu2.setFont(new Font("Arial", Font.BOLD, 35));
-		menu2.setForeground(Color.BLUE);
-		menu2.setBackground(SystemColor.text);
-		menuBar.add(menu2);
+		JMenu menuInventario = new JMenu("  Inventario                    ");
+		menuInventario.setFont(new Font("Arial", Font.BOLD, 35));
+		menuInventario.setForeground(Color.BLUE);
+		menuInventario.setBackground(SystemColor.text);
+		menuBar.add(menuInventario);
 
-		JMenuItem menuItem4 = new JMenuItem("Stock");
-		menuItem4.addActionListener(new ActionListener() {
+		JMenuItem menuItemStock = new JMenuItem("Stock");
+		menuItemStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ListadoInventario g4 = new ListadoInventario();
 				nuevoPanel(g4);
 			}
 		});
-		menuItem4.setForeground(Color.WHITE);
-		menuItem4.setBackground(Color.BLUE);
-		menuItem4.setFont(new Font("Arial", Font.BOLD, 26));
-		menu2.add(menuItem4);
-		
+		menuItemStock.setForeground(Color.WHITE);
+		menuItemStock.setBackground(Color.BLUE);
+		menuItemStock.setFont(new Font("Arial", Font.BOLD, 26));
+		menuInventario.add(menuItemStock);
+
 		JMenuItem menuItem5 = new JMenuItem("Gestion Inventario");
 		menuItem5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				GestionInventario g5 = new GestionInventario();
 				nuevoPanel(g5);
 			}
@@ -138,7 +139,7 @@ public class Home extends JFrame {
 		menuItem5.setForeground(Color.WHITE);
 		menuItem5.setFont(new Font("Arial", Font.BOLD, 26));
 		menuItem5.setBackground(Color.BLUE);
-		menu2.add(menuItem5);
+		menuInventario.add(menuItem5);
 
 		JMenu menu3 = new JMenu("   Producci\u00F3n               ");
 		menu3.setFont(new Font("Arial", Font.BOLD, 35));
@@ -177,20 +178,22 @@ public class Home extends JFrame {
 		lblNewLabel_4.setFont(new Font("Yu Gothic", Font.PLAIN, 40));
 		contentPane.add(lblNewLabel_4, BorderLayout.SOUTH);
 
+		// Iconos
 		Image ico1 = new ImageIcon(this.getClass().getResource("/006-user.png")).getImage();
 		Image modifiedIco1 = ico1.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		menuItem1.setIcon(new ImageIcon(modifiedIco1));
+		menuItemGestionCliente.setIcon(new ImageIcon(modifiedIco1));
 
 		Image ico2 = new ImageIcon(this.getClass().getResource("/050-protect.png")).getImage();
 		Image modifiedIco2 = ico2.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		menuItem2.setIcon(new ImageIcon(modifiedIco2));
+		menuItemGestionProveedor.setIcon(new ImageIcon(modifiedIco2));
 
 		Image ico3 = new ImageIcon(this.getClass().getResource("/036-suitcase.png")).getImage();
 		Image modifiedIco3 = ico3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		menuItem3.setIcon(new ImageIcon(modifiedIco3));
+		menuItemGestionTrabajador.setIcon(new ImageIcon(modifiedIco3));
 
 	}
 
+	// Metodos
 	public void nuevoPanel(JPanel panelActual) {
 		contentPane.removeAll();
 		contentPane.add(panelActual);

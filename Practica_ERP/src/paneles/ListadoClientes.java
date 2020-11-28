@@ -22,6 +22,14 @@ public class ListadoClientes extends JPanel {
 	public ListadoClientes() {
 		setLayout(null);
 		
+		//Labels
+		JLabel lblListaClientes = new JLabel("Lista de clientes");
+		lblListaClientes.setForeground(SystemColor.textHighlight);
+		lblListaClientes.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblListaClientes.setBounds(610, 162, 214, 40);
+		add(lblListaClientes);
+		
+		//Tabla
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(56, 213, 1218, 363);
 		add(scrollPane);
@@ -31,17 +39,11 @@ public class ListadoClientes extends JPanel {
 		
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Telefono", "DNI", "Domicilio" ,"CP", "Poblacion", "Provincia" });
 		table.setModel(modeloTabla);
-		
-		JLabel labelGestionCliente6 = new JLabel("Lista de clientes");
-		labelGestionCliente6.setForeground(SystemColor.textHighlight);
-		labelGestionCliente6.setFont(new Font("Tahoma", Font.BOLD, 22));
-		labelGestionCliente6.setBounds(610, 162, 214, 40);
-		add(labelGestionCliente6);
-		
 		cargaClientes();
 
 	}
 	
+	//Metodos
 	public void cargaClientes() {
 		Connection conexion = null;
 		Statement sql = null;

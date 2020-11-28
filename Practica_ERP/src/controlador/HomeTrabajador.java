@@ -54,36 +54,41 @@ public class HomeTrabajador extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1614, 949);
 
+		//MenuBar
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu mnNewMenu = new JMenu("                        Venta                      ");
-		mnNewMenu.setFont(new Font("Arial", Font.BOLD, 35));
-		mnNewMenu.setForeground(Color.BLUE);
-		menuBar.add(mnNewMenu);
+		JMenu menuVenta = new JMenu("                        Venta                      ");
+		menuVenta.setFont(new Font("Arial", Font.BOLD, 35));
+		menuVenta.setForeground(Color.BLUE);
+		menuBar.add(menuVenta);
 
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("             Gestionar Ticket            ");
-		mntmNewMenuItem_3.setForeground(Color.BLUE);
-		mntmNewMenuItem_3.setFont(new Font("Arial", Font.BOLD, 30));
-		mnNewMenu.add(mntmNewMenuItem_3);
+		JMenuItem menuItemGestionTicket = new JMenuItem("             Gestionar Ticket            ");
+		menuItemGestionTicket.setForeground(Color.BLUE);
+		menuItemGestionTicket.setFont(new Font("Arial", Font.BOLD, 30));
+		menuVenta.add(menuItemGestionTicket);
 
-		JMenu mnNewMenu_1 = new JMenu("                  Informe                ");
-		mnNewMenu_1.setForeground(Color.BLUE);
-		mnNewMenu_1.setFont(new Font("Arial", Font.BOLD, 35));
-		menuBar.add(mnNewMenu_1);
+		JMenu menuInforme = new JMenu("                  Informe                ");
+		menuInforme.setForeground(Color.BLUE);
+		menuInforme.setFont(new Font("Arial", Font.BOLD, 35));
+		menuBar.add(menuInforme);
 
-		JMenu mnNewMenu_2 = new JMenu("                  Listados              ");
-		mnNewMenu_2.setForeground(Color.BLUE);
-		mnNewMenu_2.setFont(new Font("Arial", Font.BOLD, 35));
-		menuBar.add(mnNewMenu_2);
+		JMenu menuListados = new JMenu("                  Listados              ");
+		menuListados.setForeground(Color.BLUE);
+		menuListados.setFont(new Font("Arial", Font.BOLD, 35));
+		menuBar.add(menuListados);
 
-		JMenuItem mntmNewMenuItem = new JMenuItem("       Listado de clientes      ");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		JMenuItem menuItemListadoClientes = new JMenuItem("       Listado de clientes      ");
+		
+		menuItemListadoClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListadoClientes g1 = new ListadoClientes();
 				nuevoPanel(g1);
 			}
 		});
+		menuItemListadoClientes.setForeground(Color.BLUE);
+		menuItemListadoClientes.setFont(new Font("Arial", Font.BOLD, 30));
+		menuListados.add(menuItemListadoClientes);
 
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 255));
@@ -91,38 +96,37 @@ public class HomeTrabajador extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		mntmNewMenuItem.setForeground(Color.BLUE);
-		mntmNewMenuItem.setFont(new Font("Arial", Font.BOLD, 30));
-		mnNewMenu_2.add(mntmNewMenuItem);
+		
 
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("  Listado de proveedores");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		JMenuItem menuItemListadoProveedores = new JMenuItem("  Listado de proveedores");
+		menuItemListadoProveedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListadoProveedores listado = new ListadoProveedores();
 				nuevoPanel(listado);
 			}
 		});
-		mntmNewMenuItem_1.setForeground(Color.BLUE);
-		mntmNewMenuItem_1.setFont(new Font("Arial", Font.BOLD, 30));
-		mnNewMenu_2.add(mntmNewMenuItem_1);
+		menuItemListadoProveedores.setForeground(Color.BLUE);
+		menuItemListadoProveedores.setFont(new Font("Arial", Font.BOLD, 30));
+		menuListados.add(menuItemListadoProveedores);
 
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("                Stock");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+		JMenuItem menuItemStock = new JMenuItem("                Stock");
+		menuItemStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				ListadoInventario g4 = new ListadoInventario();
 				nuevoPanel(g4);
 			}
-		});
-		mntmNewMenuItem_2.setForeground(Color.BLUE);
-		mntmNewMenuItem_2.setFont(new Font("Arial", Font.BOLD, 30));
-		mnNewMenu_2.add(mntmNewMenuItem_2);
+		}); 
+		menuItemStock.setForeground(Color.BLUE);
+		menuItemStock.setFont(new Font("Arial", Font.BOLD, 30));
+		menuListados.add(menuItemStock);
 		getContentPane().setLayout(new CardLayout(0, 0));
 
-		JLabel lblNewLabel = new JLabel("                          SOTECARS");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
-		getContentPane().add(lblNewLabel, "name_694056379123400");
+		//Labels
+		JLabel lblSotecars1 = new JLabel("                          SOTECARS");
+		lblSotecars1.setForeground(Color.WHITE);
+		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
+		getContentPane().add(lblSotecars1, "name_694056379123400");
 	}
 
 	public void nuevoPanel(JPanel panelActual) {

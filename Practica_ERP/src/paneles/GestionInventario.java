@@ -38,8 +38,6 @@ public class GestionInventario extends JPanel {
 	private JTextField txtCajaCambios;
 	private JTextField txtAnio;
 	private JTextField txtMatricula;
-	private JTextField textField;
-	private JTextField textField_1;
 
 	/**
 	 * Create the panel.
@@ -251,7 +249,6 @@ public class GestionInventario extends JPanel {
 		table.setModel(modeloTabla);
 
 		modeloTabla.setRowCount(0);
-
 		cargaVehiculos();
 
 	}

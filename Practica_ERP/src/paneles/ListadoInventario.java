@@ -25,6 +25,14 @@ public class ListadoInventario extends JPanel {
 	public ListadoInventario() {
 		setLayout(null);
 
+		// Labels
+		JLabel lblInventario = new JLabel("Inventario");
+		lblInventario.setForeground(SystemColor.textHighlight);
+		lblInventario.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblInventario.setBounds(610, 162, 214, 40);
+		add(lblInventario);
+
+		// Tabla
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(56, 213, 1218, 363);
 		add(scrollPane);
@@ -35,17 +43,11 @@ public class ListadoInventario extends JPanel {
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia_Energetica", "Consumo", "Emisiones",
 				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
 		table.setModel(modeloTabla);
-
-		JLabel labelGestionCliente7 = new JLabel("Inventario");
-		labelGestionCliente7.setForeground(SystemColor.textHighlight);
-		labelGestionCliente7.setFont(new Font("Tahoma", Font.BOLD, 22));
-		labelGestionCliente7.setBounds(610, 162, 214, 40);
-		add(labelGestionCliente7);
-
 		cargaInventario();
 
 	}
 
+	//Metodos
 	public void cargaInventario() {
 		Connection conexion = null;
 		Statement sql = null;

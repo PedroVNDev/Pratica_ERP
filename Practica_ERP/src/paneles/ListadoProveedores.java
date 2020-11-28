@@ -23,6 +23,14 @@ public class ListadoProveedores extends JPanel {
 	public ListadoProveedores() {
 		setLayout(null);
 		
+		//Labels
+		JLabel lblListaProveedores = new JLabel("Lista de proveedores");
+		lblListaProveedores.setForeground(SystemColor.textHighlight);
+		lblListaProveedores.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblListaProveedores.setBounds(590, 117, 291, 40);
+		add(lblListaProveedores);
+		
+		//Tabla
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(57, 177, 1218, 363);
 		add(scrollPane);
@@ -30,18 +38,13 @@ public class ListadoProveedores extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JLabel lblListaDeProveedores = new JLabel("Lista de proveedores");
-		lblListaDeProveedores.setForeground(SystemColor.textHighlight);
-		lblListaDeProveedores.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaDeProveedores.setBounds(590, 117, 291, 40);
-		add(lblListaDeProveedores);
-
 		modeloTabla.setColumnIdentifiers(
 				new Object[] { "ID", "CIF", "Nombre", "Tipo_Proveedor", "CP", "Poblacion", "Provincia", "Calle" });
 		table.setModel(modeloTabla);
 		cargaProveedores();
 	}
 	
+	//Metodos
 	public void cargaProveedores() {
 		Connection conexion = null;
 		Statement sql = null;
