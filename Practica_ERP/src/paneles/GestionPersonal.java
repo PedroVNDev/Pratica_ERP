@@ -56,19 +56,19 @@ public class GestionPersonal extends JPanel {
 		JLabel labelGestionTrabajador1 = new JLabel("A\u00F1adir Trabajador");
 		labelGestionTrabajador1.setForeground(SystemColor.textHighlight);
 		labelGestionTrabajador1.setFont(new Font("Tahoma", Font.BOLD, 24));
-		labelGestionTrabajador1.setBounds(75, 57, 182, 40);
+		labelGestionTrabajador1.setBounds(202, 128, 301, 40);
 		add(labelGestionTrabajador1);
 
 		JLabel labelGestionTrabajador2 = new JLabel("Nombre Trabajador:");
 		labelGestionTrabajador2.setForeground(SystemColor.textHighlight);
 		labelGestionTrabajador2.setFont(new Font("Arial", Font.BOLD, 16));
-		labelGestionTrabajador2.setBounds(23, 134, 149, 35);
+		labelGestionTrabajador2.setBounds(127, 217, 162, 35);
 		add(labelGestionTrabajador2);
 
 		JLabel labelGestionTrabajador3 = new JLabel("DNI Trabajador: ");
 		labelGestionTrabajador3.setForeground(SystemColor.textHighlight);
 		labelGestionTrabajador3.setFont(new Font("Arial", Font.BOLD, 16));
-		labelGestionTrabajador3.setBounds(56, 190, 108, 15);
+		labelGestionTrabajador3.setBounds(156, 257, 133, 15);
 		add(labelGestionTrabajador3);
 
 		JButton btnAniadir = new JButton("A\u00F1adir Trabajador");
@@ -87,31 +87,31 @@ public class GestionPersonal extends JPanel {
 		btnAniadir.setFont(new Font("Arial", Font.BOLD, 18));
 		btnAniadir.setForeground(Color.WHITE);
 		btnAniadir.setBackground(Color.BLUE);
-		btnAniadir.setBounds(118, 399, 172, 35);
+		btnAniadir.setBounds(220, 470, 206, 35);
 		add(btnAniadir);
 
 		txtNombre = new JTextField();
 		txtNombre.setBackground(SystemColor.inactiveCaption);
-		txtNombre.setBounds(169, 144, 121, 20);
+		txtNombre.setBounds(294, 227, 121, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtDniTrabajador = new JTextField();
 		txtDniTrabajador.setBackground(SystemColor.inactiveCaption);
 		txtDniTrabajador.setColumns(10);
-		txtDniTrabajador.setBounds(169, 190, 123, 20);
+		txtDniTrabajador.setBounds(294, 257, 123, 20);
 		add(txtDniTrabajador);
 
 		JLabel labelGestionTrabajador4 = new JLabel("Eliminar Trabajador");
 		labelGestionTrabajador4.setForeground(SystemColor.textHighlight);
 		labelGestionTrabajador4.setFont(new Font("Tahoma", Font.BOLD, 24));
-		labelGestionTrabajador4.setBounds(1028, 57, 191, 40);
+		labelGestionTrabajador4.setBounds(1123, 128, 295, 40);
 		add(labelGestionTrabajador4);
 
 		JLabel labelGestionTrabajador5 = new JLabel("ID Trabajador:");
 		labelGestionTrabajador5.setForeground(SystemColor.textHighlight);
 		labelGestionTrabajador5.setFont(new Font("Arial", Font.BOLD, 16));
-		labelGestionTrabajador5.setBounds(1019, 144, 115, 14);
+		labelGestionTrabajador5.setBounds(1123, 217, 115, 14);
 		add(labelGestionTrabajador5);
 
 		JButton btnEliminar = new JButton("Eliminar Trabajador");
@@ -128,19 +128,19 @@ public class GestionPersonal extends JPanel {
 		btnEliminar.setForeground(Color.WHITE);
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 18));
 		btnEliminar.setBackground(Color.BLUE);
-		btnEliminar.setBounds(1060, 321, 177, 35);
+		btnEliminar.setBounds(1123, 470, 217, 35);
 		add(btnEliminar);
 
 		JLabel labelGestionTrabajador6 = new JLabel("Lista de Trabajadores");
 		labelGestionTrabajador6.setForeground(SystemColor.textHighlight);
 		labelGestionTrabajador6.setFont(new Font("Tahoma", Font.BOLD, 22));
-		labelGestionTrabajador6.setBounds(566, 393, 214, 40);
+		labelGestionTrabajador6.setBounds(669, 464, 266, 40);
 		add(labelGestionTrabajador6);
 		Image img1 = new ImageIcon(this.getClass().getResource("/Sotecars.png")).getImage();
 		Image modifiedImage = img1.getScaledInstance(243, 124, java.awt.Image.SCALE_SMOOTH);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(39, 452, 1218, 261);
+		scrollPane.setBounds(166, 523, 1218, 261);
 		add(scrollPane);
 
 		table = new JTable();
@@ -153,91 +153,91 @@ public class GestionPersonal extends JPanel {
 		JLabel lblPuesto = new JLabel("Puesto:");
 		lblPuesto.setForeground(SystemColor.textHighlight);
 		lblPuesto.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPuesto.setBounds(75, 240, 91, 14);
+		lblPuesto.setBounds(220, 317, 91, 14);
 		add(lblPuesto);
 
 		txtPuesto = new JTextField();
 		txtPuesto.setColumns(10);
 		txtPuesto.setBackground(SystemColor.inactiveCaption);
-		txtPuesto.setBounds(167, 240, 123, 20);
+		txtPuesto.setBounds(294, 317, 123, 20);
 		add(txtPuesto);
 
 		txtIdEliminar = new JTextField();
 		txtIdEliminar.setColumns(10);
 		txtIdEliminar.setBackground(SystemColor.inactiveCaption);
-		txtIdEliminar.setBounds(1116, 144, 121, 20);
+		txtIdEliminar.setBounds(1243, 215, 121, 20);
 		add(txtIdEliminar);
 
 		JLabel lblNewLabel_3 = new JLabel("SOTECARS");
 		lblNewLabel_3.setForeground(Color.BLUE);
 		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
 		lblNewLabel_3.setBackground(Color.WHITE);
-		lblNewLabel_3.setBounds(553, 137, 228, 52);
+		lblNewLabel_3.setBounds(680, 208, 228, 52);
 		add(lblNewLabel_3);
 
 		JLabel lblNewLabel_4 = new JLabel("THE POWER OF DREAMS");
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel_4.setBounds(587, 176, 152, 22);
+		lblNewLabel_4.setBounds(714, 247, 152, 22);
 		add(lblNewLabel_4);
 
 		JLabel lblCP = new JLabel("CP:");
 		lblCP.setForeground(SystemColor.textHighlight);
 		lblCP.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCP.setBounds(93, 277, 54, 14);
+		lblCP.setBounds(245, 347, 54, 14);
 		add(lblCP);
 
 		txtCP = new JTextField();
 		txtCP.setColumns(10);
 		txtCP.setBackground(SystemColor.inactiveCaption);
-		txtCP.setBounds(167, 276, 123, 20);
+		txtCP.setBounds(294, 347, 123, 20);
 		add(txtCP);
 
 		JLabel lblPoblacion = new JLabel("Poblaci\u00F3n:");
 		lblPoblacion.setForeground(SystemColor.textHighlight);
 		lblPoblacion.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPoblacion.setBounds(56, 337, 91, 14);
+		lblPoblacion.setBounds(198, 407, 100, 20);
 		add(lblPoblacion);
 
 		txtPoblacion = new JTextField();
 		txtPoblacion.setColumns(10);
 		txtPoblacion.setBackground(SystemColor.inactiveCaption);
-		txtPoblacion.setBounds(167, 336, 123, 20);
+		txtPoblacion.setBounds(294, 407, 123, 20);
 		add(txtPoblacion);
 
 		txtCalle = new JTextField();
 		txtCalle.setColumns(10);
 		txtCalle.setBackground(SystemColor.inactiveCaption);
-		txtCalle.setBounds(167, 368, 123, 20);
+		txtCalle.setBounds(294, 439, 123, 20);
 		add(txtCalle);
 
 		JLabel lblCalle = new JLabel("Calle:");
 		lblCalle.setForeground(SystemColor.textHighlight);
 		lblCalle.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCalle.setBounds(75, 369, 66, 14);
+		lblCalle.setBounds(235, 437, 76, 23);
 		add(lblCalle);
 
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setForeground(SystemColor.textHighlight);
 		lblProvincia.setFont(new Font("Arial", Font.BOLD, 16));
-		lblProvincia.setBounds(56, 307, 91, 14);
+		lblProvincia.setBounds(202, 378, 100, 20);
 		add(lblProvincia);
 
 		txtProvincia = new JTextField();
 		txtProvincia.setColumns(10);
 		txtProvincia.setBackground(SystemColor.inactiveCaption);
-		txtProvincia.setBounds(167, 306, 123, 20);
+		txtProvincia.setBounds(294, 377, 123, 20);
 		add(txtProvincia);
 		
 		JLabel lblSueldo = new JLabel("Sueldo:");
 		lblSueldo.setForeground(SystemColor.textHighlight);
 		lblSueldo.setFont(new Font("Arial", Font.BOLD, 16));
-		lblSueldo.setBounds(75, 216, 91, 14);
+		lblSueldo.setBounds(220, 287, 70, 14);
 		add(lblSueldo);
 		
 		txtSueldo = new JTextField();
 		txtSueldo.setColumns(10);
 		txtSueldo.setBackground(SystemColor.inactiveCaption);
-		txtSueldo.setBounds(167, 216, 123, 20);
+		txtSueldo.setBounds(294, 287, 123, 20);
 		add(txtSueldo);
 
 		modeloTabla.setRowCount(0);
