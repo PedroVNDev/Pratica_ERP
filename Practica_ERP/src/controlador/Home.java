@@ -8,9 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import paneles.GestionCliente;
+import paneles.GestionFabricas;
 import paneles.GestionPersonal;
 import paneles.GestionProveedor;
+import paneles.ListaFabricas;
 import paneles.ListadoInventario;
+import paneles.PedirPresupuesto;
 import paneles.GestionInventario;
 
 import javax.swing.JMenuBar;
@@ -40,8 +43,6 @@ public class Home extends JFrame {
 			public void run() {
 				try {
 					frame = new Home();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +56,7 @@ public class Home extends JFrame {
 	 */
 	public Home() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1299, 749);
+		setBounds(100, 100, 1300, 748);
 
 		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
@@ -63,7 +64,7 @@ public class Home extends JFrame {
 		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
 
-		JMenu menuGestion = new JMenu("                 Gesti\u00F3n             ");
+		JMenu menuGestion = new JMenu("          Gesti\u00F3n             ");
 		menuGestion.setFont(new Font("Arial", Font.BOLD, 35));
 		menuGestion.setForeground(Color.BLUE);
 		menuGestion.setBackground(SystemColor.text);
@@ -109,7 +110,7 @@ public class Home extends JFrame {
 		menuItemGestionTrabajador.setFont(new Font("Arial", Font.BOLD, 26));
 		menuGestion.add(menuItemGestionTrabajador);
 
-		JMenu menuInventario = new JMenu("  Inventario                    ");
+		JMenu menuInventario = new JMenu("  Inventario             ");
 		menuInventario.setFont(new Font("Arial", Font.BOLD, 35));
 		menuInventario.setForeground(Color.BLUE);
 		menuInventario.setBackground(SystemColor.text);
@@ -128,7 +129,7 @@ public class Home extends JFrame {
 		menuItemStock.setFont(new Font("Arial", Font.BOLD, 26));
 		menuInventario.add(menuItemStock);
 
-		JMenuItem menuItem5 = new JMenuItem("Gestion Inventario");
+		JMenuItem menuItem5 = new JMenuItem("A\u00F1adir Veh\u00EDculo");
 		menuItem5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -147,11 +148,41 @@ public class Home extends JFrame {
 		menu3.setBackground(SystemColor.text);
 		menuBar.add(menu3);
 
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("New menu item");
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Gestionar Fabricas");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GestionFabricas gfa = new GestionFabricas();
+				nuevoPanel(gfa);
+			}
+		});
+		mntmNewMenuItem_4.setForeground(Color.WHITE);
+		mntmNewMenuItem_4.setBackground(Color.BLUE);
+		mntmNewMenuItem_4.setFont(new Font("Arial", Font.BOLD, 26));
 		menu3.add(mntmNewMenuItem_4);
 
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("New menu item");
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Listado de Fabricas");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListaFabricas gf= new ListaFabricas();
+				nuevoPanel(gf);
+			}
+		});
+		mntmNewMenuItem_5.setForeground(Color.WHITE);
+		mntmNewMenuItem_5.setBackground(Color.BLUE);
+		mntmNewMenuItem_5.setFont(new Font("Arial", Font.BOLD, 26));
 		menu3.add(mntmNewMenuItem_5);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Pedir Presupuesto");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PedirPresupuesto pp= new PedirPresupuesto();
+				nuevoPanel(pp);
+			}
+		});
+		mntmNewMenuItem.setForeground(Color.WHITE);
+		mntmNewMenuItem.setFont(new Font("Arial", Font.BOLD, 26));
+		mntmNewMenuItem.setBackground(Color.BLUE);
+		menu3.add(mntmNewMenuItem);
 
 		JMenu menu4 = new JMenu("Informes                              ");
 		menu4.setFont(new Font("Arial", Font.BOLD, 35));
@@ -167,12 +198,12 @@ public class Home extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		JLabel lblNewLabel = new JLabel("                     SOTECARS");
+		JLabel lblNewLabel = new JLabel("                  SOTECARS");
 		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
 		lblNewLabel.setForeground(Color.WHITE);
 		contentPane.add(lblNewLabel, BorderLayout.CENTER);
 
-		JLabel lblNewLabel_4 = new JLabel("                                             THE POWER OF DREAMS");
+		JLabel lblNewLabel_4 = new JLabel("                                         THE POWER OF DREAMS");
 		lblNewLabel_4.setForeground(UIManager.getColor("MenuItem.selectionBackground"));
 		lblNewLabel_4.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel_4.setFont(new Font("Yu Gothic", Font.PLAIN, 40));

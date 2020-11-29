@@ -40,11 +40,8 @@ public class Login extends JFrame {
 			public void run() {
 				try {
 					frame = new Login();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					frame.setUndecorated(true);
 					frame.setVisible(true);
-					frame.setIconImage(
-							Toolkit.getDefaultToolkit().getImage(getClass().getResource("/071-cocheazul.png")));
+							Toolkit.getDefaultToolkit().getImage(getClass().getResource("/071-cocheazul.png"));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -58,7 +55,7 @@ public class Login extends JFrame {
 	public Login() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1463, 894);
+		setBounds(100, 100, 1289, 775);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,74 +64,74 @@ public class Login extends JFrame {
 
 		// Labels
 		JLabel lblAclaratoria = new JLabel("*Nota aclaratoria*");
-		lblAclaratoria.setBounds(443, 294, 129, 30);
+		lblAclaratoria.setBounds(254, 246, 129, 30);
 		contentPane.add(lblAclaratoria);
 
 		JLabel lblAclaratoria2 = new JLabel(
 				" la contrase\u00F1a para tabajadores ser\u00E1 1, la contrase\u00F1a para administradores ser\u00E1 2");
-		lblAclaratoria2.setBounds(440, 325, 560, 30);
+		lblAclaratoria2.setBounds(251, 277, 560, 30);
 		contentPane.add(lblAclaratoria2);
 
 		JLabel lblSotecars1 = new JLabel("SOTECARS");
 		lblSotecars1.setForeground(Color.BLUE);
 		lblSotecars1.setBackground(Color.WHITE);
 		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
-		lblSotecars1.setBounds(684, 133, 228, 52);
+		lblSotecars1.setBounds(501, 85, 228, 52);
 		contentPane.add(lblSotecars1);
 
 		JLabel lblSotecars2 = new JLabel("THE POWER OF DREAMS");
 		lblSotecars2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSotecars2.setBounds(719, 172, 152, 22);
+		lblSotecars2.setBounds(536, 124, 152, 22);
 		contentPane.add(lblSotecars2);
 
 		JLabel lblIcono = new JLabel("");
 		lblIcono.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblIcono.setBounds(583, 454, 64, 80);
+		lblIcono.setBounds(400, 406, 64, 80);
 		contentPane.add(lblIcono);
 
 		// Labels Login
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblUsuario.setBounds(684, 435, 108, 63);
+		lblUsuario.setBounds(495, 387, 108, 63);
 		contentPane.add(lblUsuario);
 
 		JLabel lblContrasenia = new JLabel("Contrase\u00F1a:");
 		lblContrasenia.setFont(new Font("Arial", Font.PLAIN, 18));
-		lblContrasenia.setBounds(657, 525, 108, 63);
+		lblContrasenia.setBounds(474, 477, 108, 63);
 		contentPane.add(lblContrasenia);
 
 		// JTextFields
 		txtUsuario = new JTextField();
 		txtUsuario.setFont(new Font("Arial", Font.BOLD, 18));
-		txtUsuario.setBounds(785, 454, 135, 30);
+		txtUsuario.setBounds(596, 406, 135, 30);
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
 		txtPassword = new JTextField();
 		txtPassword.setFont(new Font("Arial", Font.BOLD, 18));
 		txtPassword.setColumns(10);
-		txtPassword.setBounds(785, 538, 135, 30);
+		txtPassword.setBounds(596, 490, 135, 30);
 		contentPane.add(txtPassword);
 
 		// JPanels
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLUE);
-		panel.setBounds(376, 247, 29, 487);
+		panel.setBounds(187, 199, 29, 487);
 		contentPane.add(panel);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLUE);
-		panel_1.setBounds(376, 238, 828, 30);
+		panel_1.setBounds(187, 190, 835, 30);
 		contentPane.add(panel_1);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.BLUE);
-		panel_2.setBounds(1176, 264, 29, 470);
+		panel_2.setBounds(993, 216, 29, 470);
 		contentPane.add(panel_2);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.BLUE);
-		panel_3.setBounds(391, 704, 809, 30);
+		panel_3.setBounds(208, 656, 809, 30);
 		contentPane.add(panel_3);
 
 		//Botones
@@ -152,8 +149,6 @@ public class Login extends JFrame {
 
 					dispose();
 					Home home = new Home();
-					home.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					home.setUndecorated(true);
 					home.setVisible(true);
 					puesto = true;
 
@@ -161,8 +156,6 @@ public class Login extends JFrame {
 
 					dispose();
 					HomeTrabajador home2 = new HomeTrabajador();
-					home2.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					home2.setUndecorated(true);
 					home2.setVisible(true);
 					puesto = false;
 
@@ -180,7 +173,7 @@ public class Login extends JFrame {
 			}
 		});
 
-		btnLogin.setBounds(749, 632, 135, 30);
+		btnLogin.setBounds(566, 584, 135, 30);
 		contentPane.add(btnLogin);
 
 		// Iconos

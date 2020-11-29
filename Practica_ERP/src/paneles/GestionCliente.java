@@ -53,49 +53,49 @@ public class GestionCliente extends JPanel {
 		JLabel lblAniadirCliente = new JLabel("A\u00F1adir Cliente");
 		lblAniadirCliente.setForeground(SystemColor.textHighlight);
 		lblAniadirCliente.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblAniadirCliente.setBounds(216, 97, 182, 40);
+		lblAniadirCliente.setBounds(62, 10, 182, 40);
 		add(lblAniadirCliente);
 
 		JLabel lblNombre = new JLabel("Nombre Cliente:");
 		lblNombre.setForeground(SystemColor.textHighlight);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNombre.setBounds(164, 174, 149, 35);
+		lblNombre.setBounds(10, 87, 149, 35);
 		add(lblNombre);
 
 		JLabel lblDni = new JLabel("DNI Cliente: ");
 		lblDni.setForeground(SystemColor.textHighlight);
 		lblDni.setFont(new Font("Arial", Font.BOLD, 16));
-		lblDni.setBounds(197, 219, 108, 15);
+		lblDni.setBounds(43, 132, 108, 15);
 		add(lblDni);
 
 		JLabel lblTelefono = new JLabel("Telefono:");
 		lblTelefono.setForeground(SystemColor.textHighlight);
 		lblTelefono.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTelefono.setBounds(216, 260, 91, 14);
+		lblTelefono.setBounds(62, 173, 91, 14);
 		add(lblTelefono);
 
 		JLabel lblCP = new JLabel("CP:");
 		lblCP.setForeground(SystemColor.textHighlight);
 		lblCP.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCP.setBounds(259, 299, 39, 14);
+		lblCP.setBounds(105, 212, 39, 14);
 		add(lblCP);
 
 		JLabel lblPoblacion = new JLabel("Poblaci\u00F3n:");
 		lblPoblacion.setForeground(SystemColor.textHighlight);
 		lblPoblacion.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPoblacion.setBounds(205, 376, 108, 14);
+		lblPoblacion.setBounds(51, 280, 108, 28);
 		add(lblPoblacion);
 
 		JLabel lblCalle = new JLabel("Calle:");
 		lblCalle.setForeground(SystemColor.textHighlight);
 		lblCalle.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCalle.setBounds(216, 409, 66, 14);
+		lblCalle.setBounds(91, 318, 66, 20);
 		add(lblCalle);
 
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setForeground(SystemColor.textHighlight);
 		lblProvincia.setFont(new Font("Arial", Font.BOLD, 16));
-		lblProvincia.setBounds(214, 346, 91, 14);
+		lblProvincia.setBounds(62, 253, 91, 14);
 		add(lblProvincia);
 
 		// Labels en medio
@@ -103,81 +103,81 @@ public class GestionCliente extends JPanel {
 		lblSotecars1.setForeground(Color.BLUE);
 		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
 		lblSotecars1.setBackground(Color.WHITE);
-		lblSotecars1.setBounds(694, 177, 228, 52);
+		lblSotecars1.setBounds(540, 90, 228, 52);
 		add(lblSotecars1);
 
 		JLabel lblSotecars2 = new JLabel("THE POWER OF DREAMS");
 		lblSotecars2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSotecars2.setBounds(728, 216, 152, 22);
+		lblSotecars2.setBounds(574, 129, 152, 22);
 		add(lblSotecars2);
 
 		JLabel lblListaClientes = new JLabel("Lista de clientes");
 		lblListaClientes.setForeground(SystemColor.textHighlight);
 		lblListaClientes.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaClientes.setBounds(707, 433, 214, 40);
+		lblListaClientes.setBounds(553, 346, 214, 40);
 		add(lblListaClientes);
 
 		// Labels Eliminar
 		JLabel lblEliminarCliente = new JLabel("Eliminar Cliente");
 		lblEliminarCliente.setForeground(SystemColor.textHighlight);
 		lblEliminarCliente.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblEliminarCliente.setBounds(1169, 97, 191, 40);
+		lblEliminarCliente.setBounds(1015, 10, 191, 40);
 		add(lblEliminarCliente);
 
 		JLabel lblIdClienteEliminar = new JLabel("ID Cliente:");
 		lblIdClienteEliminar.setForeground(SystemColor.textHighlight);
 		lblIdClienteEliminar.setFont(new Font("Arial", Font.BOLD, 16));
-		lblIdClienteEliminar.setBounds(1160, 184, 115, 14);
+		lblIdClienteEliminar.setBounds(1002, 173, 121, 20);
 		add(lblIdClienteEliminar);
 
 		// JTextFields Añadir
 		txtNombre = new JTextField();
 		txtNombre.setBackground(SystemColor.inactiveCaption);
-		txtNombre.setBounds(310, 184, 121, 20);
+		txtNombre.setBounds(156, 97, 121, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtDniCliente = new JTextField();
 		txtDniCliente.setBackground(SystemColor.inactiveCaption);
 		txtDniCliente.setColumns(10);
-		txtDniCliente.setBounds(310, 219, 123, 20);
+		txtDniCliente.setBounds(156, 132, 123, 20);
 		add(txtDniCliente);
 
 		txtTelefono = new JTextField();
 		txtTelefono.setColumns(10);
 		txtTelefono.setBackground(SystemColor.inactiveCaption);
-		txtTelefono.setBounds(308, 260, 123, 20);
+		txtTelefono.setBounds(156, 173, 123, 20);
 		add(txtTelefono);
 
 		txtCP = new JTextField();
 		txtCP.setColumns(10);
 		txtCP.setBackground(SystemColor.inactiveCaption);
-		txtCP.setBounds(308, 299, 123, 20);
+		txtCP.setBounds(154, 212, 123, 20);
 		add(txtCP);
 
 		txtPoblacion = new JTextField();
 		txtPoblacion.setColumns(10);
 		txtPoblacion.setBackground(SystemColor.inactiveCaption);
-		txtPoblacion.setBounds(308, 376, 123, 20);
+		txtPoblacion.setBounds(154, 287, 123, 20);
 		add(txtPoblacion);
 
 		txtCalle = new JTextField();
 		txtCalle.setColumns(10);
 		txtCalle.setBackground(SystemColor.inactiveCaption);
-		txtCalle.setBounds(308, 408, 123, 20);
+		txtCalle.setBounds(154, 321, 123, 20);
 		add(txtCalle);
 
 		txtProvincia = new JTextField();
 		txtProvincia.setColumns(10);
 		txtProvincia.setBackground(SystemColor.inactiveCaption);
-		txtProvincia.setBounds(310, 340, 123, 20);
+		txtProvincia.setBounds(154, 253, 123, 20);
 		add(txtProvincia);
 		
 		//JTextFields Eliminar
 		txtIdEliminar = new JTextField();
 		txtIdEliminar.setColumns(10);
 		txtIdEliminar.setBackground(SystemColor.inactiveCaption);
-		txtIdEliminar.setBounds(1257, 184, 121, 20);
+		txtIdEliminar.setBounds(1107, 173, 121, 20);
 		add(txtIdEliminar);
 
 		// Botones
@@ -197,7 +197,7 @@ public class GestionCliente extends JPanel {
 		btnAniadir.setFont(new Font("Arial", Font.BOLD, 18));
 		btnAniadir.setForeground(Color.WHITE);
 		btnAniadir.setBackground(Color.BLUE);
-		btnAniadir.setBounds(259, 447, 172, 35);
+		btnAniadir.setBounds(105, 360, 172, 35);
 		add(btnAniadir);
 
 		JButton btnEliminar = new JButton("Eliminar Cliente");
@@ -214,12 +214,12 @@ public class GestionCliente extends JPanel {
 		btnEliminar.setForeground(Color.WHITE);
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 18));
 		btnEliminar.setBackground(Color.BLUE);
-		btnEliminar.setBounds(1205, 447, 177, 35);
+		btnEliminar.setBounds(1051, 360, 177, 35);
 		add(btnEliminar);
 
 		//Tabla
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(184, 518, 1218, 261);
+		scrollPane.setBounds(30, 431, 1218, 261);
 		add(scrollPane);
 
 		table = new JTable();

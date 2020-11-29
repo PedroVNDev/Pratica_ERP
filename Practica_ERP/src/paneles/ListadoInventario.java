@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 public class ListadoInventario extends JPanel {
 
@@ -23,6 +24,7 @@ public class ListadoInventario extends JPanel {
 	 * Create the panel.
 	 */
 	public ListadoInventario() {
+		setBackground(Color.WHITE);
 		setLayout(null);
 
 		// Labels

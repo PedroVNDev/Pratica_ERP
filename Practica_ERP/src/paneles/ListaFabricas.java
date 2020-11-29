@@ -14,39 +14,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.Color;
 
-public class ListadoClientes extends JPanel {
+
+public class ListaFabricas extends JPanel {
 	private JTable table;
 	DefaultTableModel modeloTabla = new DefaultTableModel();
+
 	/**
 	 * Create the panel.
 	 */
-	public ListadoClientes() {
+	public ListaFabricas() {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
-		//Labels
-		JLabel lblListaClientes = new JLabel("Lista de clientes");
-		lblListaClientes.setForeground(SystemColor.textHighlight);
-		lblListaClientes.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaClientes.setBounds(610, 162, 214, 40);
-		add(lblListaClientes);
-		
-		//Tabla
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(56, 213, 1218, 363);
+		scrollPane.setBounds(95, 243, 1113, 384);
 		add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Telefono", "DNI", "Domicilio" ,"CP", "Poblacion", "Provincia" });
+		JLabel lblListaDeFabricas = new JLabel("Lista de fabricas");
+		lblListaDeFabricas.setForeground(SystemColor.textHighlight);
+		lblListaDeFabricas.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblListaDeFabricas.setBounds(568, 193, 214, 40);
+		add(lblListaDeFabricas);
+		
+		modeloTabla.setColumnIdentifiers(new Object[] { "CIF", "Nombre", "Telefono", "DNI", "Domicilio" ,"CP", "Poblacion", "Provincia" });
 		table.setModel(modeloTabla);
-		cargaClientes();
+		//cargaClientes();
 
 	}
 	
-	//Metodos
-	public void cargaClientes() {
+	public void cargaFabricas() {
 		Connection conexion = null;
 		Statement sql = null;
 		ResultSet rs = null;
@@ -55,11 +54,11 @@ public class ListadoClientes extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ID, Nombre, Telefono, DNI, CP, Provincia, Poblacion, Calle FROM Clientes");
+						"SELECT  FROM Fabricas");
 
 				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Nombre"),
-							rs.getObject("Telefono"), rs.getObject("DNI"), rs.getObject("CP"), rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
+					modeloTabla.addRow(new Object[] { rs.getObject(""), rs.getObject(""),
+							rs.getObject("Telefono"), rs.getObject(""), rs.getObject("CP"), rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
 				}
 
 				conexion.close();

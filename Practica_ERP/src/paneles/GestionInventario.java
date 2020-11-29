@@ -23,12 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class GestionInventario extends JPanel {
-	private JTable table;
 	private boolean carga = false;
 
 	DefaultTableModel modeloTabla = new DefaultTableModel();
-
-	private JTextField txtIdEliminarStock;
 	private JTextField txtModelo;
 	private JTextField txtEficiencia;
 	private JTextField txtConsumo;
@@ -51,61 +48,61 @@ public class GestionInventario extends JPanel {
 		JLabel lblAniadirVehiculo = new JLabel("A\u00F1adir Vehiculo");
 		lblAniadirVehiculo.setForeground(SystemColor.textHighlight);
 		lblAniadirVehiculo.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblAniadirVehiculo.setBounds(216, 97, 182, 40);
+		lblAniadirVehiculo.setBounds(553, 193, 281, 40);
 		add(lblAniadirVehiculo);
 
 		JLabel lblModelo = new JLabel("Modelo Vehiculo:");
 		lblModelo.setForeground(SystemColor.textHighlight);
 		lblModelo.setFont(new Font("Arial", Font.BOLD, 16));
-		lblModelo.setBounds(162, 134, 149, 35);
+		lblModelo.setBounds(267, 282, 149, 35);
 		add(lblModelo);
 
 		JLabel lblEficiencia = new JLabel("Eficiencia:");
 		lblEficiencia.setForeground(SystemColor.textHighlight);
 		lblEficiencia.setFont(new Font("Arial", Font.BOLD, 16));
-		lblEficiencia.setBounds(195, 179, 108, 15);
+		lblEficiencia.setBounds(321, 327, 108, 15);
 		add(lblEficiencia);
 
 		JLabel lblConsumo = new JLabel("Consumo:");
 		lblConsumo.setForeground(SystemColor.textHighlight);
 		lblConsumo.setFont(new Font("Arial", Font.BOLD, 16));
-		lblConsumo.setBounds(214, 220, 91, 14);
+		lblConsumo.setBounds(321, 367, 91, 14);
 		add(lblConsumo);
 
 		JLabel lblEmisiones = new JLabel("Emisiones:");
 		lblEmisiones.setForeground(SystemColor.textHighlight);
 		lblEmisiones.setFont(new Font("Arial", Font.BOLD, 16));
-		lblEmisiones.setBounds(195, 259, 101, 14);
+		lblEmisiones.setBounds(311, 407, 98, 15);
 		add(lblEmisiones);
 
 		JLabel lblCajaCambios = new JLabel("Caja Cambios:");
 		lblCajaCambios.setForeground(SystemColor.textHighlight);
 		lblCajaCambios.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCajaCambios.setBounds(195, 306, 108, 14);
+		lblCajaCambios.setBounds(770, 267, 121, 19);
 		add(lblCajaCambios);
 
 		JLabel lblPrecioVenta = new JLabel("PrecioVenta:");
 		lblPrecioVenta.setForeground(SystemColor.textHighlight);
 		lblPrecioVenta.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPrecioVenta.setBounds(203, 336, 108, 14);
+		lblPrecioVenta.setBounds(783, 305, 108, 14);
 		add(lblPrecioVenta);
 
 		JLabel lblPrecioCompra = new JLabel("Precio Compra:");
 		lblPrecioCompra.setForeground(SystemColor.textHighlight);
 		lblPrecioCompra.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPrecioCompra.setBounds(159, 369, 121, 14);
+		lblPrecioCompra.setBounds(770, 340, 121, 14);
 		add(lblPrecioCompra);
 
 		JLabel lblAnio = new JLabel("A\u00F1o:");
 		lblAnio.setForeground(SystemColor.textHighlight);
 		lblAnio.setFont(new Font("Arial", Font.BOLD, 16));
-		lblAnio.setBounds(162, 395, 121, 14);
+		lblAnio.setBounds(835, 375, 134, 19);
 		add(lblAnio);
 
 		JLabel lblMatricula = new JLabel("Matricula:");
 		lblMatricula.setForeground(SystemColor.textHighlight);
 		lblMatricula.setFont(new Font("Arial", Font.BOLD, 16));
-		lblMatricula.setBounds(162, 417, 121, 14);
+		lblMatricula.setBounds(802, 413, 134, 23);
 		add(lblMatricula);
 
 		// Labels Mitad
@@ -113,94 +110,68 @@ public class GestionInventario extends JPanel {
 		lblSotecars1.setForeground(Color.BLUE);
 		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
 		lblSotecars1.setBackground(Color.WHITE);
-		lblSotecars1.setBounds(694, 177, 228, 52);
+		lblSotecars1.setBounds(535, 80, 228, 52);
 		add(lblSotecars1);
 
 		JLabel lblSotecars2 = new JLabel("THE POWER OF DREAMS");
 		lblSotecars2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSotecars2.setBounds(728, 216, 152, 22);
+		lblSotecars2.setBounds(569, 119, 152, 22);
 		add(lblSotecars2);
-
-		JLabel lblListaVehiculos = new JLabel("Lista de Vehiculos");
-		lblListaVehiculos.setForeground(SystemColor.textHighlight);
-		lblListaVehiculos.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaVehiculos.setBounds(707, 433, 214, 40);
-		add(lblListaVehiculos);
-
-		// Labels Eliminar
-		JLabel lblEliminarVehiculo = new JLabel("Eliminar Vehiculo");
-		lblEliminarVehiculo.setForeground(SystemColor.textHighlight);
-		lblEliminarVehiculo.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblEliminarVehiculo.setBounds(1169, 97, 191, 40);
-		add(lblEliminarVehiculo);
-
-		JLabel lblIdVehiculo = new JLabel("ID Vehiculo:");
-		lblIdVehiculo.setForeground(SystemColor.textHighlight);
-		lblIdVehiculo.setFont(new Font("Arial", Font.BOLD, 16));
-		lblIdVehiculo.setBounds(1160, 184, 115, 14);
-		add(lblIdVehiculo);
 
 		// JTextFields Añadir
 		txtModelo = new JTextField();
 		txtModelo.setBackground(SystemColor.inactiveCaption);
-		txtModelo.setBounds(308, 144, 121, 20);
+		txtModelo.setBounds(413, 292, 121, 20);
 		add(txtModelo);
 		txtModelo.setColumns(10);
 
 		txtEficiencia = new JTextField();
 		txtEficiencia.setBackground(SystemColor.inactiveCaption);
 		txtEficiencia.setColumns(10);
-		txtEficiencia.setBounds(308, 179, 123, 20);
+		txtEficiencia.setBounds(413, 327, 123, 20);
 		add(txtEficiencia);
 
 		txtConsumo = new JTextField();
 		txtConsumo.setColumns(10);
 		txtConsumo.setBackground(SystemColor.inactiveCaption);
-		txtConsumo.setBounds(306, 220, 123, 20);
+		txtConsumo.setBounds(411, 368, 123, 20);
 		add(txtConsumo);
 
 		txtEmisiones = new JTextField();
 		txtEmisiones.setColumns(10);
 		txtEmisiones.setBackground(SystemColor.inactiveCaption);
-		txtEmisiones.setBounds(306, 259, 123, 20);
+		txtEmisiones.setBounds(411, 407, 123, 20);
 		add(txtEmisiones);
 
 		txtPrecioVenta = new JTextField();
 		txtPrecioVenta.setColumns(10);
 		txtPrecioVenta.setBackground(SystemColor.inactiveCaption);
-		txtPrecioVenta.setBounds(306, 336, 123, 20);
+		txtPrecioVenta.setBounds(902, 305, 123, 20);
 		add(txtPrecioVenta);
 
 		txtPrecioCompra = new JTextField();
 		txtPrecioCompra.setColumns(10);
 		txtPrecioCompra.setBackground(SystemColor.inactiveCaption);
-		txtPrecioCompra.setBounds(306, 368, 123, 20);
+		txtPrecioCompra.setBounds(904, 340, 123, 20);
 		add(txtPrecioCompra);
 
 		txtCajaCambios = new JTextField();
 		txtCajaCambios.setColumns(10);
 		txtCajaCambios.setBackground(SystemColor.inactiveCaption);
-		txtCajaCambios.setBounds(308, 300, 123, 20);
+		txtCajaCambios.setBounds(904, 269, 123, 20);
 		add(txtCajaCambios);
 
 		txtAnio = new JTextField();
 		txtAnio.setColumns(10);
 		txtAnio.setBackground(SystemColor.inactiveCaption);
-		txtAnio.setBounds(309, 394, 123, 20);
+		txtAnio.setBounds(904, 377, 123, 20);
 		add(txtAnio);
 
 		txtMatricula = new JTextField();
 		txtMatricula.setColumns(10);
 		txtMatricula.setBackground(SystemColor.inactiveCaption);
-		txtMatricula.setBounds(309, 416, 123, 20);
+		txtMatricula.setBounds(902, 417, 123, 20);
 		add(txtMatricula);
-
-		// JTextFields Eliminar
-		txtIdEliminarStock = new JTextField();
-		txtIdEliminarStock.setColumns(10);
-		txtIdEliminarStock.setBackground(SystemColor.inactiveCaption);
-		txtIdEliminarStock.setBounds(1257, 184, 121, 20);
-		add(txtIdEliminarStock);
 
 		// Botones
 		JButton btnAniadir = new JButton("A\u00F1adir Vehiculo");
@@ -217,36 +188,11 @@ public class GestionInventario extends JPanel {
 		btnAniadir.setFont(new Font("Arial", Font.BOLD, 18));
 		btnAniadir.setForeground(Color.WHITE);
 		btnAniadir.setBackground(Color.BLUE);
-		btnAniadir.setBounds(259, 447, 172, 35);
+		btnAniadir.setBounds(553, 542, 214, 35);
 		add(btnAniadir);
-
-		JButton btnEliminar = new JButton("Eliminar Vehiculo");
-		btnEliminar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				eliminarVehiculo();
-				modeloTabla.setRowCount(0);
-				cargaVehiculos();
-				txtIdEliminarStock.setText(" ");
-			}
-		});
-
-		btnEliminar.setForeground(Color.WHITE);
-		btnEliminar.setFont(new Font("Arial", Font.BOLD, 18));
-		btnEliminar.setBackground(Color.BLUE);
-		btnEliminar.setBounds(1205, 447, 177, 35);
-		add(btnEliminar);
-
-		// Tabla
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(184, 518, 1218, 261);
-		add(scrollPane);
-		table = new JTable();
-		scrollPane.setViewportView(table);
 
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia", "Consumo", "Emisiones",
 				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
-		table.setModel(modeloTabla);
 
 		modeloTabla.setRowCount(0);
 		cargaVehiculos();
@@ -314,34 +260,7 @@ public class GestionInventario extends JPanel {
 		}
 	}
 
-	public void eliminarVehiculo() {
-		int confirmar = JOptionPane.showConfirmDialog(null, "¿Quieres eliminar el vehiculo escrito?");
 
-		if (confirmar == JOptionPane.YES_OPTION) {
-
-			try {
-
-				String vehiculo = (txtIdEliminarStock.getText());
-
-				String eliminar = "DELETE FROM modelos WHERE ID = '" + vehiculo + "'";
-				Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
-						"TRABAJO");
-				Statement consulta = conexion.createStatement();
-
-				consulta.executeUpdate(eliminar);
-
-				JOptionPane.showMessageDialog(null, "Vehiculo Eliminado Correctamente");
-
-				conexion.close();
-			} catch (Exception ex2) {
-				JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos");
-				ex2.printStackTrace();
-			}
-
-		} else {
-			JOptionPane.showMessageDialog(null, "No se eliminara el vehiculo introducido");
-		}
-	}
 
 	public void resetTextfieldsGestionInventario() {
 

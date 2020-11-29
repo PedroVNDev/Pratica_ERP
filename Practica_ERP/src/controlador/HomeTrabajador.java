@@ -36,8 +36,6 @@ public class HomeTrabajador extends JFrame {
 			public void run() {
 				try {
 					HomeTrabajador frame = new HomeTrabajador();
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					frame.setUndecorated(true);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,13 +50,13 @@ public class HomeTrabajador extends JFrame {
 	public HomeTrabajador() {
 		getContentPane().setBackground(Color.BLUE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1614, 949);
+		setBounds(100, 100, 1301, 735);
 
 		//MenuBar
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenu menuVenta = new JMenu("                        Venta                      ");
+		JMenu menuVenta = new JMenu("                  Venta                  ");
 		menuVenta.setFont(new Font("Arial", Font.BOLD, 35));
 		menuVenta.setForeground(Color.BLUE);
 		menuBar.add(menuVenta);
@@ -68,7 +66,7 @@ public class HomeTrabajador extends JFrame {
 		menuItemGestionTicket.setFont(new Font("Arial", Font.BOLD, 30));
 		menuVenta.add(menuItemGestionTicket);
 
-		JMenu menuInforme = new JMenu("                  Informe                ");
+		JMenu menuInforme = new JMenu("               Informe            ");
 		menuInforme.setForeground(Color.BLUE);
 		menuInforme.setFont(new Font("Arial", Font.BOLD, 35));
 		menuBar.add(menuInforme);
@@ -123,7 +121,7 @@ public class HomeTrabajador extends JFrame {
 		getContentPane().setLayout(new CardLayout(0, 0));
 
 		//Labels
-		JLabel lblSotecars1 = new JLabel("                          SOTECARS");
+		JLabel lblSotecars1 = new JLabel("                  SOTECARS");
 		lblSotecars1.setForeground(Color.WHITE);
 		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
 		getContentPane().add(lblSotecars1, "name_694056379123400");
