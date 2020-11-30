@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import paneles.GestionCliente;
 import paneles.GestionFabricas;
 import paneles.GestionPersonal;
-import paneles.GestionProveedor;
+import paneles.GestionContacto;
 import paneles.ListaFabricas;
 import paneles.ListadoInventario;
 import paneles.PedirPresupuesto;
@@ -83,18 +83,18 @@ public class Home extends JFrame {
 		});
 		menuGestion.add(menuItemGestionCliente);
 
-		JMenuItem menuItemGestionProveedor = new JMenuItem("    Gesti\u00F3n Proveedor");
-		menuItemGestionProveedor.addActionListener(new ActionListener() {
+		JMenuItem menuItemGestionContacto = new JMenuItem("    Gesti\u00F3n Contacto");
+		menuItemGestionContacto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				GestionProveedor g2 = new GestionProveedor();
+				GestionContacto g2 = new GestionContacto();
 				nuevoPanel(g2);
 			}
 		});
-		menuItemGestionProveedor.setFont(new Font("Arial", Font.BOLD, 26));
-		menuItemGestionProveedor.setForeground(Color.WHITE);
-		menuItemGestionProveedor.setBackground(Color.BLUE);
-		menuGestion.add(menuItemGestionProveedor);
+		menuItemGestionContacto.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItemGestionContacto.setForeground(Color.WHITE);
+		menuItemGestionContacto.setBackground(Color.BLUE);
+		menuGestion.add(menuItemGestionContacto);
 
 		JMenuItem menuItemGestionTrabajador = new JMenuItem("       Gesti\u00F3n Trabajador");
 		menuItemGestionTrabajador.addActionListener(new ActionListener() {
@@ -216,7 +216,7 @@ public class Home extends JFrame {
 
 		Image ico2 = new ImageIcon(this.getClass().getResource("/050-protect.png")).getImage();
 		Image modifiedIco2 = ico2.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		menuItemGestionProveedor.setIcon(new ImageIcon(modifiedIco2));
+		menuItemGestionContacto.setIcon(new ImageIcon(modifiedIco2));
 
 		Image ico3 = new ImageIcon(this.getClass().getResource("/036-suitcase.png")).getImage();
 		Image modifiedIco3 = ico3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);

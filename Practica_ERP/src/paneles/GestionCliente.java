@@ -40,6 +40,7 @@ public class GestionCliente extends JPanel {
 	private JTextField txtPoblacion;
 	private JTextField txtCalle;
 	private JTextField txtProvincia;
+	private JTextField txtApellidos;
 
 	/**
 	 * Create the panel.
@@ -59,8 +60,14 @@ public class GestionCliente extends JPanel {
 		JLabel lblNombre = new JLabel("Nombre Cliente:");
 		lblNombre.setForeground(SystemColor.textHighlight);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNombre.setBounds(10, 87, 149, 35);
+		lblNombre.setBounds(10, 61, 149, 35);
 		add(lblNombre);
+
+		JLabel lblApellidos = new JLabel("Apellidos Cliente:");
+		lblApellidos.setForeground(SystemColor.textHighlight);
+		lblApellidos.setFont(new Font("Arial", Font.BOLD, 16));
+		lblApellidos.setBounds(10, 90, 149, 35);
+		add(lblApellidos);
 
 		JLabel lblDni = new JLabel("DNI Cliente: ");
 		lblDni.setForeground(SystemColor.textHighlight);
@@ -133,9 +140,15 @@ public class GestionCliente extends JPanel {
 		// JTextFields Añadir
 		txtNombre = new JTextField();
 		txtNombre.setBackground(SystemColor.inactiveCaption);
-		txtNombre.setBounds(156, 97, 121, 20);
+		txtNombre.setBounds(156, 71, 121, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
+
+		txtApellidos = new JTextField();
+		txtApellidos.setColumns(10);
+		txtApellidos.setBackground(SystemColor.inactiveCaption);
+		txtApellidos.setBounds(156, 100, 121, 20);
+		add(txtApellidos);
 
 		txtDniCliente = new JTextField();
 		txtDniCliente.setBackground(SystemColor.inactiveCaption);
@@ -172,8 +185,8 @@ public class GestionCliente extends JPanel {
 		txtProvincia.setBackground(SystemColor.inactiveCaption);
 		txtProvincia.setBounds(154, 253, 123, 20);
 		add(txtProvincia);
-		
-		//JTextFields Eliminar
+
+		// JTextFields Eliminar
 		txtIdEliminar = new JTextField();
 		txtIdEliminar.setColumns(10);
 		txtIdEliminar.setBackground(SystemColor.inactiveCaption);
@@ -217,7 +230,7 @@ public class GestionCliente extends JPanel {
 		btnEliminar.setBounds(1051, 360, 177, 35);
 		add(btnEliminar);
 
-		//Tabla
+		// Tabla
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(30, 431, 1218, 261);
 		add(scrollPane);
@@ -225,8 +238,8 @@ public class GestionCliente extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		modeloTabla.setColumnIdentifiers(
-				new Object[] { "ID", "Nombre", "Telefono", "DNI", "Domicilio", "CP", "Poblacion", "Provincia" });
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Apellidos", "Telefono", "DNI", "Domicilio",
+				"CP", "Poblacion", "Provincia" });
 		table.setModel(modeloTabla);
 
 		// Iconos
@@ -238,7 +251,7 @@ public class GestionCliente extends JPanel {
 
 	}
 
-	//Metodos
+	// Metodos
 	public void cargaClientes() {
 		Connection conexion = null;
 		Statement sql = null;
@@ -248,12 +261,13 @@ public class GestionCliente extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ID, Nombre, Telefono, DNI, CP, Provincia, Poblacion, Calle FROM Clientes");
+						"SELECT ID, Nombre, Apellidos, Telefono, DNI, CP, Provincia, Poblacion, Calle FROM Clientes");
 
 				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Nombre"),
-							rs.getObject("Telefono"), rs.getObject("DNI"), rs.getObject("CP"),
-							rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
+					modeloTabla.addRow(
+							new Object[] { rs.getObject("ID"), rs.getObject("Nombre"), rs.getObject("Apellidos"),
+									rs.getObject("Telefono"), rs.getObject("DNI"), rs.getObject("CP"),
+									rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
 				}
 
 				conexion.close();
@@ -270,6 +284,7 @@ public class GestionCliente extends JPanel {
 		try {
 
 			String nombre = txtNombre.getText();
+			String apellidos = txtApellidos.getText();
 			int telefono = Integer.parseInt(txtTelefono.getText());
 			String dni = txtDniCliente.getText();
 			int cp = Integer.parseInt(txtCP.getText());
@@ -277,9 +292,9 @@ public class GestionCliente extends JPanel {
 			String poblacion = txtPoblacion.getText();
 			String calle = txtCalle.getText();
 
-			String agregar = "INSERT INTO Clientes (Nombre, Telefono, DNI, CP, Provincia, Poblacion, Calle) VALUES('"
-					+ nombre + "', '" + telefono + "', '" + dni + "', '" + cp + "', '" + provincia + "', '" + poblacion
-					+ "', '" + calle + "')";
+			String agregar = "INSERT INTO Clientes (Nombre, Apellidos, Telefono, DNI, CP, Provincia, Poblacion, Calle) VALUES('"
+					+ nombre + "', '" + apellidos + "', '" + telefono + "', '" + dni + "', '" + cp + "', '" + provincia
+					+ "', '" + poblacion + "', '" + calle + "')";
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
 

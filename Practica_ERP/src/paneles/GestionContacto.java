@@ -27,7 +27,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
 
-public class GestionProveedor extends JPanel {
+public class GestionContacto extends JPanel {
 
 	private JTextField txtDni;
 	private JTextField txtNombre;
@@ -48,7 +48,7 @@ public class GestionProveedor extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public GestionProveedor() {
+	public GestionContacto() {
 
 		setBackground(SystemColor.window);
 		setLayout(null);
