@@ -32,6 +32,7 @@ public class GestionFabricas extends JPanel {
 	 * Create the panel.
 	 */
 	public GestionFabricas() {
+		setBackground(Color.WHITE);
 		setLayout(null);
 		
 		textField = new JTextField();

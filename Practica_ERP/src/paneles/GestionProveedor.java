@@ -54,49 +54,49 @@ public class GestionProveedor extends JPanel {
 		JLabel lblAniadirProveedor = new JLabel("A\u00F1adir Proveedor");
 		lblAniadirProveedor.setForeground(SystemColor.textHighlight);
 		lblAniadirProveedor.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblAniadirProveedor.setBounds(75, 57, 182, 40);
+		lblAniadirProveedor.setBounds(75, 10, 328, 40);
 		add(lblAniadirProveedor);
 
 		JLabel lblNombre = new JLabel("Nombre Proveedor:");
 		lblNombre.setForeground(SystemColor.textHighlight);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNombre.setBounds(23, 134, 149, 35);
+		lblNombre.setBounds(10, 64, 149, 35);
 		add(lblNombre);
 
 		JLabel lblTelefono = new JLabel("Tipo Proveedor:");
 		lblTelefono.setForeground(SystemColor.textHighlight);
 		lblTelefono.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTelefono.setBounds(75, 240, 91, 14);
+		lblTelefono.setBounds(36, 150, 123, 14);
 		add(lblTelefono);
 
 		JLabel lblCIF = new JLabel("CIF Proveedor: ");
 		lblCIF.setForeground(SystemColor.textHighlight);
 		lblCIF.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCIF.setBounds(56, 190, 108, 15);
+		lblCIF.setBounds(45, 109, 139, 15);
 		add(lblCIF);
 
 		JLabel lblCP = new JLabel("CP:");
 		lblCP.setForeground(SystemColor.textHighlight);
 		lblCP.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCP.setBounds(93, 277, 54, 14);
+		lblCP.setBounds(114, 192, 66, 14);
 		add(lblCP);
 
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setForeground(SystemColor.textHighlight);
 		lblProvincia.setFont(new Font("Arial", Font.BOLD, 16));
-		lblProvincia.setBounds(56, 307, 91, 14);
+		lblProvincia.setBounds(75, 231, 106, 20);
 		add(lblProvincia);
 
 		JLabel lblPoblacion = new JLabel("Poblaci\u00F3n:");
 		lblPoblacion.setForeground(SystemColor.textHighlight);
 		lblPoblacion.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPoblacion.setBounds(56, 337, 91, 14);
+		lblPoblacion.setBounds(63, 273, 96, 22);
 		add(lblPoblacion);
 
 		JLabel lblCalle = new JLabel("Calle:");
 		lblCalle.setForeground(SystemColor.textHighlight);
 		lblCalle.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCalle.setBounds(75, 369, 66, 14);
+		lblCalle.setBounds(104, 311, 80, 16);
 		add(lblCalle);
 
 		// Labels en medio
@@ -104,81 +104,81 @@ public class GestionProveedor extends JPanel {
 		lblSotecars1.setForeground(Color.BLUE);
 		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
 		lblSotecars1.setBackground(Color.WHITE);
-		lblSotecars1.setBounds(553, 137, 228, 52);
+		lblSotecars1.setBounds(553, 90, 228, 52);
 		add(lblSotecars1);
 
 		JLabel lblSotecars2 = new JLabel("THE POWER OF DREAMS");
 		lblSotecars2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSotecars2.setBounds(587, 176, 152, 22);
+		lblSotecars2.setBounds(587, 129, 152, 22);
 		add(lblSotecars2);
 
 		JLabel lblListaClientes = new JLabel("Lista de clientes");
 		lblListaClientes.setForeground(SystemColor.textHighlight);
 		lblListaClientes.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaClientes.setBounds(566, 393, 214, 40);
+		lblListaClientes.setBounds(566, 346, 214, 40);
 		add(lblListaClientes);
 
 		// Labels Eliminar
 		JLabel lblEliminarProveedor = new JLabel("Eliminar Proveedor");
 		lblEliminarProveedor.setForeground(SystemColor.textHighlight);
 		lblEliminarProveedor.setFont(new Font("Tahoma", Font.BOLD, 24));
-		lblEliminarProveedor.setBounds(1028, 57, 191, 40);
+		lblEliminarProveedor.setBounds(972, 10, 265, 40);
 		add(lblEliminarProveedor);
 
 		JLabel lblIdEliminar = new JLabel("ID Proveedor:");
 		lblIdEliminar.setForeground(SystemColor.textHighlight);
 		lblIdEliminar.setFont(new Font("Arial", Font.BOLD, 16));
-		lblIdEliminar.setBounds(1019, 144, 115, 14);
+		lblIdEliminar.setBounds(972, 186, 139, 20);
 		add(lblIdEliminar);
 
 		// JTextFields Añadir
 		txtNombre = new JTextField();
 		txtNombre.setBackground(SystemColor.inactiveCaption);
-		txtNombre.setBounds(169, 144, 121, 20);
+		txtNombre.setBounds(171, 74, 121, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtCif = new JTextField();
 		txtCif.setBackground(SystemColor.inactiveCaption);
 		txtCif.setColumns(10);
-		txtCif.setBounds(169, 190, 123, 20);
+		txtCif.setBounds(171, 108, 123, 20);
 		add(txtCif);
 
 		txtTipoProveedor = new JTextField();
 		txtTipoProveedor.setColumns(10);
 		txtTipoProveedor.setBackground(SystemColor.inactiveCaption);
-		txtTipoProveedor.setBounds(167, 240, 123, 20);
+		txtTipoProveedor.setBounds(169, 150, 123, 20);
 		add(txtTipoProveedor);
 
 		txtCP = new JTextField();
 		txtCP.setColumns(10);
 		txtCP.setBackground(SystemColor.inactiveCaption);
-		txtCP.setBounds(167, 276, 123, 20);
+		txtCP.setBounds(169, 192, 123, 20);
 		add(txtCP);
 
 		txtProvincia = new JTextField();
 		txtProvincia.setColumns(10);
 		txtProvincia.setBackground(SystemColor.inactiveCaption);
-		txtProvincia.setBounds(167, 306, 123, 20);
+		txtProvincia.setBounds(169, 234, 123, 20);
 		add(txtProvincia);
 
 		txtPoblacion = new JTextField();
 		txtPoblacion.setColumns(10);
 		txtPoblacion.setBackground(SystemColor.inactiveCaption);
-		txtPoblacion.setBounds(167, 336, 123, 20);
+		txtPoblacion.setBounds(169, 277, 123, 20);
 		add(txtPoblacion);
 
 		txtCalle = new JTextField();
 		txtCalle.setColumns(10);
 		txtCalle.setBackground(SystemColor.inactiveCaption);
-		txtCalle.setBounds(167, 368, 123, 20);
+		txtCalle.setBounds(171, 312, 123, 20);
 		add(txtCalle);
 
 		// JTextField Eliminar
 		txtIdEliminar = new JTextField();
 		txtIdEliminar.setColumns(10);
 		txtIdEliminar.setBackground(SystemColor.inactiveCaption);
-		txtIdEliminar.setBounds(1116, 144, 121, 20);
+		txtIdEliminar.setBounds(1101, 186, 121, 20);
 		add(txtIdEliminar);
 
 		// Botones
@@ -196,7 +196,7 @@ public class GestionProveedor extends JPanel {
 		btnAniadir.setFont(new Font("Arial", Font.BOLD, 18));
 		btnAniadir.setForeground(Color.WHITE);
 		btnAniadir.setBackground(Color.BLUE);
-		btnAniadir.setBounds(118, 399, 172, 35);
+		btnAniadir.setBounds(104, 360, 214, 35);
 		add(btnAniadir);
 
 		JButton btnEliminar = new JButton("Eliminar Proveedor");
@@ -213,7 +213,7 @@ public class GestionProveedor extends JPanel {
 		btnEliminar.setForeground(Color.WHITE);
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 18));
 		btnEliminar.setBackground(Color.BLUE);
-		btnEliminar.setBounds(1060, 321, 177, 35);
+		btnEliminar.setBounds(1028, 352, 209, 35);
 		add(btnEliminar);
 
 		// Iconos
@@ -222,7 +222,7 @@ public class GestionProveedor extends JPanel {
 
 		// Tabla
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(39, 452, 1218, 261);
+		scrollPane.setBounds(39, 405, 1218, 261);
 		add(scrollPane);
 
 		table = new JTable();

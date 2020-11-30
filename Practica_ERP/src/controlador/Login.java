@@ -68,7 +68,7 @@ public class Login extends JFrame {
 		contentPane.add(lblAclaratoria);
 
 		JLabel lblAclaratoria2 = new JLabel(
-				" la contrase\u00F1a para tabajadores ser\u00E1 1, la contrase\u00F1a para administradores ser\u00E1 2");
+				" la contrase\u00F1a para tabajadores ser\u00E1 2, la contrase\u00F1a para administradores ser\u00E1 1");
 		lblAclaratoria2.setBounds(251, 277, 560, 30);
 		contentPane.add(lblAclaratoria2);
 

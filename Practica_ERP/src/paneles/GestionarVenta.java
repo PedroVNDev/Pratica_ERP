@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.Date;
 
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
 import javax.swing.JScrollPane;
@@ -29,6 +30,7 @@ public class GestionarVenta extends JPanel {
 	private JTextField txtIdComprar;
 	private JTextField textField;
 	private JTable table;
+	DefaultTableModel modeloTabla = new DefaultTableModel();
 
 	/**
 	 * Create the panel.
@@ -40,7 +42,7 @@ public class GestionarVenta extends JPanel {
 		JButton btnGenerarTiket = new JButton("Generar tiket ");
 		btnGenerarTiket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ventaVehiculo();
+				
 			}
 		});
 		btnGenerarTiket.setForeground(Color.WHITE);
@@ -77,34 +79,41 @@ public class GestionarVenta extends JPanel {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia", "Consumo", "Emisiones",
+				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
+
+		modeloTabla.setRowCount(0);
+		cargaInventario();
 
 	}
 	
-	public void ventaVehiculo() {
-
+	public void cargaInventario() {
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		try {
 			try {
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT ID, Modelo, Eficiencia_Energetica, Consumo, Emisiones, Precio_Venta, Precio_Compra, Caja_Cambios, Año, Matricula from modelos");
 
-				String vehiculo = (txtIdComprar.getText());
-
-				String eliminar = "DELETE FROM modelos WHERE ID = '" + vehiculo + "'";
-				Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
-						"TRABAJO");
-				Statement consulta = conexion.createStatement();
-
-				consulta.executeUpdate(eliminar);
-
-				
-				
-				
-				JOptionPane.showMessageDialog(null, "Ticket generado Correctamente");
+				while (rs.next()) {
+					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Modelo"),
+							rs.getObject("Eficiencia_Energetica"), rs.getObject("Consumo"), rs.getObject("Emisiones"),
+							rs.getObject("Precio_Venta"), rs.getObject("Precio_Compra"), rs.getObject("Caja_Cambios"),
+							rs.getObject("Año"), rs.getObject("Matricula") });
+				}
 
 				conexion.close();
-			} catch (Exception ex2) {
-				JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos");
-				ex2.printStackTrace();
+			} catch (SQLException e) {
+				System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
 			}
-
-	} 
+		} finally {
+			System.out.println("Ningun error");
+		}
+	}
 	
 
 	public void ficheroTickets() {

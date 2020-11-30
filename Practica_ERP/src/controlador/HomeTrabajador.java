@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import paneles.GestionCliente;
+import paneles.GestionarVenta;
 import paneles.ListadoClientes;
 import paneles.ListadoInventario;
 import paneles.ListadoProveedores;
@@ -62,6 +63,12 @@ public class HomeTrabajador extends JFrame {
 		menuBar.add(menuVenta);
 
 		JMenuItem menuItemGestionTicket = new JMenuItem("             Gestionar Ticket            ");
+		menuItemGestionTicket.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GestionarVenta gv= new GestionarVenta();
+				nuevoPanel(gv);
+			}
+		});
 		menuItemGestionTicket.setForeground(Color.BLUE);
 		menuItemGestionTicket.setFont(new Font("Arial", Font.BOLD, 30));
 		menuVenta.add(menuItemGestionTicket);
