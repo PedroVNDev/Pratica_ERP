@@ -39,9 +39,9 @@ public class ListaFabricas extends JPanel {
 		lblListaDeFabricas.setBounds(568, 193, 214, 40);
 		add(lblListaDeFabricas);
 		
-		modeloTabla.setColumnIdentifiers(new Object[] { "CIF", "Nombre", "Telefono", "DNI", "Domicilio" ,"CP", "Poblacion", "Provincia" });
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Producto", "Email", "Telefono" ,"CP", "Provincia", "Poblacion", "Calle" });
 		table.setModel(modeloTabla);
-		//cargaClientes();
+		cargaFabricas();
 
 	}
 	
@@ -54,11 +54,11 @@ public class ListaFabricas extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT  FROM Fabricas");
+						"SELECT * FROM Fabricas");
 
 				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject(""), rs.getObject(""),
-							rs.getObject("Telefono"), rs.getObject(""), rs.getObject("CP"), rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
+					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Nombre"),
+							rs.getObject("Producto"), rs.getObject("Email"), rs.getObject("Telefono"), rs.getObject("CP"), rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
 				}
 
 				conexion.close();
