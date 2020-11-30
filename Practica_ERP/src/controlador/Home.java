@@ -70,7 +70,7 @@ public class Home extends JFrame {
 		menuGestion.setBackground(SystemColor.text);
 		menuBar.add(menuGestion);
 
-		JMenuItem menuItemGestionCliente = new JMenuItem("       Gesti\u00F3n Cliente        ");
+		JMenuItem menuItemGestionCliente = new JMenuItem("A\u00F1adir/Eliminar Clientes");
 		menuItemGestionCliente.setBackground(Color.BLUE);
 		menuItemGestionCliente.setForeground(Color.WHITE);
 		menuItemGestionCliente.setFont(new Font("Arial", Font.BOLD, 26));
@@ -83,7 +83,7 @@ public class Home extends JFrame {
 		});
 		menuGestion.add(menuItemGestionCliente);
 
-		JMenuItem menuItemGestionContacto = new JMenuItem("    Gesti\u00F3n Contacto");
+		JMenuItem menuItemGestionContacto = new JMenuItem("A\u00F1adir/Eliminar Contacto");
 		menuItemGestionContacto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -91,12 +91,18 @@ public class Home extends JFrame {
 				nuevoPanel(g2);
 			}
 		});
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("      Modificar Cliente");
+		mntmNewMenuItem_1.setForeground(Color.WHITE);
+		mntmNewMenuItem_1.setBackground(Color.BLUE);
+		mntmNewMenuItem_1.setFont(new Font("Arial", Font.BOLD, 26));
+		menuGestion.add(mntmNewMenuItem_1);
 		menuItemGestionContacto.setFont(new Font("Arial", Font.BOLD, 26));
 		menuItemGestionContacto.setForeground(Color.WHITE);
 		menuItemGestionContacto.setBackground(Color.BLUE);
 		menuGestion.add(menuItemGestionContacto);
 
-		JMenuItem menuItemGestionTrabajador = new JMenuItem("       Gesti\u00F3n Trabajador");
+		JMenuItem menuItemGestionTrabajador = new JMenuItem("A\u00F1adir/Eliminar trabajador");
 		menuItemGestionTrabajador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -105,18 +111,24 @@ public class Home extends JFrame {
 
 			}
 		});
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("    Modificar Contacto");
+		mntmNewMenuItem_2.setFont(new Font("Arial", Font.BOLD, 26));
+		mntmNewMenuItem_2.setForeground(Color.WHITE);
+		mntmNewMenuItem_2.setBackground(Color.BLUE);
+		menuGestion.add(mntmNewMenuItem_2);
 		menuItemGestionTrabajador.setForeground(Color.WHITE);
 		menuItemGestionTrabajador.setBackground(Color.BLUE);
 		menuItemGestionTrabajador.setFont(new Font("Arial", Font.BOLD, 26));
 		menuGestion.add(menuItemGestionTrabajador);
 
-		JMenu menuInventario = new JMenu("  Inventario             ");
+		JMenu menuInventario = new JMenu("          Inventario          ");
 		menuInventario.setFont(new Font("Arial", Font.BOLD, 35));
 		menuInventario.setForeground(Color.BLUE);
 		menuInventario.setBackground(SystemColor.text);
 		menuBar.add(menuInventario);
 
-		JMenuItem menuItemStock = new JMenuItem("Stock");
+		JMenuItem menuItemStock = new JMenuItem("               Stock             ");
 		menuItemStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -129,7 +141,7 @@ public class Home extends JFrame {
 		menuItemStock.setFont(new Font("Arial", Font.BOLD, 26));
 		menuInventario.add(menuItemStock);
 
-		JMenuItem menuItem5 = new JMenuItem("A\u00F1adir Veh\u00EDculo");
+		JMenuItem menuItem5 = new JMenuItem("     A\u00F1adir Veh\u00EDculo");
 		menuItem5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -142,13 +154,13 @@ public class Home extends JFrame {
 		menuItem5.setBackground(Color.BLUE);
 		menuInventario.add(menuItem5);
 
-		JMenu menu3 = new JMenu("   Producci\u00F3n               ");
+		JMenu menu3 = new JMenu("     Producci\u00F3n        ");
 		menu3.setFont(new Font("Arial", Font.BOLD, 35));
 		menu3.setForeground(Color.BLUE);
 		menu3.setBackground(SystemColor.text);
 		menuBar.add(menu3);
 
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Gestionar Fabricas");
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("     Gestionar Fabricas    ");
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GestionFabricas gfa = new GestionFabricas();
@@ -160,7 +172,7 @@ public class Home extends JFrame {
 		mntmNewMenuItem_4.setFont(new Font("Arial", Font.BOLD, 26));
 		menu3.add(mntmNewMenuItem_4);
 
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Listado de Fabricas");
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("    Listado de Fabricas");
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListaFabricas gf= new ListaFabricas();
@@ -172,7 +184,7 @@ public class Home extends JFrame {
 		mntmNewMenuItem_5.setFont(new Font("Arial", Font.BOLD, 26));
 		menu3.add(mntmNewMenuItem_5);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Pedir Presupuesto");
+		JMenuItem mntmNewMenuItem = new JMenuItem("     Pedir Presupuesto");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PedirPresupuesto pp= new PedirPresupuesto();
@@ -221,6 +233,12 @@ public class Home extends JFrame {
 		Image ico3 = new ImageIcon(this.getClass().getResource("/036-suitcase.png")).getImage();
 		Image modifiedIco3 = ico3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		menuItemGestionTrabajador.setIcon(new ImageIcon(modifiedIco3));
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("       Modificar Salario");
+		mntmNewMenuItem_3.setFont(new Font("Arial", Font.BOLD, 26));
+		mntmNewMenuItem_3.setForeground(Color.WHITE);
+		mntmNewMenuItem_3.setBackground(Color.BLUE);
+		menuGestion.add(mntmNewMenuItem_3);
 
 	}
 

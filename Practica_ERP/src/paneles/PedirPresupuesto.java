@@ -19,11 +19,17 @@ import javax.mail.internet.MimeMessage;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.awt.event.ActionEvent;
 
 public class PedirPresupuesto extends JPanel {
 	private JTextArea txtMensaje;
+	JComboBox comboBox;
 	/**
 	 * Create the panel.
 	 */
@@ -37,7 +43,7 @@ public class PedirPresupuesto extends JPanel {
 		lblIndiqueLaFabrica.setBounds(91, 176, 214, 40);
 		add(lblIndiqueLaFabrica);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setBounds(330, 191, 136, 21);
 		add(comboBox);
 		
@@ -56,6 +62,7 @@ public class PedirPresupuesto extends JPanel {
 		btnEnviarCorreo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				enviarCorreo();
+				txtMensaje.setText("");
 			}
 		});
 		btnEnviarCorreo.setForeground(Color.WHITE);
@@ -71,7 +78,32 @@ public class PedirPresupuesto extends JPanel {
 		JLabel lblEstaFuncionalidadAutomatiza = new JLabel("Esta funcionalidad automatiza el envio de un correo para solicitar un presupuesto");
 		lblEstaFuncionalidadAutomatiza.setBounds(663, 180, 428, 13);
 		add(lblEstaFuncionalidadAutomatiza);
+		cargandoComboBox();
 
+	}
+	
+	public void cargandoComboBox() {
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		try {
+			try {
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT Nombre FROM fabricas");
+
+				while (rs.next()) {
+					comboBox.addItem(rs.getObject("Nombre"));
+				}
+				
+				conexion.close();
+			} catch (SQLException e) {
+				System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
+			}
+		} finally {
+			System.out.println("Ningun error");
+		}
 	}
 	 
 	public void enviarCorreo() {
@@ -86,7 +118,7 @@ public class PedirPresupuesto extends JPanel {
 	        String contrasena = "Sotecars69";
 	        
 	        //AQUI VA EL CORREO QUE LO RECIBE
-	        String receptor = "alejandro.casado@juanxxiii.net";
+	        String receptor ="pedrovicentenavas@gmail.com";
 	        String asunto = "PETICION DE PRESUPUESTO";
 	        String mensaje= txtMensaje.getText();
 	        
