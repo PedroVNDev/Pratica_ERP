@@ -2,10 +2,20 @@ package paneles;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.Panel;
 import java.awt.SystemColor;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -13,7 +23,7 @@ import java.util.Properties;
 import java.awt.event.ActionEvent;
 
 public class PedirPresupuesto extends JPanel {
-
+	private JTextArea txtMensaje;
 	/**
 	 * Create the panel.
 	 */
@@ -37,7 +47,7 @@ public class PedirPresupuesto extends JPanel {
 		lblIndiqueElPedido.setBounds(94, 339, 548, 40);
 		add(lblIndiqueElPedido);
 		
-		JTextArea txtMensaje = new JTextArea();
+		txtMensaje = new JTextArea();
 		txtMensaje.setBackground(Color.LIGHT_GRAY);
 		txtMensaje.setBounds(611, 339, 496, 244);
 		add(txtMensaje);
@@ -45,7 +55,7 @@ public class PedirPresupuesto extends JPanel {
 		JButton btnEnviarCorreo = new JButton("Enviar correo");
 		btnEnviarCorreo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//enviarCorreo();
+				enviarCorreo();
 			}
 		});
 		btnEnviarCorreo.setForeground(Color.WHITE);
@@ -63,24 +73,20 @@ public class PedirPresupuesto extends JPanel {
 		add(lblEstaFuncionalidadAutomatiza);
 
 	}
-	/*
-	 * 
 	 
 	public void enviarCorreo() {
 		 Properties propiedad = new Properties();
 	        propiedad.setProperty("mail.smtp.host", "smtp.gmail.com");
 	        propiedad.setProperty("mail.smtp.starttls.enable", "true");
 	        propiedad.setProperty("mail.smtp.port", "587");
-	        propiedad.setProperty(¡);
-	        
+	        propiedad.setProperty("mail.smtp.auth", "true");
 
-	        
 	        Session sesion = Session.getDefaultInstance(propiedad);
-	        String correoEnvia = "xxxxxx@gmail.com";
-	        String contrasena = "";
+	        String correoEnvia = "sotecars@gmail.com";
+	        String contrasena = "Sotecars69";
 	        
 	        //AQUI VA EL CORREO QUE LO RECIBE
-	        //String receptor = 
+	        String receptor = "alejandro.casado@juanxxiii.net";
 	        String asunto = "PETICION DE PRESUPUESTO";
 	        String mensaje= txtMensaje.getText();
 	        
@@ -99,12 +105,9 @@ public class PedirPresupuesto extends JPanel {
 	            
 	            JOptionPane.showMessageDialog(null, "Listo, revise su correo");
 	            
-	            
 	        } catch (AddressException ex) {
-	            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
 	        } catch (MessagingException ex) {
-	            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
 	        }
 	        
-	}*/
+	}
 }
