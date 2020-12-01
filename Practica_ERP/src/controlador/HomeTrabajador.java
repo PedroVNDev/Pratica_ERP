@@ -11,7 +11,7 @@ import paneles.GestionCliente;
 import paneles.GestionarVenta;
 import paneles.ListadoClientes;
 import paneles.ListadoInventario;
-import paneles.ListadoProveedores;
+import paneles.ListadoContactos;
 
 import javax.swing.JMenu;
 import java.awt.Color;
@@ -53,7 +53,7 @@ public class HomeTrabajador extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1301, 735);
 
-		//MenuBar
+		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
@@ -65,7 +65,7 @@ public class HomeTrabajador extends JFrame {
 		JMenuItem menuItemGestionTicket = new JMenuItem("             Gestionar Ticket            ");
 		menuItemGestionTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GestionarVenta gv= new GestionarVenta();
+				GestionarVenta gv = new GestionarVenta();
 				nuevoPanel(gv);
 			}
 		});
@@ -84,7 +84,7 @@ public class HomeTrabajador extends JFrame {
 		menuBar.add(menuListados);
 
 		JMenuItem menuItemListadoClientes = new JMenuItem("       Listado de clientes      ");
-		
+
 		menuItemListadoClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListadoClientes g1 = new ListadoClientes();
@@ -101,12 +101,10 @@ public class HomeTrabajador extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		
-
-		JMenuItem menuItemListadoProveedores = new JMenuItem("  Listado de proveedores");
+		JMenuItem menuItemListadoProveedores = new JMenuItem("       Listado de contactos      ");
 		menuItemListadoProveedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ListadoProveedores listado = new ListadoProveedores();
+				ListadoContactos listado = new ListadoContactos();
 				nuevoPanel(listado);
 			}
 		});
@@ -117,17 +115,17 @@ public class HomeTrabajador extends JFrame {
 		JMenuItem menuItemStock = new JMenuItem("                Stock");
 		menuItemStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ListadoInventario g4 = new ListadoInventario();
 				nuevoPanel(g4);
 			}
-		}); 
+		});
 		menuItemStock.setForeground(Color.BLUE);
 		menuItemStock.setFont(new Font("Arial", Font.BOLD, 30));
 		menuListados.add(menuItemStock);
 		getContentPane().setLayout(new CardLayout(0, 0));
 
-		//Labels
+		// Labels
 		JLabel lblSotecars1 = new JLabel("                  SOTECARS");
 		lblSotecars1.setForeground(Color.WHITE);
 		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));

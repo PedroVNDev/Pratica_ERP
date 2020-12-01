@@ -14,21 +14,21 @@ import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class ListadoProveedores extends JPanel {
+public class ListadoContactos extends JPanel {
 	private JTable table;
 	DefaultTableModel modeloTabla = new DefaultTableModel();
 	/**
 	 * Create the panel.
 	 */
-	public ListadoProveedores() {
+	public ListadoContactos() {
 		setLayout(null);
 		
 		//Labels
-		JLabel lblListaProveedores = new JLabel("Lista de proveedores");
-		lblListaProveedores.setForeground(SystemColor.textHighlight);
-		lblListaProveedores.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaProveedores.setBounds(590, 117, 291, 40);
-		add(lblListaProveedores);
+		JLabel lblListaContactos = new JLabel("Lista de contactos");
+		lblListaContactos.setForeground(SystemColor.textHighlight);
+		lblListaContactos.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblListaContactos.setBounds(590, 117, 291, 40);
+		add(lblListaContactos);
 		
 		//Tabla
 		JScrollPane scrollPane = new JScrollPane();
@@ -39,13 +39,13 @@ public class ListadoProveedores extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		modeloTabla.setColumnIdentifiers(
-				new Object[] { "ID", "CIF", "Nombre", "Tipo_Proveedor", "CP", "Poblacion", "Provincia", "Calle" });
+				new Object[] { "ID", "DNI", "Nombre", "Apellidos", "ID:_Vehiculo", "Precio_Compra", "CP", "Provincia", "Poblacion", "Calle" });
 		table.setModel(modeloTabla);
-		cargaProveedores();
+		cargaContactos();
 	}
 	
 	//Metodos
-	public void cargaProveedores() {
+	public void cargaContactos() {
 		Connection conexion = null;
 		Statement sql = null;
 		ResultSet rs = null;
@@ -54,12 +54,12 @@ public class ListadoProveedores extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ID, CIF, Nombre, Tipo_Proveedor, CP, Provincia, Poblacion, Calle FROM Proveedores");
+						"SELECT ID, DNI, Nombre, Apellidos, ID_Vehiculo, Precio_Compra, CP, Provincia, Poblacion, Calle  FROM contactos_compra");
 
 				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("CIF"), rs.getObject("Nombre"),
-							rs.getObject("Tipo_Proveedor"), rs.getObject("CP"), rs.getObject("Provincia"),
-							rs.getObject("Poblacion"), rs.getObject("Calle") });
+					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("DNI"), rs.getObject("Nombre"),
+							rs.getObject("Apellidos"), rs.getObject("ID_Vehiculo"), rs.getObject("Precio_Compra"),
+							rs.getObject("CP"), rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
 				}
 
 				conexion.close();
