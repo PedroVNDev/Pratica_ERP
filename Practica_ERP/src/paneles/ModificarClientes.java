@@ -13,6 +13,8 @@ import java.sql.Statement;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ModificarClientes extends JPanel {
 	private JTextField txtId;
@@ -141,6 +143,11 @@ public class ModificarClientes extends JPanel {
 		add(lblCalle);
 		
 		JButton btnModificarCliente = new JButton("Modificar Cliente");
+		btnModificarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				modificarCliente();
+			}
+		});
 		btnModificarCliente.setForeground(Color.WHITE);
 		btnModificarCliente.setFont(new Font("Arial", Font.BOLD, 18));
 		btnModificarCliente.setBackground(Color.BLUE);
@@ -165,7 +172,7 @@ public class ModificarClientes extends JPanel {
 			String calle = txtCalle.getText();
 
 			String agregar = "update Clientes set nombre='"+nombre+"', apellidos='"+ apellidos+"', telefono='"+telefono+"', "
-					+ "DNI='"+dni+"', CP='"+cp+"', Provincia='"+provincia+", Poblacion='"+poblacion+"', Calle='"+calle+"' where ID="+id;
+					+ "DNI='"+dni+"', CP='"+cp+"', Provincia='"+provincia+"', Poblacion='"+poblacion+"', Calle='"+calle+"' where ID="+id;
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
 

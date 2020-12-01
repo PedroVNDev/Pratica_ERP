@@ -13,6 +13,7 @@ import paneles.GestionPersonal;
 import paneles.GestionContacto;
 import paneles.ListaFabricas;
 import paneles.ListadoInventario;
+import paneles.ModificarClientes;
 import paneles.PedirPresupuesto;
 import paneles.GestionInventario;
 
@@ -93,6 +94,12 @@ public class Home extends JFrame {
 		});
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("      Modificar Cliente");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ModificarClientes mc= new ModificarClientes();
+				nuevoPanel(mc);
+			}
+		});
 		mntmNewMenuItem_1.setForeground(Color.WHITE);
 		mntmNewMenuItem_1.setBackground(Color.BLUE);
 		mntmNewMenuItem_1.setFont(new Font("Arial", Font.BOLD, 26));
