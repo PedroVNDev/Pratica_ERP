@@ -14,6 +14,7 @@ import paneles.GestionContacto;
 import paneles.ListaFabricas;
 import paneles.ListadoInventario;
 import paneles.ModificarClientes;
+import paneles.ModificarSueldo;
 import paneles.PedirPresupuesto;
 import paneles.GestionInventario;
 
@@ -242,6 +243,12 @@ public class Home extends JFrame {
 		menuItemGestionTrabajador.setIcon(new ImageIcon(modifiedIco3));
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("       Modificar Salario");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ModificarSueldo ms= new ModificarSueldo();
+				nuevoPanel(ms);
+			}
+		});
 		mntmNewMenuItem_3.setFont(new Font("Arial", Font.BOLD, 26));
 		mntmNewMenuItem_3.setForeground(Color.WHITE);
 		mntmNewMenuItem_3.setBackground(Color.BLUE);
