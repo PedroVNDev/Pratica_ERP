@@ -20,93 +20,159 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GestionInformes extends JPanel {
 
 	private JTable table;
 	DefaultTableModel modeloTabla = new DefaultTableModel();
+
 	/**
 	 * Create the panel.
 	 */
 	public GestionInformes() {
-		
-			setBackground(Color.WHITE);
-			setLayout(null);
-			
-			//Labels
-			JLabel lblInformes = new JLabel("Informes");
-			lblInformes.setForeground(SystemColor.textHighlight);
-			lblInformes.setFont(new Font("Tahoma", Font.BOLD, 22));
-			lblInformes.setBounds(610, 162, 214, 40);
-			add(lblInformes);
-			
-			
-			
 
-		}
-		
-		//Metodos
-		public void cargaClientes() {
-			
-			//Tabla
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(56, 213, 1218, 363);
-			add(scrollPane);
-			
-			table = new JTable();
-			scrollPane.setViewportView(table);
-			
-			modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Telefono", "DNI", "Domicilio" ,"CP", "Poblacion", "Provincia" });
-			table.setModel(modeloTabla);
-			cargaClientes();
-			
-			Connection conexion = null;
-			Statement sql = null;
-			ResultSet rs = null;
-			try {
-				try {
-					conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
-					sql = conexion.createStatement();
-					rs = sql.executeQuery(
-							"SELECT ID, Nombre, Telefono, DNI, CP, Provincia, Poblacion, Calle FROM Clientes");
+		setBackground(Color.WHITE);
+		setLayout(null);
 
-					while (rs.next()) {
-						modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Nombre"),
-								rs.getObject("Telefono"), rs.getObject("DNI"), rs.getObject("CP"),
-								rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
-					}
+		// Labels
+		JLabel lblInformes = new JLabel("Informes");
+		lblInformes.setForeground(SystemColor.textHighlight);
+		lblInformes.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblInformes.setBounds(617, 120, 108, 40);
+		add(lblInformes);
 
-					conexion.close();
-				} catch (SQLException e) {
-					System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
-				}
-			} finally {
-				System.out.println("Ningun error");
+		// Botones
+		JButton btnInforme1 = new JButton("Generar Informe Ventas");
+		btnInforme1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				informeVentas();
+
 			}
-		}
+		});
+		btnInforme1.setForeground(Color.WHITE);
+		btnInforme1.setFont(new Font("Arial", Font.BOLD, 18));
+		btnInforme1.setBackground(Color.BLUE);
+		btnInforme1.setBounds(57, 34, 243, 35);
+		add(btnInforme1);
 
-	public void crearTXT(String nombre, boolean puesto) throws IOException {
-		File fichero = new File("Accesos.txt");
-		BufferedWriter buffer = new BufferedWriter(new PrintWriter(fichero));
+		JButton btnInforme2 = new JButton("Generar Informe2");
+		btnInforme2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-		Calendar calendario = Calendar.getInstance();
-		java.util.Date fecha = new Date();
+				informe2();
 
-		if (puesto) {
+			}
+		});
+		btnInforme2.setForeground(Color.WHITE);
+		btnInforme2.setFont(new Font("Arial", Font.BOLD, 18));
+		btnInforme2.setBackground(Color.BLUE);
+		btnInforme2.setBounds(57, 80, 243, 35);
+		add(btnInforme2);
 
-			buffer.write(nombre.toUpperCase() + "               ACCEDIO A LAS: " + calendario.get(Calendar.HOUR_OF_DAY)
-					+ ":" + calendario.get(Calendar.MINUTE) + " A DIA: " + fecha.getDay() + " DEL MES: "
-					+ fecha.getMonth() + "               CON PERMISOS DE ADMINISTRADOR");
-			buffer.close();
+		JButton btnInforme3 = new JButton("Generar Informe3");
+		btnInforme3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-		} else if (!puesto) {
+				informe3();
 
-			buffer.write(nombre.toUpperCase() + "               ACCEDIO A LAS: " + calendario.get(Calendar.HOUR_OF_DAY)
-					+ ":" + calendario.get(Calendar.MINUTE) + " A DIA: " + fecha.getDay() + " DEL MES: "
-					+ fecha.getMonth() + "               CON PERMISOS DE TRABAJADOR");
-			buffer.close();
+			}
+		});
+		btnInforme3.setForeground(Color.WHITE);
+		btnInforme3.setFont(new Font("Arial", Font.BOLD, 18));
+		btnInforme3.setBackground(Color.BLUE);
+		btnInforme3.setBounds(57, 126, 243, 35);
+		add(btnInforme3);
 
-		}
+		// Tabla
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(57, 177, 1218, 363);
+		add(scrollPane);
+
+		table = new JTable();
+		scrollPane.setViewportView(table);
+
 	}
 
+	// Metodos
+	public void informeVentas() {
+
+		modeloTabla.setRowCount(0);
+		modeloTabla.setColumnIdentifiers(
+				new Object[] { "ID", "ID_Cliente", "ID_Trabajador", "Modelo", "Precio_Compra", "Precio_Venta" });
+		table.setModel(modeloTabla);
+
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		try {
+			try {
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT ID, ID_Cliente, ID_Trabajador, Modelo, Precio_Compra, Precio_Venta FROM ventas");
+
+				while (rs.next()) {
+					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("ID_Cliente"),
+							rs.getObject("ID_Trabajador"), rs.getObject("Modelo"), rs.getObject("Precio_Compra"),
+							rs.getObject("Precio_Venta") });
+				}
+
+				GenerarArchivo();
+				conexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} finally {
+			System.out.println("Ningun error");
+		}
+
+	}
+
+	public void informe2() {
+
+		modeloTabla.setColumnIdentifiers(new Object[] { "informe2", "DNI", "Nombre", "Apellidos", "ID_Vehiculo",
+				"Precio_Compra", "CP", "Provincia", "Poblacion", "Calle" });
+		table.setModel(modeloTabla);
+
+	}
+
+	public void informe3() {
+
+		modeloTabla.setColumnIdentifiers(new Object[] { "informe3", "DNI", "Nombre", "Apellidos", "ID:_Vehiculo",
+				"Precio_Compra", "CP", "Provincia", "Poblacion", "Calle" });
+		table.setModel(modeloTabla);
+
+	}
+
+	public void GenerarArchivo() {
+
+		JFileChooser fileChooser = new JFileChooser();
+		int returnVal = fileChooser.showSaveDialog(GestionInformes.this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			try {
+				File file = fileChooser.getSelectedFile();
+				PrintWriter writer = new PrintWriter(file);
+
+				for (int row = 0; row < table.getRowCount(); row++) {
+					for (int col = 0; col < table.getColumnCount(); col++) {
+						writer.print(table.getColumnName(col));
+						writer.print(": ");
+						writer.println(table.getValueAt(row, col));
+					}
+					writer.println("");
+				}
+
+				writer.close();
+				System.out.println("Done!");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

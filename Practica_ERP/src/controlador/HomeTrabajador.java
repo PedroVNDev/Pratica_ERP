@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import paneles.GestionCliente;
+import paneles.GestionInformes;
 import paneles.GestionarVenta;
 import paneles.ListadoClientes;
 import paneles.ListadoInventario;
@@ -77,6 +78,19 @@ public class HomeTrabajador extends JFrame {
 		menuInforme.setForeground(Color.BLUE);
 		menuInforme.setFont(new Font("Arial", Font.BOLD, 35));
 		menuBar.add(menuInforme);
+
+		JMenuItem menuItemInforme = new JMenuItem("Gestion Informes");
+		menuItemInforme.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					
+				GestionInformes gi = new GestionInformes();
+				nuevoPanel(gi);
+				
+			}
+		});
+		menuInforme.add(menuItemInforme);
+		menuItemInforme.setForeground(Color.BLUE);
+		menuItemInforme.setFont(new Font("Arial", Font.BOLD, 30));
 
 		JMenu menuListados = new JMenu("                  Listados              ");
 		menuListados.setForeground(Color.BLUE);
