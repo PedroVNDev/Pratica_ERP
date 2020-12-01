@@ -177,7 +177,7 @@ public class GestionarVenta extends JPanel {
 			int idTrabajador = Integer.parseInt(txtIdTrabajador.getText());
 
 			String agregar = "INSERT INTO ventas (ID_Cliente, ID_Trabajador, Modelo, Precio_Compra, Precio_Venta) VALUES('"
-					+ idCliente + "', '" + modelo + "', '" + idTrabajador + "', '" + precio_Compra + "', '"
+					+ idCliente + "', '" + idTrabajador + "', '" + modelo + "', '" + precio_Compra + "', '"
 					+ precio_Venta + "')";
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
