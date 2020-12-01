@@ -210,6 +210,12 @@ public class Home extends JFrame {
 		menuBar.add(menu4);
 
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("New menu item");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		menu4.add(mntmNewMenuItem_6);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 255));

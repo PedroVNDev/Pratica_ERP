@@ -116,7 +116,7 @@ public class GestionFabricas extends JPanel {
 		add(lblListaDeFabrica);
 
 		// Labels eliminar
-		JLabel lblFabricaEliminar = new JLabel("ID Cliente:");
+		JLabel lblFabricaEliminar = new JLabel("ID Fabrica:");
 		lblFabricaEliminar.setForeground(SystemColor.textHighlight);
 		lblFabricaEliminar.setFont(new Font("Arial", Font.BOLD, 16));
 		lblFabricaEliminar.setBounds(1018, 151, 115, 14);
@@ -202,7 +202,7 @@ public class GestionFabricas extends JPanel {
 		scrollPane.setViewportView(table);
 
 		modeloTabla.setColumnIdentifiers(
-				new Object[] { "ID", "Nombre", "Telefono", "DNI", "Domicilio", "CP", "Poblacion", "Provincia" });
+				new Object[] { "ID", "Nombre", "Producto", "Email", "Telefono", "CP", "Provincia", "Poblacion", "Calle" });
 		table.setModel(modeloTabla);
 		cargaFabricas();
 

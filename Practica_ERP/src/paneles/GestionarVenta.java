@@ -38,11 +38,18 @@ public class GestionarVenta extends JPanel {
 	public GestionarVenta() {
 		setBackground(Color.WHITE);
 		setLayout(null);
-		
+
+		// Labels
+		JLabel lblInventario = new JLabel("Inventario");
+		lblInventario.setForeground(SystemColor.textHighlight);
+		lblInventario.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblInventario.setBounds(610, 162, 214, 40);
+		add(lblInventario);
+
 		JButton btnGenerarTiket = new JButton("Generar tiket ");
 		btnGenerarTiket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 			}
 		});
 		btnGenerarTiket.setForeground(Color.WHITE);
@@ -50,44 +57,44 @@ public class GestionarVenta extends JPanel {
 		btnGenerarTiket.setBackground(Color.BLUE);
 		btnGenerarTiket.setBounds(553, 552, 172, 35);
 		add(btnGenerarTiket);
-		
+
 		txtIdComprar = new JTextField();
 		txtIdComprar.setBounds(596, 468, 129, 19);
 		add(txtIdComprar);
 		txtIdComprar.setColumns(10);
-		
+
 		JLabel lblIdDeVehculo = new JLabel("Id de veh\u00EDculo vendido:");
 		lblIdDeVehculo.setForeground(SystemColor.textHighlight);
 		lblIdDeVehculo.setFont(new Font("Arial", Font.BOLD, 16));
 		lblIdDeVehculo.setBounds(395, 462, 183, 27);
 		add(lblIdDeVehculo);
-		
+
 		textField = new JTextField();
 		textField.setBounds(596, 509, 129, 19);
 		add(textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblIdDelTrabajador = new JLabel("Id del trabajador que ha gestionado la venta:");
 		lblIdDelTrabajador.setForeground(SystemColor.textHighlight);
 		lblIdDelTrabajador.setFont(new Font("Arial", Font.BOLD, 16));
 		lblIdDelTrabajador.setBounds(234, 503, 423, 27);
 		add(lblIdDelTrabajador);
-		
+
+		// Tabla
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(89, 85, 1136, 329);
+		scrollPane.setBounds(56, 213, 1218, 363);
 		add(scrollPane);
-		
+
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		
-		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia", "Consumo", "Emisiones",
-				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
 
-		modeloTabla.setRowCount(0);
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia_Energetica", "Consumo", "Emisiones",
+				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
+		table.setModel(modeloTabla);
 		cargaInventario();
 
 	}
-	
+
 	public void cargaInventario() {
 		Connection conexion = null;
 		Statement sql = null;
@@ -114,35 +121,40 @@ public class GestionarVenta extends JPanel {
 			System.out.println("Ningun error");
 		}
 	}
-	
 
 	public void ficheroTickets() {
-			Connection conexion = null;
-			Statement sql = null;
-			ResultSet rs = null;
-			String modelo="";
-			float precio_compra=0;
-			float precio_venta=0;
-			
-			java.util.Date fecha = new Date();
-			int dia=fecha.getDay();
-			int mes=fecha.getMonth();
-			
-				try {
-					conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
-					sql = conexion.createStatement();
-					rs = sql.executeQuery(
-							"SELECT ID, Modelo, Eficiencia_Energetica, Consumo, Emisiones, Precio_Venta, Precio_Compra, Caja_Cambios, Año, Matricula from modelos");
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		String modelo = "";
+		float precio_compra = 0;
+		float precio_venta = 0;
 
-					while (rs.next()) {
-								modelo=(String) rs.getObject("Modelo");
-								precio_venta=(float) rs.getObject("Precio_Venta"); 
-								precio_compra=(float) rs.getObject("Precio_Compra"); 
-					}
+		java.util.Date fecha = new Date();
+		int dia = fecha.getDay();
+		int mes = fecha.getMonth();
 
-					conexion.close();
-				} catch (SQLException e) {
-					System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
-				}
+		try {
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+			sql = conexion.createStatement();
+			rs = sql.executeQuery(
+					"SELECT ID, Modelo, Eficiencia_Energetica, Consumo, Emisiones, Precio_Venta, Precio_Compra, Caja_Cambios, Año, Matricula from modelos");
+
+			while (rs.next()) {
+				modelo = (String) rs.getObject("Modelo");
+				precio_venta = (float) rs.getObject("Precio_Venta");
+				precio_compra = (float) rs.getObject("Precio_Compra");
+			}
+
+			conexion.close();
+		} catch (SQLException e) {
+			System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
+		}
 	}
 }
+
+/**
+ * Create the panel.
+ */
+
+//Metodos
