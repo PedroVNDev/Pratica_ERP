@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import paneles.GestionCliente;
 import paneles.GestionFabricas;
+import paneles.GestionInformes;
 import paneles.GestionPersonal;
 import paneles.GestionContacto;
 import paneles.ListaFabricas;
@@ -213,13 +214,20 @@ public class Home extends JFrame {
 		menu4.setBackground(SystemColor.text);
 		menuBar.add(menu4);
 
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("New menu item");
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Gestion Informes");
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				GestionInformes gi = new GestionInformes();
+				nuevoPanel(gi);
 
 			}
 		});
 		menu4.add(mntmNewMenuItem_6);
+		mntmNewMenuItem_6.setForeground(Color.WHITE);
+		mntmNewMenuItem_6.setFont(new Font("Arial", Font.BOLD, 26));
+		mntmNewMenuItem_6.setBackground(Color.BLUE);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

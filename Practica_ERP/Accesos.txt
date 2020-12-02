@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-1               ACCEDIO A LAS: 22:39 A DIA: 3 DEL MES: 11               CON PERMISOS DE ADMINISTRADOR
-=======
-SDFSD               ACCEDIO A LAS: 18:49 A DIA: 3 DEL MES: 11               CON PERMISOS DE TRABAJADOR
->>>>>>> branch 'master' of https://github.com/PinguExtremo/Pratica_ERP.git
+1               ACCEDIO A LAS: 23:40 A DIA: 3 DEL MES: 11               CON PERMISOS DE ADMINISTRADOR
