@@ -31,6 +31,9 @@ public class GestionInformes extends JPanel {
 	private JTable table;
 	DefaultTableModel modeloTabla = new DefaultTableModel();
 
+	private static String nombreTrabajador;
+	private static String apellidoTrabajor;
+
 	/**
 	 * Create the panel.
 	 */
@@ -104,7 +107,7 @@ public class GestionInformes extends JPanel {
 
 		modeloTabla.setRowCount(0);
 		modeloTabla.setColumnIdentifiers(
-				new Object[] { "ID", "ID_Cliente", "ID_Trabajador", "Modelo", "Precio_Compra", "Precio_Venta" });
+				new Object[] { "ID_Trabajador", "Nombre", "Apellidos", "Vehiculos_Vendidos", "Ingresos" });
 		table.setModel(modeloTabla);
 
 		Connection conexion = null;
@@ -115,12 +118,14 @@ public class GestionInformes extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ID, ID_Cliente, ID_Trabajador, Modelo, Precio_Compra, Precio_Venta FROM ventas");
+						"SELECT ventas.ID_Trabajador, trabajadores.Nombre, trabajadores.Apellidos, count(ventas.ID_Vehiculo) AS Vehiculos_Vendidos, SUM(ventas.Precio_Venta) AS Ingresos "
+								+ "FROM ventas " + "INNER JOIN trabajadores ON ventas.ID_Trabajador = trabajadores.ID "
+								+ " GROUP BY ID_Trabajador");
 
 				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("ID_Cliente"),
-							rs.getObject("ID_Trabajador"), rs.getObject("Modelo"), rs.getObject("Precio_Compra"),
-							rs.getObject("Precio_Venta") });
+					modeloTabla.addRow(new Object[] { rs.getObject("ID_Trabajador"), rs.getObject("Nombre"),
+							rs.getObject("Apellidos"), rs.getObject("Vehiculos_Vendidos"),
+							rs.getObject("Ingresos"), });
 				}
 
 				GenerarArchivo();

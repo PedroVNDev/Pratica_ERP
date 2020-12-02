@@ -39,9 +39,11 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					frame = new Login();
 					frame.setVisible(true);
-							Toolkit.getDefaultToolkit().getImage(getClass().getResource("/071-cocheazul.png"));
+					frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/descarga.jpg")));
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,8 +54,10 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
 	public Login() {
-
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1289, 775);
 		contentPane = new JPanel();
@@ -134,7 +138,7 @@ public class Login extends JFrame {
 		panel_3.setBounds(208, 656, 809, 30);
 		contentPane.add(panel_3);
 
-		//Botones
+		// Botones
 		JButton btnLogin = new JButton("LOGIN");
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 20));
 		btnLogin.addActionListener(new ActionListener() {

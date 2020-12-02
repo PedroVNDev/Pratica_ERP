@@ -36,6 +36,7 @@ public class GestionarVenta extends JPanel {
 	private static String modelo;
 	private JTextField txtIdCliente;
 
+
 	/**
 	 * Create the panel.
 	 */

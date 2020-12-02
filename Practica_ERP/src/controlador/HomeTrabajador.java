@@ -20,6 +20,8 @@ import java.awt.Font;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.SwingConstants;
 import javax.swing.JMenuBar;
 import java.awt.CardLayout;
@@ -39,6 +41,7 @@ public class HomeTrabajador extends JFrame {
 				try {
 					HomeTrabajador frame = new HomeTrabajador();
 					frame.setVisible(true);
+					frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/descarga.jpg")));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -82,10 +85,10 @@ public class HomeTrabajador extends JFrame {
 		JMenuItem menuItemInforme = new JMenuItem("Gestion Informes");
 		menuItemInforme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					
+
 				GestionInformes gi = new GestionInformes();
 				nuevoPanel(gi);
-				
+
 			}
 		});
 		menuInforme.add(menuItemInforme);

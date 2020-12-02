@@ -21,6 +21,8 @@ import paneles.GestionInventario;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
+
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -46,6 +48,7 @@ public class Home extends JFrame {
 				try {
 					frame = new Home();
 					frame.setVisible(true);
+					frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/descarga.jpg")));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -93,11 +96,11 @@ public class Home extends JFrame {
 				nuevoPanel(g2);
 			}
 		});
-		
+
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("      Modificar Cliente");
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ModificarClientes mc= new ModificarClientes();
+				ModificarClientes mc = new ModificarClientes();
 				nuevoPanel(mc);
 			}
 		});
@@ -119,7 +122,7 @@ public class Home extends JFrame {
 
 			}
 		});
-		
+
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("    Modificar Contacto");
 		mntmNewMenuItem_2.setFont(new Font("Arial", Font.BOLD, 26));
 		mntmNewMenuItem_2.setForeground(Color.WHITE);
@@ -183,7 +186,7 @@ public class Home extends JFrame {
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("    Listado de Fabricas");
 		mntmNewMenuItem_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ListaFabricas gf= new ListaFabricas();
+				ListaFabricas gf = new ListaFabricas();
 				nuevoPanel(gf);
 			}
 		});
@@ -191,11 +194,11 @@ public class Home extends JFrame {
 		mntmNewMenuItem_5.setBackground(Color.BLUE);
 		mntmNewMenuItem_5.setFont(new Font("Arial", Font.BOLD, 26));
 		menu3.add(mntmNewMenuItem_5);
-		
+
 		JMenuItem mntmNewMenuItem = new JMenuItem("     Pedir Presupuesto");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PedirPresupuesto pp= new PedirPresupuesto();
+				PedirPresupuesto pp = new PedirPresupuesto();
 				nuevoPanel(pp);
 			}
 		});
@@ -213,8 +216,7 @@ public class Home extends JFrame {
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("New menu item");
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+
 			}
 		});
 		menu4.add(mntmNewMenuItem_6);
@@ -247,11 +249,11 @@ public class Home extends JFrame {
 		Image ico3 = new ImageIcon(this.getClass().getResource("/036-suitcase.png")).getImage();
 		Image modifiedIco3 = ico3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
 		menuItemGestionTrabajador.setIcon(new ImageIcon(modifiedIco3));
-		
+
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("       Modificar Salario");
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ModificarSueldo ms= new ModificarSueldo();
+				ModificarSueldo ms = new ModificarSueldo();
 				nuevoPanel(ms);
 			}
 		});
