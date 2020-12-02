@@ -58,7 +58,7 @@ public class GestionInformes extends JPanel {
 		btnInforme1.setForeground(Color.WHITE);
 		btnInforme1.setFont(new Font("Arial", Font.BOLD, 18));
 		btnInforme1.setBackground(Color.BLUE);
-		btnInforme1.setBounds(57, 34, 243, 35);
+		btnInforme1.setBounds(57, 34, 258, 35);
 		add(btnInforme1);
 
 		JButton btnInforme2 = new JButton("Generar Informe2");
@@ -72,7 +72,7 @@ public class GestionInformes extends JPanel {
 		btnInforme2.setForeground(Color.WHITE);
 		btnInforme2.setFont(new Font("Arial", Font.BOLD, 18));
 		btnInforme2.setBackground(Color.BLUE);
-		btnInforme2.setBounds(57, 80, 243, 35);
+		btnInforme2.setBounds(57, 80, 258, 35);
 		add(btnInforme2);
 
 		JButton btnInforme3 = new JButton("Generar Informe3");
@@ -86,7 +86,7 @@ public class GestionInformes extends JPanel {
 		btnInforme3.setForeground(Color.WHITE);
 		btnInforme3.setFont(new Font("Arial", Font.BOLD, 18));
 		btnInforme3.setBackground(Color.BLUE);
-		btnInforme3.setBounds(57, 126, 243, 35);
+		btnInforme3.setBounds(57, 126, 258, 35);
 		add(btnInforme3);
 
 		// Tabla
@@ -169,7 +169,7 @@ public class GestionInformes extends JPanel {
 				}
 
 				writer.close();
-				System.out.println("Done!");
+				System.out.println("Archivo Generado");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
