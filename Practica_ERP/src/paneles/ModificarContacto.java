@@ -26,6 +26,7 @@ public class ModificarContacto extends JPanel {
 	private JTextField txtApellidos;
 	private JTextField txtNombre;
 	private JTextField txtID;
+	private JTextField txtPrecioCompra;
 
 	/**
 	 * Create the panel.
@@ -49,37 +50,37 @@ public class ModificarContacto extends JPanel {
 		JLabel lblCalle = new JLabel("Calle:");
 		lblCalle.setForeground(SystemColor.textHighlight);
 		lblCalle.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCalle.setBounds(776, 381, 66, 20);
+		lblCalle.setBounds(778, 404, 66, 20);
 		add(lblCalle);
 		
 		txtCalle = new JTextField();
 		txtCalle.setColumns(10);
 		txtCalle.setBackground(SystemColor.inactiveCaption);
-		txtCalle.setBounds(839, 384, 123, 20);
+		txtCalle.setBounds(841, 407, 123, 20);
 		add(txtCalle);
 		
 		txtPoblacion = new JTextField();
 		txtPoblacion.setColumns(10);
 		txtPoblacion.setBackground(SystemColor.inactiveCaption);
-		txtPoblacion.setBounds(839, 350, 123, 20);
+		txtPoblacion.setBounds(841, 373, 123, 20);
 		add(txtPoblacion);
 		
 		JLabel lblPoblacion = new JLabel("Poblaci\u00F3n:");
 		lblPoblacion.setForeground(SystemColor.textHighlight);
 		lblPoblacion.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPoblacion.setBounds(736, 343, 108, 28);
+		lblPoblacion.setBounds(738, 366, 108, 28);
 		add(lblPoblacion);
 		
 		txtProvincia = new JTextField();
 		txtProvincia.setColumns(10);
 		txtProvincia.setBackground(SystemColor.inactiveCaption);
-		txtProvincia.setBounds(839, 316, 123, 20);
+		txtProvincia.setBounds(841, 339, 123, 20);
 		add(txtProvincia);
 		
 		txtCp = new JTextField();
 		txtCp.setColumns(10);
 		txtCp.setBackground(SystemColor.inactiveCaption);
-		txtCp.setBounds(839, 275, 123, 20);
+		txtCp.setBounds(841, 298, 123, 20);
 		add(txtCp);
 		
 		txtTelefono = new JTextField();
@@ -133,13 +134,13 @@ public class ModificarContacto extends JPanel {
 		JLabel lblCP = new JLabel("CP:");
 		lblCP.setForeground(SystemColor.textHighlight);
 		lblCP.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCP.setBounds(790, 275, 39, 14);
+		lblCP.setBounds(792, 298, 39, 14);
 		add(lblCP);
 		
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setForeground(SystemColor.textHighlight);
 		lblProvincia.setFont(new Font("Arial", Font.BOLD, 16));
-		lblProvincia.setBounds(747, 316, 91, 14);
+		lblProvincia.setBounds(749, 339, 91, 14);
 		add(lblProvincia);
 		
 		txtID = new JTextField();
@@ -153,6 +154,18 @@ public class ModificarContacto extends JPanel {
 		lblIndiqueElId.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblIndiqueElId.setBounds(129, 192, 378, 40);
 		add(lblIndiqueElId);
+		
+		txtPrecioCompra = new JTextField();
+		txtPrecioCompra.setColumns(10);
+		txtPrecioCompra.setBackground(SystemColor.inactiveCaption);
+		txtPrecioCompra.setBounds(841, 266, 123, 20);
+		add(txtPrecioCompra);
+		
+		JLabel lblPrecioCompra = new JLabel("Precio compra:");
+		lblPrecioCompra.setForeground(SystemColor.textHighlight);
+		lblPrecioCompra.setFont(new Font("Arial", Font.BOLD, 16));
+		lblPrecioCompra.setBounds(705, 272, 150, 14);
+		add(lblPrecioCompra);
 
 	}
 	
@@ -162,17 +175,19 @@ public class ModificarContacto extends JPanel {
 		try {
 
 			int id=Integer.parseInt(txtID.getText());
+			String dni = txtDni.getText();
 			String nombre = txtNombre.getText();
 			String apellidos = txtApellidos.getText();
-			int telefono = Integer.parseInt(txtTelefono.getText());
-			String dni = txtDni.getText();
+			int idVehiculo = Integer.parseInt(txtTelefono.getText());
+			String auxiliar= txtPrecioCompra.getText();
+			float precioCompra= Float.parseFloat(auxiliar);
 			int cp = Integer.parseInt(txtCp.getText());
 			String provincia = txtProvincia.getText();
 			String poblacion = txtPoblacion.getText();
 			String calle = txtCalle.getText();
 
-			String agregar = "update contactos_compra set nombre='"+nombre+"', apellidos='"+ apellidos+"', telefono='"+telefono+"', "
-					+ "DNI='"+dni+"', CP='"+cp+"', Provincia='"+provincia+"', Poblacion='"+poblacion+"', Calle='"+calle+"' where ID="+id;
+			String agregar = "update contactos_compra set DNI='"+dni+"', nombre='"+nombre+"', apellidos='"+ apellidos+"', ID_Vehiculo='"+idVehiculo +"', "
+					+ "Precio_Compra='"+precioCompra+"', CP='"+cp+"', Provincia='"+provincia+"', Poblacion='"+poblacion+"', Calle='"+calle+"' where ID="+id;
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
 
