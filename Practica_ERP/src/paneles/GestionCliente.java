@@ -121,7 +121,7 @@ public class GestionCliente extends JPanel {
 		JLabel lblListaClientes = new JLabel("Lista de clientes");
 		lblListaClientes.setForeground(SystemColor.textHighlight);
 		lblListaClientes.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaClientes.setBounds(553, 346, 214, 40);
+		lblListaClientes.setBounds(574, 305, 214, 40);
 		add(lblListaClientes);
 
 		// Labels Eliminar
