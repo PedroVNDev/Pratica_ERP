@@ -18,6 +18,7 @@ import java.awt.Color;
 public class ListadoVentas extends JPanel {
 	private JTable table;
 	DefaultTableModel modeloTabla = new DefaultTableModel();
+	
 
 	/**
 	 * Create the panel.
@@ -54,10 +55,10 @@ public class ListadoVentas extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ID, ID_Clientes, ID_Trabajador, ID_Vehiculo, Modelo, Precio_Venta, Precio_Compra from ventas");
+						"SELECT ID, ID_Cliente, ID_Trabajador, ID_Vehiculo, Modelo, Precio_Venta, Precio_Compra from ventas");
 
 				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("ID_Clientes"),
+					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("ID_Cliente"),
 							rs.getObject("ID_Trabajador"), rs.getObject("ID_Vehiculo"), rs.getObject("Modelo"),
 							rs.getObject("Precio_Venta"), rs.getObject("Precio_Compra")});
 				}

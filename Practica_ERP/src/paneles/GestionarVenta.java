@@ -36,7 +36,6 @@ public class GestionarVenta extends JPanel {
 	private static String modelo;
 	private JTextField txtIdCliente;
 
-
 	/**
 	 * Create the panel.
 	 */
@@ -160,6 +159,7 @@ public class GestionarVenta extends JPanel {
 					precio_Compra = (Float) rs.getObject("precio_Compra");
 				}
 
+				System.out.println("Modelo: " + modelo);
 				conexion.close();
 			} catch (SQLException e) {
 				System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
@@ -173,13 +173,14 @@ public class GestionarVenta extends JPanel {
 
 		try {
 
+			
 			int idCliente = Integer.parseInt(txtIdCliente.getText());
 			int idVehiculo = Integer.parseInt(txtIdVehiculoVendido.getText());
 			int idTrabajador = Integer.parseInt(txtIdTrabajador.getText());
-
-			String agregar = "INSERT INTO ventas (ID_Cliente, ID_Trabajador, Modelo, Precio_Compra, Precio_Venta) VALUES('"
-					+ idCliente + "', '" + idTrabajador + "', '" + modelo + "', '" + precio_Compra + "', '"
-					+ precio_Venta + "')";
+			System.out.println("ID CLIENTE: " + idCliente +  " ID Trabajador: " + idTrabajador + " ID VehiculoVendido: " + idVehiculo);
+			String agregar = "INSERT INTO ventas (ID_Cliente, ID_Trabajador, Modelo, ID_Vehiculo, Precio_Compra, Precio_Venta) VALUES('"
+					+ idCliente + "', '" + idTrabajador + "', '" + idVehiculo + "', '" + modelo + "', '" + precio_Compra
+					+ "', '" + precio_Venta + "')";
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
 
@@ -190,6 +191,8 @@ public class GestionarVenta extends JPanel {
 			JOptionPane.showMessageDialog(null, "Venta Agregada Correctamente");
 
 			conexion.close();
+			
+			
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
