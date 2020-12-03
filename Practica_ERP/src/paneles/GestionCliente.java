@@ -201,9 +201,8 @@ public class GestionCliente extends JPanel {
 				aniadirCliente();
 				modeloTabla.setRowCount(0);
 				cargaClientes();
-				txtNombre.setText("");
-				txtDniCliente.setText("");
-				txtTelefono.setText("");
+				resetJTextfields();
+
 			}
 		});
 
@@ -238,8 +237,8 @@ public class GestionCliente extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Apellidos", "Telefono", "DNI", "Domicilio",
-				"CP", "Poblacion", "Provincia" });
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Apellidos", "Telefono", "DNI", "CP",
+				"Provincia", "Poblacion", "Calle" });
 		table.setModel(modeloTabla);
 
 		// Iconos
@@ -338,5 +337,18 @@ public class GestionCliente extends JPanel {
 		} else {
 			JOptionPane.showMessageDialog(null, "No se eliminara el cliente introducido");
 		}
+	}
+
+	public void resetJTextfields() {
+
+		txtNombre.setText("");
+		txtApellidos.setText("");
+		txtDniCliente.setText("");
+		txtTelefono.setText("");
+		txtCP.setText("");
+		txtProvincia.setText("");
+		txtPoblacion.setText("");
+		txtCalle.setText("");
+
 	}
 }
