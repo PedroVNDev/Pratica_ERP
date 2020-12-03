@@ -179,14 +179,14 @@ public class GestionInventario extends JPanel {
 		btnAniadir.setBackground(Color.BLUE);
 		btnAniadir.setBounds(553, 542, 214, 35);
 		add(btnAniadir);
-		
+
 		cbCambios = new JComboBox();
 		cbCambios.setBounds(902, 268, 123, 21);
 		add(cbCambios);
 		cbCambios.addItem("");
 		cbCambios.addItem("Manual");
 		cbCambios.addItem("Automatico");
-		
+
 		cbEficiencias = new JComboBox();
 		cbEficiencias.setBounds(413, 327, 121, 21);
 		add(cbEficiencias);
@@ -239,11 +239,11 @@ public class GestionInventario extends JPanel {
 			String modelo = txtModelo.getText();
 			String eficiencia = (String) cbEficiencias.getSelectedItem();
 			float consumo = Float.parseFloat(txtConsumo.getText());
-			int emisiones = Integer.parseInt(txtConsumo.getText());
-			int precio_venta = Integer.parseInt(txtPrecioVenta.getText());
-			int precio_compra = Integer.parseInt(txtPrecioCompra.getText());
+			float emisiones = Float.parseFloat(txtConsumo.getText());
+			float precio_venta = Float.parseFloat(txtPrecioVenta.getText());
+			float precio_compra = Float.parseFloat(txtPrecioCompra.getText());
 			String caja_cambios = (String) cbCambios.getSelectedItem();
-			String anio = txtAnio.getText();
+			int anio = Integer.parseInt(txtAnio.getText());
 			String matricula = txtMatricula.getText();
 
 			String agregar = "INSERT INTO modelos (MODELO, EFICIENCIA_ENERGETICA, CONSUMO, EMISIONES, PRECIO_VENTA, PRECIO_COMPRA, CAJA_CAMBIOS, AÑO, MATRICULA) VALUES('"
@@ -265,12 +265,9 @@ public class GestionInventario extends JPanel {
 		}
 	}
 
-
-
 	public void resetTextfieldsGestionInventario() {
 
 		txtModelo.setText("");
-		txtEficiencia.setText("");
 		txtConsumo.setText("");
 		txtEmisiones.setText("");
 		txtPrecioVenta.setText("");
