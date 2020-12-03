@@ -307,7 +307,7 @@ public class GestionContacto extends JPanel {
 			String poblacion = txtPoblacion.getText();
 			String calle = txtCalle.getText();
 
-			String agregar = "INSERT INTO contacto_compra (DNI, Nombre, Apellidos, ID_Vehiculo, Precio_Compra, CP, Provincia, Poblacion, Calle) VALUES('"
+			String agregar = "INSERT INTO contactos_compra (DNI, Nombre, Apellidos, ID_Vehiculo, Precio_Compra, CP, Provincia, Poblacion, Calle) VALUES('"
 					+ dni + "', '" + nombre + "', '" + apellidos + "', '" + idvehiculo + "', '" + precio_compra + "', '"
 					+ cp + "', '" + provincia + "', '" + poblacion + "', '" + calle + "')";
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
