@@ -66,6 +66,8 @@ public class Home extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1300, 748);
 
+		// Labels
+
 		// MenuBar
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setForeground(SystemColor.desktop);
@@ -100,17 +102,17 @@ public class Home extends JFrame {
 			}
 		});
 
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("      Modificar Cliente");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		JMenuItem menuItemModificarCliente = new JMenuItem("      Modificar Cliente");
+		menuItemModificarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ModificarClientes mc = new ModificarClientes();
 				nuevoPanel(mc);
 			}
 		});
-		mntmNewMenuItem_1.setForeground(Color.WHITE);
-		mntmNewMenuItem_1.setBackground(Color.BLUE);
-		mntmNewMenuItem_1.setFont(new Font("Arial", Font.BOLD, 26));
-		menuGestion.add(mntmNewMenuItem_1);
+		menuItemModificarCliente.setForeground(Color.WHITE);
+		menuItemModificarCliente.setBackground(Color.BLUE);
+		menuItemModificarCliente.setFont(new Font("Arial", Font.BOLD, 26));
+		menuGestion.add(menuItemModificarCliente);
 		menuItemGestionContacto.setFont(new Font("Arial", Font.BOLD, 26));
 		menuItemGestionContacto.setForeground(Color.WHITE);
 		menuItemGestionContacto.setBackground(Color.BLUE);
@@ -126,19 +128,19 @@ public class Home extends JFrame {
 			}
 		});
 
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("    Modificar Contacto");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+		JMenuItem menuItemModificarContacto = new JMenuItem("    Modificar Contacto");
+		menuItemModificarContacto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				ModificarContacto mc = new ModificarContacto();
 				nuevoPanel(mc);
-				
+
 			}
 		});
-		mntmNewMenuItem_2.setFont(new Font("Arial", Font.BOLD, 26));
-		mntmNewMenuItem_2.setForeground(Color.WHITE);
-		mntmNewMenuItem_2.setBackground(Color.BLUE);
-		menuGestion.add(mntmNewMenuItem_2);
+		menuItemModificarContacto.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItemModificarContacto.setForeground(Color.WHITE);
+		menuItemModificarContacto.setBackground(Color.BLUE);
+		menuGestion.add(menuItemModificarContacto);
 		menuItemGestionTrabajador.setForeground(Color.WHITE);
 		menuItemGestionTrabajador.setBackground(Color.BLUE);
 		menuItemGestionTrabajador.setFont(new Font("Arial", Font.BOLD, 26));
@@ -163,122 +165,110 @@ public class Home extends JFrame {
 		menuItemStock.setFont(new Font("Arial", Font.BOLD, 26));
 		menuInventario.add(menuItemStock);
 
-		JMenuItem menuItem5 = new JMenuItem("         A\u00F1adir Veh\u00EDculo");
-		menuItem5.addActionListener(new ActionListener() {
+		JMenuItem menuItemAniadirVehiculo = new JMenuItem("         A\u00F1adir Veh\u00EDculo");
+		menuItemAniadirVehiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				GestionInventario g5 = new GestionInventario();
 				nuevoPanel(g5);
 			}
 		});
-		menuItem5.setForeground(Color.WHITE);
-		menuItem5.setFont(new Font("Arial", Font.BOLD, 26));
-		menuItem5.setBackground(Color.BLUE);
-		menuInventario.add(menuItem5);
+		menuItemAniadirVehiculo.setForeground(Color.WHITE);
+		menuItemAniadirVehiculo.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItemAniadirVehiculo.setBackground(Color.BLUE);
+		menuInventario.add(menuItemAniadirVehiculo);
 
-		JMenu menu3 = new JMenu("   Producci\u00F3n      ");
-		menu3.setFont(new Font("Arial", Font.BOLD, 35));
-		menu3.setForeground(Color.BLUE);
-		menu3.setBackground(SystemColor.text);
-		menuBar.add(menu3);
+		JMenu menuProduccion = new JMenu("   Producci\u00F3n      ");
+		menuProduccion.setFont(new Font("Arial", Font.BOLD, 35));
+		menuProduccion.setForeground(Color.BLUE);
+		menuProduccion.setBackground(SystemColor.text);
+		menuBar.add(menuProduccion);
 
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("     Gestionar Fabricas    ");
-		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+		JMenuItem menuItemGestionarFabricas = new JMenuItem("     Gestionar Fabricas    ");
+		menuItemGestionarFabricas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GestionFabricas gfa = new GestionFabricas();
 				nuevoPanel(gfa);
 			}
 		});
-		mntmNewMenuItem_4.setForeground(Color.WHITE);
-		mntmNewMenuItem_4.setBackground(Color.BLUE);
-		mntmNewMenuItem_4.setFont(new Font("Arial", Font.BOLD, 26));
-		menu3.add(mntmNewMenuItem_4);
+		menuItemGestionarFabricas.setForeground(Color.WHITE);
+		menuItemGestionarFabricas.setBackground(Color.BLUE);
+		menuItemGestionarFabricas.setFont(new Font("Arial", Font.BOLD, 26));
+		menuProduccion.add(menuItemGestionarFabricas);
 
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("    Listado de Fabricas");
-		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+		JMenuItem menuItemListadoFabricas = new JMenuItem("    Listado de Fabricas");
+		menuItemListadoFabricas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListaFabricas gf = new ListaFabricas();
 				nuevoPanel(gf);
 			}
 		});
-		mntmNewMenuItem_5.setForeground(Color.WHITE);
-		mntmNewMenuItem_5.setBackground(Color.BLUE);
-		mntmNewMenuItem_5.setFont(new Font("Arial", Font.BOLD, 26));
-		menu3.add(mntmNewMenuItem_5);
+		menuItemListadoFabricas.setForeground(Color.WHITE);
+		menuItemListadoFabricas.setBackground(Color.BLUE);
+		menuItemListadoFabricas.setFont(new Font("Arial", Font.BOLD, 26));
+		menuProduccion.add(menuItemListadoFabricas);
 
-		JMenuItem mntmNewMenuItem = new JMenuItem("     Pedir Presupuesto");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		JMenuItem menuItemPedirPresupuesto = new JMenuItem("     Pedir Presupuesto");
+		menuItemPedirPresupuesto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PedirPresupuesto pp = new PedirPresupuesto();
 				nuevoPanel(pp);
 			}
 		});
-		mntmNewMenuItem.setForeground(Color.WHITE);
-		mntmNewMenuItem.setFont(new Font("Arial", Font.BOLD, 26));
-		mntmNewMenuItem.setBackground(Color.BLUE);
-		menu3.add(mntmNewMenuItem);
+		menuItemPedirPresupuesto.setForeground(Color.WHITE);
+		menuItemPedirPresupuesto.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItemPedirPresupuesto.setBackground(Color.BLUE);
+		menuProduccion.add(menuItemPedirPresupuesto);
 
-		JMenu menu4 = new JMenu("        Informes       ");
-		menu4.setFont(new Font("Arial", Font.BOLD, 35));
-		menu4.setForeground(Color.BLUE);
-		menu4.setBackground(SystemColor.text);
-		menuBar.add(menu4);
+		JMenu menuInformes = new JMenu("        Informes       ");
+		menuInformes.setFont(new Font("Arial", Font.BOLD, 35));
+		menuInformes.setForeground(Color.BLUE);
+		menuInformes.setBackground(SystemColor.text);
+		menuBar.add(menuInformes);
 
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("       Gestion Informes     ");
-		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+		JMenuItem menuItemGestionInformes = new JMenuItem("       Gestion Informes     ");
+		menuItemGestionInformes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				GestionInformes gi = new GestionInformes();
 				nuevoPanel(gi);
 
 			}
 		});
-		menu4.add(mntmNewMenuItem_6);
-		mntmNewMenuItem_6.setForeground(Color.WHITE);
-		mntmNewMenuItem_6.setFont(new Font("Arial", Font.BOLD, 26));
-		mntmNewMenuItem_6.setBackground(Color.BLUE);
-		
+		menuInformes.add(menuItemGestionInformes);
+		menuItemGestionInformes.setForeground(Color.WHITE);
+		menuItemGestionInformes.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItemGestionInformes.setBackground(Color.BLUE);
+
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		JLabel lblNewLabel = new JLabel("                  SOTECARS");
-		lblNewLabel.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
-		lblNewLabel.setForeground(Color.WHITE);
-		contentPane.add(lblNewLabel, BorderLayout.CENTER);
+		// Labels
+		JLabel lblSotecars1 = new JLabel("                  SOTECARS");
+		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 87));
+		lblSotecars1.setForeground(Color.WHITE);
+		contentPane.add(lblSotecars1, BorderLayout.CENTER);
 
-		JLabel lblNewLabel_4 = new JLabel("                                         THE POWER OF DREAMS");
-		lblNewLabel_4.setForeground(UIManager.getColor("MenuItem.selectionBackground"));
-		lblNewLabel_4.setVerticalAlignment(SwingConstants.TOP);
-		lblNewLabel_4.setFont(new Font("Yu Gothic", Font.PLAIN, 40));
-		contentPane.add(lblNewLabel_4, BorderLayout.SOUTH);
+		JLabel lblSotecars2 = new JLabel("                                         THE POWER OF DREAMS");
+		lblSotecars2.setForeground(UIManager.getColor("MenuItem.selectionBackground"));
+		lblSotecars2.setVerticalAlignment(SwingConstants.TOP);
+		lblSotecars2.setFont(new Font("Yu Gothic", Font.PLAIN, 40));
+		contentPane.add(lblSotecars2, BorderLayout.SOUTH);
 
-		// Iconos
-		Image ico1 = new ImageIcon(this.getClass().getResource("/006-user.png")).getImage();
-		Image modifiedIco1 = ico1.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		menuItemGestionCliente.setIcon(new ImageIcon(modifiedIco1));
-
-		Image ico2 = new ImageIcon(this.getClass().getResource("/050-protect.png")).getImage();
-		Image modifiedIco2 = ico2.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		menuItemGestionContacto.setIcon(new ImageIcon(modifiedIco2));
-
-		Image ico3 = new ImageIcon(this.getClass().getResource("/036-suitcase.png")).getImage();
-		Image modifiedIco3 = ico3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
-		menuItemGestionTrabajador.setIcon(new ImageIcon(modifiedIco3));
-
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("       Modificar Salario");
-		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+		JMenuItem menuItemModificarSalario = new JMenuItem("       Modificar Salario");
+		menuItemModificarSalario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ModificarSueldo ms = new ModificarSueldo();
 				nuevoPanel(ms);
 			}
 		});
-		mntmNewMenuItem_3.setFont(new Font("Arial", Font.BOLD, 26));
-		mntmNewMenuItem_3.setForeground(Color.WHITE);
-		mntmNewMenuItem_3.setBackground(Color.BLUE);
-		menuGestion.add(mntmNewMenuItem_3);
+		menuItemModificarSalario.setFont(new Font("Arial", Font.BOLD, 26));
+		menuItemModificarSalario.setForeground(Color.WHITE);
+		menuItemModificarSalario.setBackground(Color.BLUE);
+		menuGestion.add(menuItemModificarSalario);
 
 	}
 
