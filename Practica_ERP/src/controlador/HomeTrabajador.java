@@ -78,12 +78,12 @@ public class HomeTrabajador extends JFrame {
 		menuItemGestionTicket.setFont(new Font("Arial", Font.BOLD, 30));
 		menuVenta.add(menuItemGestionTicket);
 
-		JMenu menuInforme = new JMenu("               Informe            ");
+		JMenu menuInforme = new JMenu("              Informe            ");
 		menuInforme.setForeground(Color.BLUE);
 		menuInforme.setFont(new Font("Arial", Font.BOLD, 35));
 		menuBar.add(menuInforme);
 
-		JMenuItem menuItemInforme = new JMenuItem("Gestion Informes");
+		JMenuItem menuItemInforme = new JMenuItem("     Gestion Informes     ");
 		menuItemInforme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
