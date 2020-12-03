@@ -28,7 +28,6 @@ public class GestionInventario extends JPanel {
 
 	DefaultTableModel modeloTabla = new DefaultTableModel();
 	private JTextField txtModelo;
-	private JTextField txtEficiencia;
 	private JTextField txtConsumo;
 	private JTextField txtEmisiones;
 	private JTextField txtPrecioVenta;
@@ -36,6 +35,7 @@ public class GestionInventario extends JPanel {
 	private JTextField txtAnio;
 	private JTextField txtMatricula;
 	private JComboBox cbCambios;
+	private JComboBox cbEficiencias;
 
 	/**
 	 * Create the panel.
@@ -126,12 +126,6 @@ public class GestionInventario extends JPanel {
 		add(txtModelo);
 		txtModelo.setColumns(10);
 
-		txtEficiencia = new JTextField();
-		txtEficiencia.setBackground(SystemColor.inactiveCaption);
-		txtEficiencia.setColumns(10);
-		txtEficiencia.setBounds(413, 327, 123, 20);
-		add(txtEficiencia);
-
 		txtConsumo = new JTextField();
 		txtConsumo.setColumns(10);
 		txtConsumo.setBackground(SystemColor.inactiveCaption);
@@ -189,8 +183,18 @@ public class GestionInventario extends JPanel {
 		cbCambios = new JComboBox();
 		cbCambios.setBounds(902, 268, 123, 21);
 		add(cbCambios);
+		cbCambios.addItem("");
 		cbCambios.addItem("Manual");
 		cbCambios.addItem("Automatico");
+		
+		cbEficiencias = new JComboBox();
+		cbEficiencias.setBounds(413, 327, 121, 21);
+		add(cbEficiencias);
+		cbEficiencias.addItem("");
+		cbEficiencias.addItem("0");
+		cbEficiencias.addItem("ECO");
+		cbEficiencias.addItem("B");
+		cbEficiencias.addItem("C");
 
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia", "Consumo", "Emisiones",
 				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
@@ -233,7 +237,7 @@ public class GestionInventario extends JPanel {
 		try {
 
 			String modelo = txtModelo.getText();
-			String eficiencia = txtEficiencia.getText();
+			String eficiencia = (String) cbEficiencias.getSelectedItem();
 			float consumo = Float.parseFloat(txtConsumo.getText());
 			int emisiones = Integer.parseInt(txtConsumo.getText());
 			int precio_venta = Integer.parseInt(txtPrecioVenta.getText());
