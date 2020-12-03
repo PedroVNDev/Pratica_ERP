@@ -155,7 +155,6 @@ public class Login extends JFrame {
 					dispose();
 					Home home = new Home();
 					home.setVisible(true);
-					home.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/descarga.jpg")));
 					puesto = true;
 
 				} else if (loginpass.equals("2")) {
@@ -163,7 +162,6 @@ public class Login extends JFrame {
 					dispose();
 					HomeTrabajador home2 = new HomeTrabajador();
 					home2.setVisible(true);
-					home2.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/descarga.jpg")));
 					puesto = false;
 
 				} else {

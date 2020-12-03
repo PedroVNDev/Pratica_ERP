@@ -44,6 +44,7 @@ public class GestionPersonal extends JPanel {
 	private boolean carga = false;
 
 	DefaultTableModel modeloTabla = new DefaultTableModel();
+	private JTextField txtApellidos;
 
 	/**
 	 * Create the panel.
@@ -63,8 +64,14 @@ public class GestionPersonal extends JPanel {
 		JLabel lblNombre = new JLabel("Nombre Trabajador:");
 		lblNombre.setForeground(SystemColor.textHighlight);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNombre.setBounds(0, 99, 162, 35);
+		lblNombre.setBounds(0, 61, 162, 35);
 		add(lblNombre);
+
+		JLabel lblApellidos = new JLabel("Apellidos Trabajador:");
+		lblApellidos.setForeground(SystemColor.textHighlight);
+		lblApellidos.setFont(new Font("Arial", Font.BOLD, 16));
+		lblApellidos.setBounds(0, 93, 172, 35);
+		add(lblApellidos);
 
 		JLabel lblDni = new JLabel("DNI Trabajador: ");
 		lblDni.setForeground(SystemColor.textHighlight);
@@ -143,9 +150,15 @@ public class GestionPersonal extends JPanel {
 		// JTextFields Añadir
 		txtNombre = new JTextField();
 		txtNombre.setBackground(SystemColor.inactiveCaption);
-		txtNombre.setBounds(167, 109, 121, 20);
+		txtNombre.setBounds(167, 71, 121, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
+		
+		txtApellidos = new JTextField();
+		txtApellidos.setColumns(10);
+		txtApellidos.setBackground(SystemColor.inactiveCaption);
+		txtApellidos.setBounds(167, 103, 121, 20);
+		add(txtApellidos);
 
 		txtDni = new JTextField();
 		txtDni.setBackground(SystemColor.inactiveCaption);
@@ -243,7 +256,7 @@ public class GestionPersonal extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "DNI", "Puesto_Trabajo", "Sueldo", "CP",
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Apellidos", "DNI", "Puesto_Trabajo", "Sueldo", "CP",
 				"Poblacion", "Provincia", "Calle" });
 		table.setModel(modeloTabla);
 
@@ -252,7 +265,7 @@ public class GestionPersonal extends JPanel {
 
 	}
 
-	//Metodos
+	// Metodos
 	public void cargaTrabajadores() {
 		Connection conexion = null;
 		Statement sql = null;
@@ -262,10 +275,10 @@ public class GestionPersonal extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ID, Nombre, DNI, Puesto_Trabajo, Sueldo, CP, Provincia, Poblacion, Calle FROM trabajadores");
+						"SELECT ID, Nombre, Apellidos, DNI, Puesto_Trabajo, Sueldo, CP, Provincia, Poblacion, Calle FROM trabajadores");
 
 				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Nombre"), rs.getObject("DNI"),
+					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Nombre"), rs.getObject("Apellidos"), rs.getObject("DNI"),
 							rs.getObject("Puesto_Trabajo"), rs.getObject("Sueldo"), rs.getObject("CP"),
 							rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
 				}
@@ -284,6 +297,7 @@ public class GestionPersonal extends JPanel {
 		try {
 
 			String nombre = txtNombre.getText();
+			String apellido = txtApellidos.getText();
 			String puesto = txtPuesto.getText();
 			String dni = txtDni.getText();
 			float sueldo = Float.parseFloat(txtSueldo.getText());
@@ -292,8 +306,8 @@ public class GestionPersonal extends JPanel {
 			String poblacion = txtPoblacion.getText();
 			String calle = txtCalle.getText();
 
-			String agregar = "INSERT INTO trabajadores (Nombre, DNI, Puesto_Trabajo, Sueldo, CP, Provincia, Poblacion, Calle) VALUES('"
-					+ nombre + "', '" + dni + "', '" + puesto + "', '" + sueldo + "', '" + cp + "', '" + provincia
+			String agregar = "INSERT INTO trabajadores (Nombre, Apellidos, DNI, Puesto_Trabajo, Sueldo, CP, Provincia, Poblacion, Calle) VALUES('"
+					+ nombre + "', '" + apellido + "', '" + dni + "', '" + puesto + "', '" + sueldo + "', '" + cp + "', '" + provincia
 					+ "', '" + poblacion + "', '" + calle + "')";
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
@@ -343,6 +357,7 @@ public class GestionPersonal extends JPanel {
 	public void resetTextfieldsGestionPersonal() {
 
 		txtNombre.setText("");
+		txtApellidos.setText("");
 		txtDni.setText("");
 		txtSueldo.setText("");
 		txtPuesto.setText("");
