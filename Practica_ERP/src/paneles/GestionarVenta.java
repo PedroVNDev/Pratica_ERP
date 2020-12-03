@@ -159,7 +159,6 @@ public class GestionarVenta extends JPanel {
 					precio_Compra = (Float) rs.getObject("precio_Compra");
 				}
 
-				System.out.println("Modelo: " + modelo);
 				conexion.close();
 			} catch (SQLException e) {
 				System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
@@ -177,12 +176,14 @@ public class GestionarVenta extends JPanel {
 			int idCliente = Integer.parseInt(txtIdCliente.getText());
 			int idVehiculo = Integer.parseInt(txtIdVehiculoVendido.getText());
 			int idTrabajador = Integer.parseInt(txtIdTrabajador.getText());
-			System.out.println("ID CLIENTE: " + idCliente +  " ID Trabajador: " + idTrabajador + " ID VehiculoVendido: " + idVehiculo);
-			String agregar = "INSERT INTO ventas (ID_Cliente, ID_Trabajador, Modelo, ID_Vehiculo, Precio_Compra, Precio_Venta) VALUES('"
-					+ idCliente + "', '" + idTrabajador + "', '" + idVehiculo + "', '" + modelo + "', '" + precio_Compra
-					+ "', '" + precio_Venta + "')";
+			
+			
+			String agregar = "INSERT INTO ventas (ID_Cliente, ID_Trabajador, ID_Vehiculo, Modelo, Precio_Compra, Precio_Venta) VALUES("
+					+ idCliente + ", " + idTrabajador + ", " + idVehiculo + ", '" + modelo + "', " + precio_Compra
+					+ ", " + precio_Venta + ");";
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
+			
 
 			Statement consulta = conexion.createStatement();
 
