@@ -71,7 +71,7 @@ public class Home extends JFrame {
 		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
 
-		JMenu menuGestion = new JMenu("          Gesti\u00F3n           ");
+		JMenu menuGestion = new JMenu("          Gesti\u00F3n        ");
 		menuGestion.setFont(new Font("Arial", Font.BOLD, 35));
 		menuGestion.setForeground(Color.BLUE);
 		menuGestion.setBackground(SystemColor.text);
@@ -135,7 +135,7 @@ public class Home extends JFrame {
 		menuItemGestionTrabajador.setFont(new Font("Arial", Font.BOLD, 26));
 		menuGestion.add(menuItemGestionTrabajador);
 
-		JMenu menuInventario = new JMenu("        Inventario          ");
+		JMenu menuInventario = new JMenu("      Inventario        ");
 		menuInventario.setFont(new Font("Arial", Font.BOLD, 35));
 		menuInventario.setForeground(Color.BLUE);
 		menuInventario.setBackground(SystemColor.text);
@@ -167,7 +167,7 @@ public class Home extends JFrame {
 		menuItem5.setBackground(Color.BLUE);
 		menuInventario.add(menuItem5);
 
-		JMenu menu3 = new JMenu("   Producci\u00F3n        ");
+		JMenu menu3 = new JMenu("   Producci\u00F3n      ");
 		menu3.setFont(new Font("Arial", Font.BOLD, 35));
 		menu3.setForeground(Color.BLUE);
 		menu3.setBackground(SystemColor.text);
@@ -215,7 +215,7 @@ public class Home extends JFrame {
 		menu4.setBackground(SystemColor.text);
 		menuBar.add(menu4);
 
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Gestion Informes");
+		JMenuItem mntmNewMenuItem_6 = new JMenuItem("       Gestion Informes     ");
 		mntmNewMenuItem_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

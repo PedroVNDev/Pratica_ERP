@@ -27,7 +27,7 @@ public class ListaFabricas extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(95, 243, 1113, 384);
+		scrollPane.setBounds(91, 195, 1113, 384);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -36,7 +36,7 @@ public class ListaFabricas extends JPanel {
 		JLabel lblListaDeFabricas = new JLabel("Lista de fabricas");
 		lblListaDeFabricas.setForeground(SystemColor.textHighlight);
 		lblListaDeFabricas.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaDeFabricas.setBounds(568, 193, 214, 40);
+		lblListaDeFabricas.setBounds(540, 111, 214, 40);
 		add(lblListaDeFabricas);
 		
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Nombre", "Producto", "Email", "Telefono" ,"CP", "Provincia", "Poblacion", "Calle" });

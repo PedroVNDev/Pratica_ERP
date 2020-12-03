@@ -31,12 +31,12 @@ public class ListadoInventario extends JPanel {
 		JLabel lblInventario = new JLabel("Inventario");
 		lblInventario.setForeground(SystemColor.textHighlight);
 		lblInventario.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblInventario.setBounds(610, 162, 214, 40);
+		lblInventario.setBounds(583, 112, 214, 40);
 		add(lblInventario);
 
 		// Tabla
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(56, 213, 1218, 363);
+		scrollPane.setBounds(29, 184, 1218, 363);
 		add(scrollPane);
 
 		table = new JTable();
