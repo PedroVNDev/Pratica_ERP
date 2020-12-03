@@ -128,7 +128,8 @@ public class PedirPresupuesto extends JPanel {
 	            mail.setFrom(new InternetAddress (correoEnvia));
 	            mail.addRecipient(Message.RecipientType.TO, new InternetAddress (receptor));
 	            mail.setSubject(asunto);
-	            mail.setText(mensaje);
+	            String aux= (String) comboBox.getSelectedItem();
+	            mail.setText(mensaje + " (Este mensaje iba destinado a: "+ aux+")");
 	            
 	            Transport transportar = sesion.getTransport("smtp");
 	            transportar.connect(correoEnvia,contrasena);
