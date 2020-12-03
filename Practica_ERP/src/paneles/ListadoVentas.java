@@ -15,39 +15,37 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 
-public class ListadoContactos extends JPanel {
+public class ListadoVentas extends JPanel {
 	private JTable table;
 	DefaultTableModel modeloTabla = new DefaultTableModel();
+
 	/**
 	 * Create the panel.
 	 */
-	public ListadoContactos() {
+	public ListadoVentas() {
 		setBackground(Color.WHITE);
 		setLayout(null);
 		
-		//Labels
-		JLabel lblListaContactos = new JLabel("Lista de contactos");
-		lblListaContactos.setForeground(SystemColor.textHighlight);
-		lblListaContactos.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaContactos.setBounds(590, 117, 291, 40);
-		add(lblListaContactos);
-		
-		//Tabla
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(57, 177, 1218, 363);
+		scrollPane.setBounds(37, 202, 1218, 363);
 		add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		modeloTabla.setColumnIdentifiers(
-				new Object[] { "ID", "DNI", "Nombre", "Apellidos", "ID:_Vehiculo", "Precio_Compra", "CP", "Provincia", "Poblacion", "Calle" });
+		JLabel lblListadoVentas = new JLabel("Listado Ventas");
+		lblListadoVentas.setForeground(SystemColor.textHighlight);
+		lblListadoVentas.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblListadoVentas.setBounds(568, 136, 214, 40);
+		add(lblListadoVentas);
+		
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "ID Clientes", "ID Trabajador", "ID Vehiculo", "Modelo",
+				"Precio_Venta", "Precio_Compra" });
 		table.setModel(modeloTabla);
-		cargaContactos();
+		cargaInventario();
+
 	}
-	
-	//Metodos
-	public void cargaContactos() {
+	public void cargaInventario() {
 		Connection conexion = null;
 		Statement sql = null;
 		ResultSet rs = null;
@@ -56,20 +54,21 @@ public class ListadoContactos extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ID, DNI, Nombre, Apellidos, ID_Vehiculo, Precio_Compra, CP, Provincia, Poblacion, Calle  FROM contactos_compra");
+						"SELECT ID, ID_Clientes, ID_Trabajador, ID_Vehiculo, Modelo, Precio_Venta, Precio_Compra from ventas");
 
 				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("DNI"), rs.getObject("Nombre"),
-							rs.getObject("Apellidos"), rs.getObject("ID_Vehiculo"), rs.getObject("Precio_Compra"),
-							rs.getObject("CP"), rs.getObject("Provincia"), rs.getObject("Poblacion"), rs.getObject("Calle") });
+					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("ID_Clientes"),
+							rs.getObject("ID_Trabajador"), rs.getObject("ID_Vehiculo"), rs.getObject("Modelo"),
+							rs.getObject("Precio_Venta"), rs.getObject("Precio_Compra")});
 				}
 
 				conexion.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
 			}
 		} finally {
 			System.out.println("Ningun error");
 		}
 	}
+
 }

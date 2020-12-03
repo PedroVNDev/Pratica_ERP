@@ -190,7 +190,7 @@ public class GestionInventario extends JPanel {
 		cbEficiencias = new JComboBox();
 		cbEficiencias.setBounds(413, 327, 121, 21);
 		add(cbEficiencias);
-		cbEficiencias.addItem("");
+		cbEficiencias.addItem("SELECCIONA");
 		cbEficiencias.addItem("0");
 		cbEficiencias.addItem("ECO");
 		cbEficiencias.addItem("B");
@@ -270,7 +270,6 @@ public class GestionInventario extends JPanel {
 	public void resetTextfieldsGestionInventario() {
 
 		txtModelo.setText("");
-		txtEficiencia.setText("");
 		txtConsumo.setText("");
 		txtEmisiones.setText("");
 		txtPrecioVenta.setText("");

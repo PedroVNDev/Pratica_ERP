@@ -12,6 +12,7 @@ import paneles.GestionInformes;
 import paneles.GestionarVenta;
 import paneles.ListadoClientes;
 import paneles.ListadoInventario;
+import paneles.ListadoVentas;
 import paneles.ListadoContactos;
 
 import javax.swing.JMenu;
@@ -68,13 +69,14 @@ public class HomeTrabajador extends JFrame {
 		menuBar.add(menuVenta);
 
 		JMenuItem menuItemGestionTicket = new JMenuItem("             Gestionar Ticket            ");
+		menuItemGestionTicket.setBackground(Color.BLUE);
 		menuItemGestionTicket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GestionarVenta gv = new GestionarVenta();
 				nuevoPanel(gv);
 			}
 		});
-		menuItemGestionTicket.setForeground(Color.BLUE);
+		menuItemGestionTicket.setForeground(Color.WHITE);
 		menuItemGestionTicket.setFont(new Font("Arial", Font.BOLD, 30));
 		menuVenta.add(menuItemGestionTicket);
 
@@ -84,6 +86,7 @@ public class HomeTrabajador extends JFrame {
 		menuBar.add(menuInforme);
 
 		JMenuItem menuItemInforme = new JMenuItem("     Gestion Informes     ");
+		menuItemInforme.setBackground(Color.BLUE);
 		menuItemInforme.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -93,7 +96,7 @@ public class HomeTrabajador extends JFrame {
 			}
 		});
 		menuInforme.add(menuItemInforme);
-		menuItemInforme.setForeground(Color.BLUE);
+		menuItemInforme.setForeground(Color.WHITE);
 		menuItemInforme.setFont(new Font("Arial", Font.BOLD, 30));
 
 		JMenu menuListados = new JMenu("                  Listados              ");
@@ -101,7 +104,8 @@ public class HomeTrabajador extends JFrame {
 		menuListados.setFont(new Font("Arial", Font.BOLD, 35));
 		menuBar.add(menuListados);
 
-		JMenuItem menuItemListadoClientes = new JMenuItem("       Listado de clientes      ");
+		JMenuItem menuItemListadoClientes = new JMenuItem("       Listado de Clientes      ");
+		menuItemListadoClientes.setBackground(Color.BLUE);
 
 		menuItemListadoClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -109,7 +113,7 @@ public class HomeTrabajador extends JFrame {
 				nuevoPanel(g1);
 			}
 		});
-		menuItemListadoClientes.setForeground(Color.BLUE);
+		menuItemListadoClientes.setForeground(Color.WHITE);
 		menuItemListadoClientes.setFont(new Font("Arial", Font.BOLD, 30));
 		menuListados.add(menuItemListadoClientes);
 
@@ -119,18 +123,20 @@ public class HomeTrabajador extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		JMenuItem menuItemListadoProveedores = new JMenuItem("       Listado de contactos      ");
+		JMenuItem menuItemListadoProveedores = new JMenuItem("       Listado de Contactos      ");
+		menuItemListadoProveedores.setBackground(Color.BLUE);
 		menuItemListadoProveedores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListadoContactos listado = new ListadoContactos();
 				nuevoPanel(listado);
 			}
 		});
-		menuItemListadoProveedores.setForeground(Color.BLUE);
+		menuItemListadoProveedores.setForeground(Color.WHITE);
 		menuItemListadoProveedores.setFont(new Font("Arial", Font.BOLD, 30));
 		menuListados.add(menuItemListadoProveedores);
 
-		JMenuItem menuItemStock = new JMenuItem("                Stock");
+		JMenuItem menuItemStock = new JMenuItem("       Listado de Vehiculos");
+		menuItemStock.setBackground(Color.BLUE);
 		menuItemStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -138,9 +144,21 @@ public class HomeTrabajador extends JFrame {
 				nuevoPanel(g4);
 			}
 		});
-		menuItemStock.setForeground(Color.BLUE);
+		menuItemStock.setForeground(Color.WHITE);
 		menuItemStock.setFont(new Font("Arial", Font.BOLD, 30));
 		menuListados.add(menuItemStock);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("       Listado de Ventas");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListadoVentas lv= new ListadoVentas();
+				nuevoPanel(lv);
+			}
+		});
+		mntmNewMenuItem.setFont(new Font("Arial", Font.BOLD, 30));
+		mntmNewMenuItem.setForeground(Color.WHITE);
+		mntmNewMenuItem.setBackground(Color.BLUE);
+		menuListados.add(mntmNewMenuItem);
 		getContentPane().setLayout(new CardLayout(0, 0));
 
 		// Labels
