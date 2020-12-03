@@ -71,7 +71,7 @@ public class Home extends JFrame {
 		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
 
-		JMenu menuGestion = new JMenu("          Gesti\u00F3n             ");
+		JMenu menuGestion = new JMenu("          Gesti\u00F3n           ");
 		menuGestion.setFont(new Font("Arial", Font.BOLD, 35));
 		menuGestion.setForeground(Color.BLUE);
 		menuGestion.setBackground(SystemColor.text);
@@ -135,13 +135,13 @@ public class Home extends JFrame {
 		menuItemGestionTrabajador.setFont(new Font("Arial", Font.BOLD, 26));
 		menuGestion.add(menuItemGestionTrabajador);
 
-		JMenu menuInventario = new JMenu("          Inventario          ");
+		JMenu menuInventario = new JMenu("        Inventario          ");
 		menuInventario.setFont(new Font("Arial", Font.BOLD, 35));
 		menuInventario.setForeground(Color.BLUE);
 		menuInventario.setBackground(SystemColor.text);
 		menuBar.add(menuInventario);
 
-		JMenuItem menuItemStock = new JMenuItem("               Stock             ");
+		JMenuItem menuItemStock = new JMenuItem("       Lista de Vehiculos      ");
 		menuItemStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -154,7 +154,7 @@ public class Home extends JFrame {
 		menuItemStock.setFont(new Font("Arial", Font.BOLD, 26));
 		menuInventario.add(menuItemStock);
 
-		JMenuItem menuItem5 = new JMenuItem("     A\u00F1adir Veh\u00EDculo");
+		JMenuItem menuItem5 = new JMenuItem("         A\u00F1adir Veh\u00EDculo");
 		menuItem5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -167,7 +167,7 @@ public class Home extends JFrame {
 		menuItem5.setBackground(Color.BLUE);
 		menuInventario.add(menuItem5);
 
-		JMenu menu3 = new JMenu("     Producci\u00F3n        ");
+		JMenu menu3 = new JMenu("   Producci\u00F3n        ");
 		menu3.setFont(new Font("Arial", Font.BOLD, 35));
 		menu3.setForeground(Color.BLUE);
 		menu3.setBackground(SystemColor.text);
@@ -209,7 +209,7 @@ public class Home extends JFrame {
 		mntmNewMenuItem.setBackground(Color.BLUE);
 		menu3.add(mntmNewMenuItem);
 
-		JMenu menu4 = new JMenu("Informes                              ");
+		JMenu menu4 = new JMenu("        Informes       ");
 		menu4.setFont(new Font("Arial", Font.BOLD, 35));
 		menu4.setForeground(Color.BLUE);
 		menu4.setBackground(SystemColor.text);
