@@ -15,6 +15,7 @@ import paneles.GestionContacto;
 import paneles.ListaFabricas;
 import paneles.ListadoInventario;
 import paneles.ModificarClientes;
+import paneles.ModificarContacto;
 import paneles.ModificarSueldo;
 import paneles.PedirPresupuesto;
 import paneles.GestionInventario;
@@ -126,6 +127,14 @@ public class Home extends JFrame {
 		});
 
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("    Modificar Contacto");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ModificarContacto mc = new ModificarContacto();
+				nuevoPanel(mc);
+				
+			}
+		});
 		mntmNewMenuItem_2.setFont(new Font("Arial", Font.BOLD, 26));
 		mntmNewMenuItem_2.setForeground(Color.WHITE);
 		mntmNewMenuItem_2.setBackground(Color.BLUE);
