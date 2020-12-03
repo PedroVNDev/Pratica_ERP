@@ -19,6 +19,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GestionFabricas extends JPanel {
 	private JTextField txtNombre;
@@ -180,6 +182,15 @@ public class GestionFabricas extends JPanel {
 
 		// Botones
 		JButton btnAadirFabrica = new JButton("A\u00F1adir Fabrica");
+		btnAadirFabrica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				aniadirFabrica();
+				modeloTabla.setRowCount(0);
+				cargaFabricas();
+				
+			}
+		});
 		btnAadirFabrica.setForeground(Color.WHITE);
 		btnAadirFabrica.setFont(new Font("Arial", Font.BOLD, 18));
 		btnAadirFabrica.setBackground(Color.BLUE);
@@ -187,6 +198,14 @@ public class GestionFabricas extends JPanel {
 		add(btnAadirFabrica);
 
 		JButton btnEliminarFabrcia = new JButton("Eliminar Fabrica");
+		btnEliminarFabrcia.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				eliminarFabrica();
+				modeloTabla.setRowCount(0);
+				cargaFabricas();
+			}
+		});
 		btnEliminarFabrcia.setForeground(Color.WHITE);
 		btnEliminarFabrcia.setFont(new Font("Arial", Font.BOLD, 18));
 		btnEliminarFabrcia.setBackground(Color.BLUE);
@@ -272,7 +291,7 @@ public class GestionFabricas extends JPanel {
 		}
 	}
 
-	public void eliminarCliente() {
+	public void eliminarFabrica() {
 		int confirmar = JOptionPane.showConfirmDialog(null, "¿Quieres eliminar la fabrica escrita?");
 
 		if (confirmar == JOptionPane.YES_OPTION) {
