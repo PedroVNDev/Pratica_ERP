@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
 
 public class GestionInventario extends JPanel {
 	private boolean carga = false;
@@ -32,9 +33,9 @@ public class GestionInventario extends JPanel {
 	private JTextField txtEmisiones;
 	private JTextField txtPrecioVenta;
 	private JTextField txtPrecioCompra;
-	private JTextField txtCajaCambios;
 	private JTextField txtAnio;
 	private JTextField txtMatricula;
+	private JComboBox cbCambios;
 
 	/**
 	 * Create the panel.
@@ -155,12 +156,6 @@ public class GestionInventario extends JPanel {
 		txtPrecioCompra.setBounds(904, 340, 123, 20);
 		add(txtPrecioCompra);
 
-		txtCajaCambios = new JTextField();
-		txtCajaCambios.setColumns(10);
-		txtCajaCambios.setBackground(SystemColor.inactiveCaption);
-		txtCajaCambios.setBounds(904, 269, 123, 20);
-		add(txtCajaCambios);
-
 		txtAnio = new JTextField();
 		txtAnio.setColumns(10);
 		txtAnio.setBackground(SystemColor.inactiveCaption);
@@ -190,6 +185,12 @@ public class GestionInventario extends JPanel {
 		btnAniadir.setBackground(Color.BLUE);
 		btnAniadir.setBounds(553, 542, 214, 35);
 		add(btnAniadir);
+		
+		cbCambios = new JComboBox();
+		cbCambios.setBounds(902, 268, 123, 21);
+		add(cbCambios);
+		cbCambios.addItem("Manual");
+		cbCambios.addItem("Automatico");
 
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia", "Consumo", "Emisiones",
 				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
@@ -237,7 +238,7 @@ public class GestionInventario extends JPanel {
 			int emisiones = Integer.parseInt(txtConsumo.getText());
 			int precio_venta = Integer.parseInt(txtPrecioVenta.getText());
 			int precio_compra = Integer.parseInt(txtPrecioCompra.getText());
-			String caja_cambios = txtCajaCambios.getText();
+			String caja_cambios = (String) cbCambios.getSelectedItem();
 			String anio = txtAnio.getText();
 			String matricula = txtMatricula.getText();
 
@@ -270,7 +271,6 @@ public class GestionInventario extends JPanel {
 		txtEmisiones.setText("");
 		txtPrecioVenta.setText("");
 		txtPrecioCompra.setText("");
-		txtCajaCambios.setText("");
 		txtAnio.setText("");
 		txtMatricula.setText("");
 
