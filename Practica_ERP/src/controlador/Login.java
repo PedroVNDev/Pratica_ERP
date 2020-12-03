@@ -56,6 +56,7 @@ public class Login extends JFrame {
 	 */
 	
 	public Login() {
+		setResizable(false);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

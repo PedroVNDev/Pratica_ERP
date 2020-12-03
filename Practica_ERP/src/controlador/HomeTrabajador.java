@@ -53,6 +53,7 @@ public class HomeTrabajador extends JFrame {
 	 * Create the frame.
 	 */
 	public HomeTrabajador() {
+		setResizable(false);
 		getContentPane().setBackground(Color.BLUE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1301, 735);
