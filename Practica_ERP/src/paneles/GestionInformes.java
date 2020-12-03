@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -50,7 +51,7 @@ public class GestionInformes extends JPanel {
 		add(lblInformes);
 
 		// Botones
-		JButton btnInforme1 = new JButton("Generar Informe Ventas");
+		JButton btnInforme1 = new JButton("Generar Informe Trabajadores");
 		btnInforme1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -61,7 +62,7 @@ public class GestionInformes extends JPanel {
 		btnInforme1.setForeground(Color.WHITE);
 		btnInforme1.setFont(new Font("Arial", Font.BOLD, 18));
 		btnInforme1.setBackground(Color.BLUE);
-		btnInforme1.setBounds(57, 34, 258, 35);
+		btnInforme1.setBounds(57, 34, 310, 35);
 		add(btnInforme1);
 
 		JButton btnInforme2 = new JButton("Generar Informe2");
@@ -75,7 +76,7 @@ public class GestionInformes extends JPanel {
 		btnInforme2.setForeground(Color.WHITE);
 		btnInforme2.setFont(new Font("Arial", Font.BOLD, 18));
 		btnInforme2.setBackground(Color.BLUE);
-		btnInforme2.setBounds(57, 80, 258, 35);
+		btnInforme2.setBounds(57, 80, 310, 35);
 		add(btnInforme2);
 
 		JButton btnInforme3 = new JButton("Generar Informe3");
@@ -89,7 +90,7 @@ public class GestionInformes extends JPanel {
 		btnInforme3.setForeground(Color.WHITE);
 		btnInforme3.setFont(new Font("Arial", Font.BOLD, 18));
 		btnInforme3.setBackground(Color.BLUE);
-		btnInforme3.setBounds(57, 126, 258, 35);
+		btnInforme3.setBounds(57, 126, 310, 35);
 		add(btnInforme3);
 
 		// Tabla
@@ -120,15 +121,15 @@ public class GestionInformes extends JPanel {
 				rs = sql.executeQuery(
 						"SELECT ventas.ID_Trabajador, trabajadores.Nombre, trabajadores.Apellidos, count(ventas.ID_Vehiculo) AS Vehiculos_Vendidos, SUM(ventas.Precio_Venta) AS Ingresos "
 								+ "FROM ventas " + "INNER JOIN trabajadores ON ventas.ID_Trabajador = trabajadores.ID "
-								+ " GROUP BY ID_Trabajador");
+								+ " GROUP BY ID_Trabajador" + " ORDER BY `Ingresos`  DESC ");
 
 				while (rs.next()) {
 					modeloTabla.addRow(new Object[] { rs.getObject("ID_Trabajador"), rs.getObject("Nombre"),
-							rs.getObject("Apellidos"), rs.getObject("Vehiculos_Vendidos"),
-							rs.getObject("Ingresos"), });
+							rs.getObject("Apellidos"), rs.getObject("Vehiculos_Vendidos"), rs.getObject("Ingresos"), });
 				}
 
 				GenerarArchivo();
+				JOptionPane.showMessageDialog(null, "Archivo Generado");
 				conexion.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
