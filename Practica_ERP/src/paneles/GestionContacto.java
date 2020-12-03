@@ -63,49 +63,49 @@ public class GestionContacto extends JPanel {
 		JLabel lblDNI = new JLabel("DNI Contacto: ");
 		lblDNI.setForeground(SystemColor.textHighlight);
 		lblDNI.setFont(new Font("Arial", Font.BOLD, 16));
-		lblDNI.setBounds(43, 54, 139, 15);
+		lblDNI.setBounds(39, 73, 119, 19);
 		add(lblDNI);
 
 		JLabel lblNombre = new JLabel("Nombre Contacto:");
 		lblNombre.setForeground(SystemColor.textHighlight);
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 16));
-		lblNombre.setBounds(10, 74, 172, 35);
+		lblNombre.setBounds(6, 102, 152, 27);
 		add(lblNombre);
 
 		JLabel lblApellidos = new JLabel("Apellidos Contacto:");
 		lblApellidos.setForeground(SystemColor.textHighlight);
 		lblApellidos.setFont(new Font("Arial", Font.BOLD, 16));
-		lblApellidos.setBounds(10, 105, 172, 35);
+		lblApellidos.setBounds(0, 129, 152, 27);
 		add(lblApellidos);
 
 		JLabel lblIdVehiculo = new JLabel("ID Vehiculo:");
 		lblIdVehiculo.setForeground(SystemColor.textHighlight);
 		lblIdVehiculo.setFont(new Font("Arial", Font.BOLD, 16));
-		lblIdVehiculo.setBounds(63, 151, 96, 14);
+		lblIdVehiculo.setBounds(53, 159, 106, 20);
 		add(lblIdVehiculo);
 
 		JLabel lblPrecio_Compra = new JLabel("Precio_Compra:");
 		lblPrecio_Compra.setForeground(SystemColor.textHighlight);
 		lblPrecio_Compra.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPrecio_Compra.setBounds(22, 181, 131, 14);
+		lblPrecio_Compra.setBounds(21, 189, 148, 26);
 		add(lblPrecio_Compra);
 
 		JLabel lblCP = new JLabel("CP:");
 		lblCP.setForeground(SystemColor.textHighlight);
 		lblCP.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCP.setBounds(104, 206, 66, 14);
+		lblCP.setBounds(116, 225, 66, 14);
 		add(lblCP);
 
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setForeground(SystemColor.textHighlight);
 		lblProvincia.setFont(new Font("Arial", Font.BOLD, 16));
-		lblProvincia.setBounds(75, 231, 106, 20);
+		lblProvincia.setBounds(63, 249, 86, 20);
 		add(lblProvincia);
 
 		JLabel lblPoblacion = new JLabel("Poblaci\u00F3n:");
 		lblPoblacion.setForeground(SystemColor.textHighlight);
 		lblPoblacion.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPoblacion.setBounds(63, 273, 96, 22);
+		lblPoblacion.setBounds(63, 280, 96, 22);
 		add(lblPoblacion);
 
 		JLabel lblCalle = new JLabel("Calle:");
@@ -130,7 +130,7 @@ public class GestionContacto extends JPanel {
 		JLabel lblListaClientes = new JLabel("Lista de Contactos");
 		lblListaClientes.setForeground(SystemColor.textHighlight);
 		lblListaClientes.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblListaClientes.setBounds(566, 346, 214, 40);
+		lblListaClientes.setBounds(567, 318, 214, 40);
 		add(lblListaClientes);
 
 		// Labels Eliminar
@@ -151,55 +151,55 @@ public class GestionContacto extends JPanel {
 		txtDni = new JTextField();
 		txtDni.setBackground(SystemColor.inactiveCaption);
 		txtDni.setColumns(10);
-		txtDni.setBounds(171, 53, 121, 20);
+		txtDni.setBounds(163, 75, 129, 20);
 		add(txtDni);
 
 		txtNombre = new JTextField();
 		txtNombre.setBackground(SystemColor.inactiveCaption);
-		txtNombre.setBounds(171, 84, 121, 20);
+		txtNombre.setBounds(163, 105, 129, 20);
 		add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtApellidos = new JTextField();
 		txtApellidos.setColumns(10);
 		txtApellidos.setBackground(SystemColor.inactiveCaption);
-		txtApellidos.setBounds(171, 114, 121, 20);
+		txtApellidos.setBounds(163, 135, 129, 20);
 		add(txtApellidos);
 
 		txtID_Vehiculo = new JTextField();
 		txtID_Vehiculo.setColumns(10);
 		txtID_Vehiculo.setBackground(SystemColor.inactiveCaption);
-		txtID_Vehiculo.setBounds(169, 150, 123, 20);
+		txtID_Vehiculo.setBounds(163, 165, 129, 20);
 		add(txtID_Vehiculo);
 
 		txtPrecio_Compra = new JTextField();
 		txtPrecio_Compra.setColumns(10);
 		txtPrecio_Compra.setBackground(SystemColor.inactiveCaption);
-		txtPrecio_Compra.setBounds(169, 176, 123, 20);
+		txtPrecio_Compra.setBounds(163, 195, 129, 20);
 		add(txtPrecio_Compra);
 
 		txtCP = new JTextField();
 		txtCP.setColumns(10);
 		txtCP.setBackground(SystemColor.inactiveCaption);
-		txtCP.setBounds(169, 200, 123, 20);
+		txtCP.setBounds(161, 222, 131, 20);
 		add(txtCP);
 
 		txtProvincia = new JTextField();
 		txtProvincia.setColumns(10);
 		txtProvincia.setBackground(SystemColor.inactiveCaption);
-		txtProvincia.setBounds(169, 234, 123, 20);
+		txtProvincia.setBounds(161, 252, 131, 20);
 		add(txtProvincia);
 
 		txtPoblacion = new JTextField();
 		txtPoblacion.setColumns(10);
 		txtPoblacion.setBackground(SystemColor.inactiveCaption);
-		txtPoblacion.setBounds(169, 277, 123, 20);
+		txtPoblacion.setBounds(161, 282, 131, 20);
 		add(txtPoblacion);
 
 		txtCalle = new JTextField();
 		txtCalle.setColumns(10);
 		txtCalle.setBackground(SystemColor.inactiveCaption);
-		txtCalle.setBounds(171, 312, 123, 20);
+		txtCalle.setBounds(161, 312, 131, 20);
 		add(txtCalle);
 
 		// JTextField Eliminar
