@@ -12,6 +12,7 @@ import paneles.GestionFabricas;
 import paneles.GestionInformes;
 import paneles.GestionPersonal;
 import paneles.GestionContacto;
+import paneles.GestionEscandallos;
 import paneles.ListaFabricas;
 import paneles.ListadoInventario;
 import paneles.ModificarClientes;
@@ -177,6 +178,18 @@ public class Home extends JFrame {
 		menuItemAniadirVehiculo.setFont(new Font("Arial", Font.BOLD, 26));
 		menuItemAniadirVehiculo.setBackground(Color.BLUE);
 		menuInventario.add(menuItemAniadirVehiculo);
+		
+		JMenuItem mntmConsultarEscandallo = new JMenuItem("   Consultar Escandallos");
+		mntmConsultarEscandallo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GestionEscandallos es= new GestionEscandallos();
+				nuevoPanel(es);
+			}
+		});
+		mntmConsultarEscandallo.setForeground(Color.WHITE);
+		mntmConsultarEscandallo.setFont(new Font("Arial", Font.BOLD, 26));
+		mntmConsultarEscandallo.setBackground(Color.BLUE);
+		menuInventario.add(mntmConsultarEscandallo);
 
 		JMenu menuProduccion = new JMenu("   Producci\u00F3n      ");
 		menuProduccion.setFont(new Font("Arial", Font.BOLD, 35));
