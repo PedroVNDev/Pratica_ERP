@@ -259,6 +259,7 @@ public class GestionContacto extends JPanel {
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "DNI", "Nombre", "Apellidos", "ID_Vehiculo",
 				"Precio_Compra", "CP", "Poblacion", "Provincia", "Calle" });
 		table.setModel(modeloTabla);
+		table.setRowHeight(1, 2);
 
 		modeloTabla.setRowCount(0);
 		cargaProveedores();

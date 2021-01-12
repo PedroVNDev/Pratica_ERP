@@ -9,11 +9,11 @@ import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 public class GestionEscandallos extends JPanel {
 	private JTable table;
 	DefaultTableModel modeloTabla = new DefaultTableModel();
-
 	/**
 	 * Create the panel.
 	 */
@@ -49,11 +49,11 @@ public class GestionEscandallos extends JPanel {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-
 		modeloTabla.setColumnIdentifiers(new Object[] {"ID vehiculo", "Precio de compra", "Descripcion Problemas", "Costo de problemas", "Costo total vehiculo"});
 		table.setModel(modeloTabla);
 
 		modeloTabla.setRowCount(0);
-
+		
+		//table.setRowHeight(1, 30);
 	}
 }
