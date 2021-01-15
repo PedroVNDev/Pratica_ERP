@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import javax.swing.JTextPane;
 
 public class GestionInventario extends JPanel {
 	private boolean carga = false;
@@ -37,12 +38,6 @@ public class GestionInventario extends JPanel {
 	private JTextField txtMatricula;
 	private JComboBox cbCambios;
 	private JComboBox cbEficiencias;
-	private JTextField txtProblema1;
-	private JTextField txtProblema2;
-	private JTextField txtProblema3;
-	private JTextField txtProblema4;
-	private JTextField txtProblema5;
-	private JTextField txtProblema6;
 
 	/**
 	 * Create the panel.
@@ -212,86 +207,30 @@ public class GestionInventario extends JPanel {
 		JLabel lblProblemasHayados = new JLabel("Problemas Hayados");
 		lblProblemasHayados.setForeground(SystemColor.textHighlight);
 		lblProblemasHayados.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblProblemasHayados.setBounds(1028, 207, 400, 40);
+		lblProblemasHayados.setBounds(964, 117, 400, 40);
 		add(lblProblemasHayados);
-		
-		txtProblema1 = new JTextField();
-		txtProblema1.setColumns(10);
-		txtProblema1.setBackground(SystemColor.inactiveCaption);
-		txtProblema1.setBounds(891, 334, 223, 20);
-		add(txtProblema1);
 		
 		JLabel lblDescripcionProblema = new JLabel("Descripcion Problema");
 		lblDescripcionProblema.setForeground(SystemColor.textHighlight);
 		lblDescripcionProblema.setFont(new Font("Arial", Font.BOLD, 16));
-		lblDescripcionProblema.setBounds(915, 289, 198, 19);
+		lblDescripcionProblema.setBounds(880, 220, 198, 19);
 		add(lblDescripcionProblema);
 		
-		JLabel lblPrecioDeReparacion = new JLabel("Precio de reparacion");
+		JLabel lblPrecioDeReparacion = new JLabel("Precio estimado de reparacion");
 		lblPrecioDeReparacion.setForeground(SystemColor.textHighlight);
 		lblPrecioDeReparacion.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPrecioDeReparacion.setBounds(1152, 289, 198, 19);
+		lblPrecioDeReparacion.setBounds(887, 471, 288, 19);
 		add(lblPrecioDeReparacion);
-		
-		txtProblema2 = new JTextField();
-		txtProblema2.setColumns(10);
-		txtProblema2.setBackground(SystemColor.inactiveCaption);
-		txtProblema2.setBounds(891, 374, 223, 20);
-		add(txtProblema2);
-		
-		txtProblema3 = new JTextField();
-		txtProblema3.setColumns(10);
-		txtProblema3.setBackground(SystemColor.inactiveCaption);
-		txtProblema3.setBounds(891, 424, 223, 20);
-		add(txtProblema3);
-		
-		txtProblema4 = new JTextField();
-		txtProblema4.setColumns(10);
-		txtProblema4.setBackground(SystemColor.inactiveCaption);
-		txtProblema4.setBounds(891, 472, 223, 20);
-		add(txtProblema4);
-		
-		txtProblema5 = new JTextField();
-		txtProblema5.setColumns(10);
-		txtProblema5.setBackground(SystemColor.inactiveCaption);
-		txtProblema5.setBounds(891, 525, 223, 20);
-		add(txtProblema5);
-		
-		txtProblema6 = new JTextField();
-		txtProblema6.setColumns(10);
-		txtProblema6.setBackground(SystemColor.inactiveCaption);
-		txtProblema6.setBounds(891, 574, 223, 20);
-		add(txtProblema6);
-		
-		JSpinner coste1 = new JSpinner();
-		coste1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		coste1.setBounds(1202, 331, 72, 20);
-		add(coste1);
-		
-		JSpinner coste2 = new JSpinner();
-		coste2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		coste2.setBounds(1202, 384, 72, 20);
-		add(coste2);
-		
-		JSpinner coste3 = new JSpinner();
-		coste3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		coste3.setBounds(1202, 424, 72, 20);
-		add(coste3);
-		
-		JSpinner coste4 = new JSpinner();
-		coste4.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		coste4.setBounds(1202, 472, 72, 20);
-		add(coste4);
-		
-		JSpinner coste5 = new JSpinner();
-		coste5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		coste5.setBounds(1202, 525, 72, 20);
-		add(coste5);
 		
 		JSpinner spinner_1_1_3 = new JSpinner();
 		spinner_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spinner_1_1_3.setBounds(1202, 574, 72, 20);
+		spinner_1_1_3.setBounds(1184, 471, 72, 20);
 		add(spinner_1_1_3);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBackground(Color.LIGHT_GRAY);
+		textPane.setBounds(880, 257, 453, 153);
+		add(textPane);
 
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia", "Consumo", "Emisiones",
 				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
