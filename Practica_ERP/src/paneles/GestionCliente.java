@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -171,7 +172,7 @@ public class GestionCliente extends JPanel {
 		txtPoblacion = new JTextField();
 		txtPoblacion.setColumns(10);
 		txtPoblacion.setBackground(SystemColor.inactiveCaption);
-		txtPoblacion.setBounds(147, 291, 132, 20);
+		txtPoblacion.setBounds(147, 290, 132, 20);
 		add(txtPoblacion);
 
 		txtCalle = new JTextField();
@@ -246,6 +247,7 @@ public class GestionCliente extends JPanel {
 		Image modifiedImage = img1.getScaledInstance(243, 124, java.awt.Image.SCALE_SMOOTH);
 
 		modeloTabla.setRowCount(0);
+
 		cargaClientes();
 
 	}
@@ -350,5 +352,10 @@ public class GestionCliente extends JPanel {
 		txtPoblacion.setText("");
 		txtCalle.setText("");
 
+	}
+
+	public void si() {
+		txtProvincia.setText("Madrid");
+		txtCP.setText("28983");
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -24,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 public class GestionInventario extends JPanel {
 	private boolean carga = false;
@@ -38,7 +40,8 @@ public class GestionInventario extends JPanel {
 	private JTextField txtMatricula;
 	private JComboBox cbCambios;
 	private JComboBox cbEficiencias;
-
+	private JTextPane txtAreaProblema;
+	private JSpinner spinnerPrecio;
 	/**
 	 * Create the panel.
 	 */
@@ -222,15 +225,15 @@ public class GestionInventario extends JPanel {
 		lblPrecioDeReparacion.setBounds(887, 471, 288, 19);
 		add(lblPrecioDeReparacion);
 		
-		JSpinner spinner_1_1_3 = new JSpinner();
-		spinner_1_1_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		spinner_1_1_3.setBounds(1184, 471, 72, 20);
-		add(spinner_1_1_3);
+		JSpinner spinnerPrecio = new JSpinner();
+		spinnerPrecio.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		spinnerPrecio.setBounds(1184, 471, 72, 20);
+		add(spinnerPrecio);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBackground(Color.LIGHT_GRAY);
-		textPane.setBounds(880, 257, 453, 153);
-		add(textPane);
+		JTextArea txtAreaProblema = new JTextArea();
+		txtAreaProblema.setBounds(880, 250, 376, 193);
+		add(txtAreaProblema);
+		
 
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia", "Consumo", "Emisiones",
 				"Precio_Venta", "Precio_Compra", "Caja_Cambios", "Año", "Matricula" });
@@ -281,6 +284,9 @@ public class GestionInventario extends JPanel {
 			String caja_cambios = (String) cbCambios.getSelectedItem();
 			int anio = Integer.parseInt(txtAnio.getText());
 			String matricula = txtMatricula.getText();
+			String txtProblemas = txtAreaProblema.getText();
+			int costes_problemas =  (int) (spinnerPrecio.getValue());
+			
 
 			String agregar = "INSERT INTO modelos (MODELO, EFICIENCIA_ENERGETICA, CONSUMO, EMISIONES, PRECIO_VENTA, PRECIO_COMPRA, CAJA_CAMBIOS, AÑO, MATRICULA) VALUES('"
 					+ modelo + "', '" + eficiencia + "', '" + consumo + "', '" + emisiones + "', '" + precio_venta
@@ -293,6 +299,16 @@ public class GestionInventario extends JPanel {
 			consulta.executeUpdate(agregar);
 
 			JOptionPane.showMessageDialog(null, "Vehiculo Agregado Correctamente");
+			
+			String problemas = "INSERT INTO escandallo (precio_compra, gastos_vehiculo, descripcion_problemas, costo_total) VALUES('"
+					+ precio_compra + "', '" + costes_problemas + "', '" + txtProblemas + "', '" + (precio_compra + costes_problemas) + "');";
+			Connection conexion2 = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
+					"TRABAJO");
+
+			Statement consulta2 = conexion.createStatement();
+
+			consulta.executeUpdate(problemas);
+
 
 			conexion.close();
 

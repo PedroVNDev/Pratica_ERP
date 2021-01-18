@@ -148,6 +148,7 @@ public class Login extends JFrame {
 				String loginusuario = txtUsuario.getText();
 				String loginpass = txtPassword.getText();
 				boolean puesto = false;
+				puesto = false;
 				// si es true es admin, si es false es trabajador
 
 				if (loginpass.equals("1")) {

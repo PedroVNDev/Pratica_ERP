@@ -116,31 +116,31 @@ public class ModificarContacto extends JPanel {
 		JLabel lblApellidos = new JLabel("Apellidos contacto:");
 		lblApellidos.setForeground(SystemColor.textHighlight);
 		lblApellidos.setFont(new Font("Arial", Font.BOLD, 16));
-		lblApellidos.setBounds(695, 153, 149, 35);
+		lblApellidos.setBounds(681, 154, 149, 35);
 		add(lblApellidos);
 		
 		JLabel lblDni = new JLabel("DNI contacto: ");
 		lblDni.setForeground(SystemColor.textHighlight);
 		lblDni.setFont(new Font("Arial", Font.BOLD, 16));
-		lblDni.setBounds(728, 195, 108, 15);
+		lblDni.setBounds(705, 196, 126, 15);
 		add(lblDni);
 		
-		JLabel lblTelefono = new JLabel("Id Vehiculo ventido");
+		JLabel lblTelefono = new JLabel("Id Vehiculo vendido:");
 		lblTelefono.setForeground(SystemColor.textHighlight);
 		lblTelefono.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTelefono.setBounds(681, 236, 150, 14);
+		lblTelefono.setBounds(669, 237, 175, 14);
 		add(lblTelefono);
 		
 		JLabel lblCP = new JLabel("CP:");
 		lblCP.setForeground(SystemColor.textHighlight);
 		lblCP.setFont(new Font("Arial", Font.BOLD, 16));
-		lblCP.setBounds(792, 298, 39, 14);
+		lblCP.setBounds(792, 299, 39, 14);
 		add(lblCP);
 		
 		JLabel lblProvincia = new JLabel("Provincia:");
 		lblProvincia.setForeground(SystemColor.textHighlight);
 		lblProvincia.setFont(new Font("Arial", Font.BOLD, 16));
-		lblProvincia.setBounds(749, 339, 91, 14);
+		lblProvincia.setBounds(738, 340, 91, 14);
 		add(lblProvincia);
 		
 		txtID = new JTextField();
