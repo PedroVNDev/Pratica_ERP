@@ -181,7 +181,7 @@ public class Home extends JFrame {
 		menuItemAniadirVehiculo.setBackground(Color.BLUE);
 		menuInventario.add(menuItemAniadirVehiculo);
 		
-		JMenuItem mntmConsultarEscandallo = new JMenuItem("       Consultar Gastos");
+		JMenuItem mntmConsultarEscandallo = new JMenuItem("       Consultar Gastos ");
 		mntmConsultarEscandallo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GestionEscandallos es= new GestionEscandallos();

@@ -73,7 +73,7 @@ public class GestionEscandallos extends JPanel {
 				e.printStackTrace();
 			}
 		} finally {
-			System.out.println("Ningun error");
+			System.out.println("Ningun error ");
 		}
 	}
 }

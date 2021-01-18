@@ -25,7 +25,7 @@ public class GenerarEscandallo extends JPanel {
 		comboBox.setBounds(416, 211, 136, 21);
 		add(comboBox);
 		
-		JLabel lblIndiqueElVehiculo = new JLabel("Indique el vehiculo a consultar");
+		JLabel lblIndiqueElVehiculo = new JLabel("Indique el vehiculo a consultar ");
 		lblIndiqueElVehiculo.setForeground(SystemColor.textHighlight);
 		lblIndiqueElVehiculo.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblIndiqueElVehiculo.setBounds(304, 152, 453, 40);
