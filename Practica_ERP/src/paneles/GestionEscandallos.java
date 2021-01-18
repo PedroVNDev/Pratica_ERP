@@ -6,6 +6,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import java.awt.SystemColor;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -33,16 +39,6 @@ public class GestionEscandallos extends JPanel {
 		lblSotecars1.setBounds(483, 31, 228, 52);
 		add(lblSotecars1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(517, 189, 136, 21);
-		add(comboBox);
-		
-		JLabel lblIndiqueElVehiculo = new JLabel("Indique el vehiculo a consultar");
-		lblIndiqueElVehiculo.setForeground(SystemColor.textHighlight);
-		lblIndiqueElVehiculo.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblIndiqueElVehiculo.setBounds(405, 130, 453, 40);
-		add(lblIndiqueElVehiculo);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(288, 247, 620, 402);
 		add(scrollPane);
@@ -53,7 +49,31 @@ public class GestionEscandallos extends JPanel {
 		table.setModel(modeloTabla);
 
 		modeloTabla.setRowCount(0);
-		
+		cargaEscandallos();
 		//table.setRowHeight(1, 30);
+	}
+	public void cargaEscandallos() {
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		try {
+			try {
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT id_vehiculo, precio_compra, gastos_vehiculo, descripcion_problemas, costo_total FROM escandallo");
+
+				while (rs.next()) {
+					modeloTabla.addRow(new Object[] { rs.getObject("id_vehiculo"), rs.getObject("precio_compra"), rs.getObject("gastos_vehiculo"),
+							rs.getObject("descripcion_problemas"), rs.getObject("costo_total")});
+				}
+
+				conexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} finally {
+			System.out.println("Ningun error");
+		}
 	}
 }
