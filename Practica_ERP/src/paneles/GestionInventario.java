@@ -40,8 +40,8 @@ public class GestionInventario extends JPanel {
 	private JTextField txtMatricula;
 	private JComboBox cbCambios;
 	private JComboBox cbEficiencias;
-	private JTextPane txtAreaProblema;
 	private JSpinner spinnerPrecio;
+	private JTextArea txtProblemas;
 	/**
 	 * Create the panel.
 	 */
@@ -225,14 +225,15 @@ public class GestionInventario extends JPanel {
 		lblPrecioDeReparacion.setBounds(887, 471, 288, 19);
 		add(lblPrecioDeReparacion);
 		
-		JSpinner spinnerPrecio = new JSpinner();
+		spinnerPrecio = new JSpinner();
 		spinnerPrecio.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		spinnerPrecio.setBounds(1184, 471, 72, 20);
 		add(spinnerPrecio);
 		
-		JTextArea txtAreaProblema = new JTextArea();
-		txtAreaProblema.setBounds(880, 250, 376, 193);
-		add(txtAreaProblema);
+		txtProblemas = new JTextArea();
+		txtProblemas.setBounds(880, 250, 376, 206);
+		add(txtProblemas);
+		txtProblemas.setColumns(10);
 		
 
 		modeloTabla.setColumnIdentifiers(new Object[] { "ID", "Modelo", "Eficiencia", "Consumo", "Emisiones",
@@ -284,7 +285,7 @@ public class GestionInventario extends JPanel {
 			String caja_cambios = (String) cbCambios.getSelectedItem();
 			int anio = Integer.parseInt(txtAnio.getText());
 			String matricula = txtMatricula.getText();
-			String txtProblemas = txtAreaProblema.getText();
+			String txtProblemasDescripcion = txtProblemas.getText();
 			int costes_problemas =  (int) (spinnerPrecio.getValue());
 			
 
@@ -301,7 +302,7 @@ public class GestionInventario extends JPanel {
 			JOptionPane.showMessageDialog(null, "Vehiculo Agregado Correctamente");
 			
 			String problemas = "INSERT INTO escandallo (precio_compra, gastos_vehiculo, descripcion_problemas, costo_total) VALUES('"
-					+ precio_compra + "', '" + costes_problemas + "', '" + txtProblemas + "', '" + (precio_compra + costes_problemas) + "');";
+					+ precio_compra + "', '" + costes_problemas + "', '" + txtProblemasDescripcion + "', '" + (precio_compra + costes_problemas) + "');";
 			Connection conexion2 = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
 
