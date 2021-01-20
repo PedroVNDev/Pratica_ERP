@@ -45,7 +45,7 @@ public class GestionEscandallos extends JPanel {
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		modeloTabla.setColumnIdentifiers(new Object[] {"ID vehiculo", "Precio de compra", "Descripcion Problemas", "Costo de problemas", "Costo total vehiculo"});
+		modeloTabla.setColumnIdentifiers(new Object[] {"ID vehiculo", "Precio de compra", "Costo de problemas", "Descripcion Problemas", "Costo total vehiculo"});
 		table.setModel(modeloTabla);
 
 		modeloTabla.setRowCount(0);
