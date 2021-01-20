@@ -13,10 +13,12 @@ import paneles.GestionCliente;
 import paneles.GestionFabricas;
 import paneles.GestionInformes;
 import paneles.GestionPersonal;
+import paneles.GestionReparaciones;
 import paneles.GestionContacto;
 import paneles.GestionEscandallos;
 import paneles.ListaFabricas;
 import paneles.ListadoInventario;
+import paneles.ListadoReparaciones;
 import paneles.ModificarClientes;
 import paneles.ModificarContacto;
 import paneles.ModificarSueldo;
@@ -246,6 +248,30 @@ public class Home extends JFrame {
 		menuItemPedirPresupuesto.setFont(new Font("Arial", Font.BOLD, 26));
 		menuItemPedirPresupuesto.setBackground(Color.BLUE);
 		menuProduccion.add(menuItemPedirPresupuesto);
+		
+		JMenuItem mntmGestionarReparacionmantenimiento = new JMenuItem("Gestionar mantenimiento");
+		mntmGestionarReparacionmantenimiento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GestionReparaciones gr = new GestionReparaciones();
+				nuevoPanel(gr);
+			}
+		});
+		mntmGestionarReparacionmantenimiento.setForeground(Color.WHITE);
+		mntmGestionarReparacionmantenimiento.setFont(new Font("Arial", Font.BOLD, 26));
+		mntmGestionarReparacionmantenimiento.setBackground(Color.BLUE);
+		menuProduccion.add(mntmGestionarReparacionmantenimiento);
+		
+		JMenuItem mntmListadoReparaciones = new JMenuItem("Listado Reparaciones");
+		mntmListadoReparaciones.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListadoReparaciones lr= new ListadoReparaciones();
+				nuevoPanel(lr);
+			}
+		});
+		mntmListadoReparaciones.setForeground(Color.WHITE);
+		mntmListadoReparaciones.setFont(new Font("Arial", Font.BOLD, 26));
+		mntmListadoReparaciones.setBackground(Color.BLUE);
+		menuProduccion.add(mntmListadoReparaciones);
 
 		JMenu menuInformes = new JMenu("        Informes       ");
 		menuInformes.setFont(new Font("Arial", Font.BOLD, 35));
