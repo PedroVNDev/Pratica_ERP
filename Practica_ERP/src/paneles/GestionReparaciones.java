@@ -12,20 +12,25 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GestionReparaciones extends JPanel {
 	private JTextField txtModelo;
 	private JTextField txtPrecio;
-	private JTextField txtPrecioIVA;
 	private JTextField txtFecha;
-	private JComboBox comboEmpleados;
 	private JTextArea txtAreaDescripcion;
+	private JTextField txtId;
+	private JSpinner spinnerPrecio;
 
 	/**
 	 * Create the panel.
@@ -46,10 +51,10 @@ public class GestionReparaciones extends JPanel {
 		txtModelo.setBounds(156, 269, 121, 20);
 		add(txtModelo);
 		
-		JLabel lblModelo = new JLabel("Modelo Vehiculo:");
+		JLabel lblModelo = new JLabel("ID Vehiculo:");
 		lblModelo.setForeground(SystemColor.textHighlight);
 		lblModelo.setFont(new Font("Arial", Font.BOLD, 16));
-		lblModelo.setBounds(10, 259, 149, 35);
+		lblModelo.setBounds(51, 259, 149, 35);
 		add(lblModelo);
 		
 		JLabel lblDescripcion = new JLabel("Materiales necesarios");
@@ -59,6 +64,7 @@ public class GestionReparaciones extends JPanel {
 		add(lblDescripcion);
 		
 		txtAreaDescripcion = new JTextArea();
+		txtAreaDescripcion.setBackground(Color.LIGHT_GRAY);
 		txtAreaDescripcion.setColumns(10);
 		txtAreaDescripcion.setBounds(883, 220, 376, 206);
 		add(txtAreaDescripcion);
@@ -75,37 +81,21 @@ public class GestionReparaciones extends JPanel {
 		txtPrecio.setBounds(645, 282, 123, 20);
 		add(txtPrecio);
 		
-		JLabel lblPrecioFinal = new JLabel("Precio final:");
-		lblPrecioFinal.setForeground(SystemColor.textHighlight);
-		lblPrecioFinal.setFont(new Font("Arial", Font.BOLD, 16));
-		lblPrecioFinal.setBounds(523, 317, 121, 14);
-		add(lblPrecioFinal);
-		
-		txtPrecioIVA = new JTextField();
-		txtPrecioIVA.setColumns(10);
-		txtPrecioIVA.setBackground(SystemColor.inactiveCaption);
-		txtPrecioIVA.setBounds(647, 317, 123, 20);
-		add(txtPrecioIVA);
-		
 		JLabel lblPrecioEstimado = new JLabel("Precio estimado de las piezas");
 		lblPrecioEstimado.setForeground(SystemColor.textHighlight);
 		lblPrecioEstimado.setFont(new Font("Arial", Font.BOLD, 16));
 		lblPrecioEstimado.setBounds(890, 441, 288, 19);
 		add(lblPrecioEstimado);
 		
-		JSpinner spinnerPrecio = new JSpinner();
+		spinnerPrecio = new JSpinner();
 		spinnerPrecio.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		spinnerPrecio.setBounds(1187, 441, 72, 20);
 		add(spinnerPrecio);
 		
-	    comboEmpleados = new JComboBox();
-	    comboEmpleados.setBounds(153, 317, 121, 21);
-		add(comboEmpleados);
-		
-		JLabel lblTrabajador = new JLabel("Trabajador:");
+		JLabel lblTrabajador = new JLabel("Id trabajador:");
 		lblTrabajador.setForeground(SystemColor.textHighlight);
 		lblTrabajador.setFont(new Font("Arial", Font.BOLD, 16));
-		lblTrabajador.setBounds(51, 317, 108, 15);
+		lblTrabajador.setBounds(38, 317, 108, 15);
 		add(lblTrabajador);
 		
 		JLabel lblSotecars2 = new JLabel("THE POWER OF DREAMS");
@@ -121,6 +111,11 @@ public class GestionReparaciones extends JPanel {
 		add(lblSotecars1);
 		
 		JButton btnAniadir = new JButton("A\u00F1adir Reparacion");
+		btnAniadir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				aniadirMantenimiento();
+			}
+		});
 		btnAniadir.setForeground(Color.WHITE);
 		btnAniadir.setFont(new Font("Arial", Font.BOLD, 18));
 		btnAniadir.setBackground(Color.BLUE);
@@ -139,41 +134,25 @@ public class GestionReparaciones extends JPanel {
 		txtFecha.setBounds(403, 390, 123, 20);
 		add(txtFecha);
 		
-		cargandoComboBox();
+		txtId = new JTextField();
+		txtId.setColumns(10);
+		txtId.setBackground(SystemColor.inactiveCaption);
+		txtId.setBounds(156, 317, 123, 20);
+		add(txtId);
 
 	}
 	
-	public void cargandoComboBox() {
-		Connection conexion = null;
-		Statement sql = null;
-		ResultSet rs = null;
-		try {
-			try {
-				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
-				sql = conexion.createStatement();
-				rs = sql.executeQuery("SELECT nombre FROM trabajadores");
-
-				while (rs.next()) {
-					comboEmpleados.addItem(rs.getObject("nombre"));
-				}
-
-				conexion.close();
-			} catch (SQLException e) {
-				System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
-			}
-		} finally {
-			System.out.println("Ningun error");
-		}
-	}
 	
 	public void aniadirMantenimiento() {
 
 		try {
-
-			int id_empleado = Integer.parseInt(txtPrecio.getText());
+			Calendar fecha2 = new GregorianCalendar();
+			int mes=fecha2.get(Calendar.MONTH);
+			int id_empleado = Integer.parseInt(txtId.getText());
+			Float precio= Float.parseFloat(txtPrecio.getText());
 			String descripcion = txtAreaDescripcion.getText();
-			int precioTotal = Integer.parseInt(txtPrecioIVA.getText());
-			String fecha = txtFecha.getText();
+			Float precioTotal = (float) (((precio*0.21)+precio)+Integer.parseInt(spinnerPrecio.getValue().toString()));
+			String fecha = txtFecha.getText() +" dias a partir de: "+fecha2.get(Calendar.DAY_OF_MONTH)+ "-"+ (mes+1) +"-"+fecha2.get(Calendar.YEAR);
 
 			String agregar = "INSERT INTO mantenimiento (id_empleado, descripcion, precio_total, fecha_entrega) VALUES('"
 					+ id_empleado + "', '" + descripcion + "', '" + precioTotal + "', '" + fecha + "')";
@@ -193,3 +172,4 @@ public class GestionReparaciones extends JPanel {
 		}
 	}
 }
+;

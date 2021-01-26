@@ -30,7 +30,7 @@ public class ListadoReparaciones extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
-		modeloTabla.setColumnIdentifiers(new Object[] { "Empleado ", "Materiales necesarios", "Presupuesto", "Fecha de entrega" });
+		modeloTabla.setColumnIdentifiers(new Object[] { "Empleado ", "Materiales necesarios", "Precio Final", "Fecha de entrega" });
 		table.setModel(modeloTabla);
 		table.setRowHeight(1, 2);
 
