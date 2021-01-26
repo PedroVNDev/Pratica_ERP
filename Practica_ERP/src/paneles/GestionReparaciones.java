@@ -166,7 +166,8 @@ public class GestionReparaciones extends JPanel {
 			JOptionPane.showMessageDialog(null, "Mantenimiento Agregado Correctamente");
 
 			conexion.close();
-
+			
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

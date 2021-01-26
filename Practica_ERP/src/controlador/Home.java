@@ -282,10 +282,10 @@ public class Home extends JFrame {
 		JMenuItem menuItemGestionInformes = new JMenuItem("       Gestion Informes     ");
 		menuItemGestionInformes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+		
 				GestionInformes gi = new GestionInformes();
 				nuevoPanel(gi);
-
+	
 			}
 		});
 		menuInformes.add(menuItemGestionInformes);

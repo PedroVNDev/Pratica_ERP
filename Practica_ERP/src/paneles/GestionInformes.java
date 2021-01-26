@@ -111,6 +111,7 @@ public class GestionInformes extends JPanel {
 				new Object[] { "ID_Trabajador", "Nombre", "Apellidos", "Vehiculos_Vendidos", "Ingresos" });
 		table.setModel(modeloTabla);
 
+		String nombre;
 		Connection conexion = null;
 		Statement sql = null;
 		ResultSet rs = null;
@@ -122,12 +123,13 @@ public class GestionInformes extends JPanel {
 						"SELECT ventas.ID_Trabajador, trabajadores.Nombre, trabajadores.Apellidos, count(ventas.ID_Vehiculo) AS Vehiculos_Vendidos, SUM(ventas.Precio_Venta) AS Ingresos "
 								+ "FROM ventas " + "INNER JOIN trabajadores ON ventas.ID_Trabajador = trabajadores.ID "
 								+ " GROUP BY ID_Trabajador" + " ORDER BY `Ingresos`  DESC ");
-
+				
 				while (rs.next()) {
 					modeloTabla.addRow(new Object[] { rs.getObject("ID_Trabajador"), rs.getObject("Nombre"),
 							rs.getObject("Apellidos"), rs.getObject("Vehiculos_Vendidos"), rs.getObject("Ingresos"), });
 				}
 
+				
 				GenerarArchivo();
 				JOptionPane.showMessageDialog(null, "Archivo Generado");
 				conexion.close();
