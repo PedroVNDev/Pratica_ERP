@@ -183,4 +183,165 @@ public class GestionInformes extends JPanel {
 			}
 		}
 	}
+	
+	public void GenerarArchivoHTML() {
+
+		JFileChooser fileChooser = new JFileChooser();
+		int returnVal = fileChooser.showSaveDialog(GestionInformes.this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			try {
+				File file = fileChooser.getSelectedFile();
+				PrintWriter writer = new PrintWriter(file);
+				
+				int idEmpleado = 1;
+				String nombre = "Pedro";
+				String apellidos = "Vicente";
+				float ventas = 1000;
+				float ingresos = 200;
+
+				
+				writer.print("<!DOCTYPE html>\r\n" + 
+						"<html lang=\"en\">\r\n" + 
+						"\r\n" + 
+						"<head>\r\n" + 
+						"    <meta charset=\"UTF-8\">\r\n" + 
+						"    <title>Document</title>\r\n" + 
+						"    <link href=\"css/bootstrap.css\" rel=\"stylesheet\" />\r\n" + 
+						"    <style>\r\n" + 
+						"        @import url(http://fonts.googleapis.com/css?family=Bree+Serif);\r\n" + 
+						"        body,\r\n" + 
+						"        h1,\r\n" + 
+						"        h2,\r\n" + 
+						"        h3,\r\n" + 
+						"        h4,\r\n" + 
+						"        h5,\r\n" + 
+						"        h6 {\r\n" + 
+						"            font-family: 'Bree Serif', serif;\r\n" + 
+						"        }\r\n" + 
+						"    </style>\r\n" + 
+						"    <div class=\"container\">\r\n" + 
+						"        <div class=\"row\">\r\n" + 
+						"\r\n" + 
+						"            <div class=\"col-xs-6\">\r\n" + 
+						"                <h1>\r\n" + 
+						"                    <a href=\" \"><img alt=\"\" src=\"image/logo.png\" /> SOTECARS</a>\r\n" + 
+						"                </h1>\r\n" + 
+						"            </div>\r\n" + 
+						"            <div class=\"col-xs-6 text-right\">\r\n" + 
+						"                <div class=\"panel panel-default\">\r\n" + 
+						"                    <div class=\"panel-heading\">\r\n" + 
+						"                        <h4>EMPLEADO GESTOR:\r\n" + 
+						"                            <a href=\"#\">SOTECARS</a>\r\n" + 
+						"                        </h4>\r\n" + 
+						"                        <h4>CIF:\r\n" + 
+						"                            <a href=\"#\">B45324321</a>\r\n" + 
+						"                        </h4>\r\n" + 
+						"                    </div>\r\n" + 
+						"                    <div class=\"panel-body\">\r\n" + 
+						"                        <h4>Sotecars S.L\r\n" + 
+						"                            <a href=\"#\"></a>\r\n" + 
+						"                        </h4>\r\n" + 
+						"                    </div>\r\n" + 
+						"                </div>\r\n" + 
+						"            </div>\r\n" + 
+						"\r\n" + 
+						"            <hr />\r\n" + 
+						"\r\n" + 
+						"\r\n" + 
+						"            <h1 style=\"text-align: center;\">TRABAJADORES SOTECARS</h1>\r\n" + 
+						"\r\n" + 
+						"            <div class=\"row\">\r\n" + 
+						"                <div class=\"col-xs-12\">\r\n" + 
+						"                    <div class=\"panel panel-default\">\r\n" + 
+						"                        <div class=\"panel-heading\">\r\n" + 
+						"                            <h4> <a href=\"#\">30</a> de <a href=\"#\">abril</a> de <a href=\"#\">2020</a>\r\n" + 
+						"\r\n" + 
+						"                            </h4>\r\n" + 
+						"                        </div>\r\n" + 
+						"\r\n" + 
+						"                    </div>\r\n" + 
+						"                </div>\r\n" + 
+						"\r\n" + 
+						"            </div>\r\n" + 
+						"            <pre></pre>\r\n" + 
+						"            <table class=\"table table-bordered\">\r\n" + 
+						"                <thead>\r\n" + 
+						"                    <tr>\r\n" + 
+						"                        <th style=\"text-align: center;\">\r\n" + 
+						"                            <h4>Id Trabajador</h4>\r\n" + 
+						"                        </th>\r\n" + 
+						"                        <th style=\"text-align: center;\">\r\n" + 
+						"                            <h4>Nombre</h4>\r\n" + 
+						"                        </th>\r\n" + 
+						"                        <th style=\"text-align: center;\">\r\n" + 
+						"                            <h4>Apellidos</h4>\r\n" + 
+						"                        </th>\r\n" + 
+						"                        <th style=\"text-align: center;\">\r\n" + 
+						"                            <h4>Vehiculos vendidos</h4>\r\n" + 
+						"                        </th>\r\n" + 
+						"                        <th style=\"text-align: center;\">\r\n" + 
+						"                            <h4>Ingresos</h4>\r\n" + 
+						"                        </th>\r\n" + 
+						"\r\n" + 
+						"                    </tr>\r\n" + 
+						"                </thead>\r\n" + 
+						"                <tbody>\r\n" + 
+						"\r\n" + 
+						"                    <tr>\r\n" + 
+						"                        <td style=\" text-align: center; \">" + idEmpleado + " </td>\r\n" + 
+						"                        <td class=\" text-align: center; \">" + nombre + " </td>\r\n" + 
+						"                        <td class=\" text-align: center; \">" + apellidos + " </td>\r\n" + 
+						"                        <td class=\" text-align: center; \">" + ventas + " </td>\r\n" + 
+						"                        <td class=\" text-align: center; \">" + ingresos + " </td>\r\n" + 
+						"\r\n" + 
+						"                    </tr>\r\n" + 
+						"                    <tr>\r\n" + 
+						"                        <td>&nbsp;</td>\r\n" + 
+						"                        <td>\r\n" + 
+						"                            <a href=\"#\"></a>\r\n" + 
+						"                        </td>\r\n" + 
+						"                        <td class=\"text-right\"></td>\r\n" + 
+						"                        <td class=\"text-right \"></td>\r\n" + 
+						"                        <td class=\"text-right \"></td>\r\n" + 
+						"                    </tr>\r\n" + 
+						"\r\n" + 
+						"                </tbody>\r\n" + 
+						"            </table>\r\n" + 
+						"            <pre></pre>\r\n" + 
+						"\r\n" + 
+						"\r\n" + 
+						"            <div class=\"row\">\r\n" + 
+						"                <div class=\"col-xs-4\">\r\n" + 
+						"                    <h1>\r\n" + 
+						"                        <a href=\" \"><img alt=\"\" src=\"image/qr.png\" /></a>\r\n" + 
+						"                    </h1>\r\n" + 
+						"                </div>\r\n" + 
+						"                <div class=\"col-xs-8\">\r\n" + 
+						"\r\n" + 
+						"                    <div class=\"panel panel-info\" style=\"text-align: center;\">\r\n" + 
+						"                        <h6> \"LA ALTERACI&Oacute;N, FALSIFICACI&Oacute;N O COMERCIALIZACI&Oacute;N ILEGAL DE ESTE DOCUMENTO ESTA PENADO POR LA LEY\"</h6>\r\n" + 
+						"                    </div>\r\n" + 
+						"\r\n" + 
+						"                </div>\r\n" + 
+						"            </div>\r\n" + 
+						"\r\n" + 
+						"        </div>\r\n" + 
+						"    </div>\r\n" + 
+						"\r\n" + 
+						"</head>\r\n" + 
+						"\r\n" + 
+						"<body>\r\n" + 
+						"\r\n" + 
+						"</body>\r\n" + 
+						"\r\n" + 
+						"</html>");
+				
+
+				writer.close();
+				System.out.println("Archivo Generado");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+}
 }
