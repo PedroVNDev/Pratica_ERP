@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -12,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -20,7 +23,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.table.DefaultTableModel;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
@@ -31,9 +47,12 @@ public class GestionInformes extends JPanel {
 
 	private JTable table;
 	DefaultTableModel modeloTabla = new DefaultTableModel();
-
-	private static String nombreTrabajador;
-	private static String apellidoTrabajor;
+	
+	public ArrayList<Integer> idEmpleados = new ArrayList<Integer>();
+	public ArrayList<String> nombres = new ArrayList<String>();
+	public ArrayList<String> apellidos = new ArrayList<String>();
+	public ArrayList<Long> ventas = new ArrayList<Long>();
+	public ArrayList<Double> ingresos = new ArrayList<Double>();
 
 	/**
 	 * Create the panel.
@@ -55,7 +74,7 @@ public class GestionInformes extends JPanel {
 		btnInforme1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				informeVentas();
+				cargarArrayListsTrabajadores();
 
 			}
 		});
@@ -104,44 +123,6 @@ public class GestionInformes extends JPanel {
 	}
 
 	// Metodos
-	public void informeVentas() {
-
-		modeloTabla.setRowCount(0);
-		modeloTabla.setColumnIdentifiers(
-				new Object[] { "ID_Trabajador", "Nombre", "Apellidos", "Vehiculos_Vendidos", "Ingresos" });
-		table.setModel(modeloTabla);
-
-		String nombre;
-		Connection conexion = null;
-		Statement sql = null;
-		ResultSet rs = null;
-		try {
-			try {
-				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
-				sql = conexion.createStatement();
-				rs = sql.executeQuery(
-						"SELECT ventas.ID_Trabajador, trabajadores.Nombre, trabajadores.Apellidos, count(ventas.ID_Vehiculo) AS Vehiculos_Vendidos, SUM(ventas.Precio_Venta) AS Ingresos "
-								+ "FROM ventas " + "INNER JOIN trabajadores ON ventas.ID_Trabajador = trabajadores.ID "
-								+ " GROUP BY ID_Trabajador" + " ORDER BY `Ingresos`  DESC ");
-				
-				while (rs.next()) {
-					modeloTabla.addRow(new Object[] { rs.getObject("ID_Trabajador"), rs.getObject("Nombre"),
-							rs.getObject("Apellidos"), rs.getObject("Vehiculos_Vendidos"), rs.getObject("Ingresos"), });
-				}
-
-				
-				GenerarArchivo();
-				JOptionPane.showMessageDialog(null, "Archivo Generado");
-				conexion.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} finally {
-			System.out.println("Ningun error");
-		}
-
-	}
-
 	public void informe2() {
 
 		modeloTabla.setColumnIdentifiers(new Object[] { "informe2", "DNI", "Nombre", "Apellidos", "ID_Vehiculo",
@@ -157,8 +138,120 @@ public class GestionInformes extends JPanel {
 		table.setModel(modeloTabla);
 
 	}
+	
+	public void cargarArrayListsTrabajadores() {
+		
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		try {
+			try {
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT ventas.ID_Trabajador, trabajadores.Nombre, trabajadores.Apellidos, count(ventas.ID_Vehiculo) AS Vehiculos_Vendidos, SUM(ventas.Precio_Venta) AS Ingresos "
+								+ "FROM ventas " + "INNER JOIN trabajadores ON ventas.ID_Trabajador = trabajadores.ID "
+								+ " GROUP BY ID_Trabajador" + " ORDER BY `Ingresos`  DESC ");
+				
+				while (rs.next()) {
+					
+					modeloTabla.addRow(new Object[] { rs.getObject("ID_Trabajador"), rs.getObject("Nombre"),
+							rs.getObject("Apellidos"), rs.getObject("Vehiculos_Vendidos"), rs.getObject("Ingresos"), });
+					
+					idEmpleados.add((Integer) rs.getObject("ID_Trabajador"));
+					nombres.add((String) rs.getObject("Nombre"));
+					apellidos.add((String) rs.getObject("Apellidos"));
+					ventas.add((Long) rs.getObject("Vehiculos_Vendidos"));
+					ingresos.add((Double) rs.getObject("Ingresos"));
+					
+				}
+				
+				GenerarArchivoPDFTrabajadores();
+				JOptionPane.showMessageDialog(null, "Archivo Generado");
+				conexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} finally {
+			System.out.println("Ningun error");
+		}
+		
+	}
+	
+	public void GenerarArchivoPDFTrabajadores() {
 
-	public void GenerarArchivo() {
+		Document documento = new Document();
+		
+		try {
+			
+			String idString, ventasString, ingresosString;
+			
+			FileOutputStream ficheroPDF = new FileOutputStream("fichero.pdf");
+			PdfWriter.getInstance(documento, ficheroPDF);
+			documento.setMargins(10, 10, 10, 10);
+			documento.open();
+			
+			
+			Paragraph titulo = new Paragraph("Informe de trabajadores SOTECARS"
+					+ "\n"
+					+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLUE));
+			titulo.setAlignment(Element.ALIGN_CENTER);
+			
+			documento.add(titulo); 
+			
+			PdfPTable table = new PdfPTable(5);
+			table.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+	        // t.setBorderColor(BaseColor.GRAY);
+	        // t.setPadding(4);
+	        // t.setSpacing(4);
+	        // t.setBorderWidth(1);
+
+	        PdfPCell c1 = new PdfPCell(new Phrase("ID_TRABAJADOR"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("NOMBRE"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("APELLIDOS"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("VEHICULOS_VENDIDOS"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("INGRESOS"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        table.setHeaderRows(1);
+	        
+	        for(int x = 0; x < nombres.size(); x++) {
+	        	
+	        	idString = idEmpleados.get(x).toString();
+	        	ventasString = ventas.get(x).toString();
+	        	ingresosString = ingresos.get(x).toString();
+	        	
+	        	table.addCell(idString);
+	        	table.addCell(nombres.get(x));
+	        	table.addCell(apellidos.get(x));
+	        	table.addCell(ventasString);
+	        	table.addCell(ingresosString);
+	        		
+	        }
+
+	        documento.add(table);
+			documento.close();
+			
+		} catch (FileNotFoundException | DocumentException e) {
+			e.printStackTrace();
+		}
+		}
+	
+	/* Generar archivo y elegir su destino
+	 * public void GenerarArchivo() {
 
 		JFileChooser fileChooser = new JFileChooser();
 		int returnVal = fileChooser.showSaveDialog(GestionInformes.this);
@@ -183,165 +276,6 @@ public class GestionInformes extends JPanel {
 			}
 		}
 	}
-	
-	public void GenerarArchivoHTML() {
-
-		JFileChooser fileChooser = new JFileChooser();
-		int returnVal = fileChooser.showSaveDialog(GestionInformes.this);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
-			try {
-				File file = fileChooser.getSelectedFile();
-				PrintWriter writer = new PrintWriter(file);
-				
-				int idEmpleado = 1;
-				String nombre = "Pedro";
-				String apellidos = "Vicente";
-				float ventas = 1000;
-				float ingresos = 200;
-
-				
-				writer.print("<!DOCTYPE html>\r\n" + 
-						"<html lang=\"en\">\r\n" + 
-						"\r\n" + 
-						"<head>\r\n" + 
-						"    <meta charset=\"UTF-8\">\r\n" + 
-						"    <title>Document</title>\r\n" + 
-						"    <link href=\"css/bootstrap.css\" rel=\"stylesheet\" />\r\n" + 
-						"    <style>\r\n" + 
-						"        @import url(http://fonts.googleapis.com/css?family=Bree+Serif);\r\n" + 
-						"        body,\r\n" + 
-						"        h1,\r\n" + 
-						"        h2,\r\n" + 
-						"        h3,\r\n" + 
-						"        h4,\r\n" + 
-						"        h5,\r\n" + 
-						"        h6 {\r\n" + 
-						"            font-family: 'Bree Serif', serif;\r\n" + 
-						"        }\r\n" + 
-						"    </style>\r\n" + 
-						"    <div class=\"container\">\r\n" + 
-						"        <div class=\"row\">\r\n" + 
-						"\r\n" + 
-						"            <div class=\"col-xs-6\">\r\n" + 
-						"                <h1>\r\n" + 
-						"                    <a href=\" \"><img alt=\"\" src=\"image/logo.png\" /> SOTECARS</a>\r\n" + 
-						"                </h1>\r\n" + 
-						"            </div>\r\n" + 
-						"            <div class=\"col-xs-6 text-right\">\r\n" + 
-						"                <div class=\"panel panel-default\">\r\n" + 
-						"                    <div class=\"panel-heading\">\r\n" + 
-						"                        <h4>EMPLEADO GESTOR:\r\n" + 
-						"                            <a href=\"#\">SOTECARS</a>\r\n" + 
-						"                        </h4>\r\n" + 
-						"                        <h4>CIF:\r\n" + 
-						"                            <a href=\"#\">B45324321</a>\r\n" + 
-						"                        </h4>\r\n" + 
-						"                    </div>\r\n" + 
-						"                    <div class=\"panel-body\">\r\n" + 
-						"                        <h4>Sotecars S.L\r\n" + 
-						"                            <a href=\"#\"></a>\r\n" + 
-						"                        </h4>\r\n" + 
-						"                    </div>\r\n" + 
-						"                </div>\r\n" + 
-						"            </div>\r\n" + 
-						"\r\n" + 
-						"            <hr />\r\n" + 
-						"\r\n" + 
-						"\r\n" + 
-						"            <h1 style=\"text-align: center;\">TRABAJADORES SOTECARS</h1>\r\n" + 
-						"\r\n" + 
-						"            <div class=\"row\">\r\n" + 
-						"                <div class=\"col-xs-12\">\r\n" + 
-						"                    <div class=\"panel panel-default\">\r\n" + 
-						"                        <div class=\"panel-heading\">\r\n" + 
-						"                            <h4> <a href=\"#\">30</a> de <a href=\"#\">abril</a> de <a href=\"#\">2020</a>\r\n" + 
-						"\r\n" + 
-						"                            </h4>\r\n" + 
-						"                        </div>\r\n" + 
-						"\r\n" + 
-						"                    </div>\r\n" + 
-						"                </div>\r\n" + 
-						"\r\n" + 
-						"            </div>\r\n" + 
-						"            <pre></pre>\r\n" + 
-						"            <table class=\"table table-bordered\">\r\n" + 
-						"                <thead>\r\n" + 
-						"                    <tr>\r\n" + 
-						"                        <th style=\"text-align: center;\">\r\n" + 
-						"                            <h4>Id Trabajador</h4>\r\n" + 
-						"                        </th>\r\n" + 
-						"                        <th style=\"text-align: center;\">\r\n" + 
-						"                            <h4>Nombre</h4>\r\n" + 
-						"                        </th>\r\n" + 
-						"                        <th style=\"text-align: center;\">\r\n" + 
-						"                            <h4>Apellidos</h4>\r\n" + 
-						"                        </th>\r\n" + 
-						"                        <th style=\"text-align: center;\">\r\n" + 
-						"                            <h4>Vehiculos vendidos</h4>\r\n" + 
-						"                        </th>\r\n" + 
-						"                        <th style=\"text-align: center;\">\r\n" + 
-						"                            <h4>Ingresos</h4>\r\n" + 
-						"                        </th>\r\n" + 
-						"\r\n" + 
-						"                    </tr>\r\n" + 
-						"                </thead>\r\n" + 
-						"                <tbody>\r\n" + 
-						"\r\n" + 
-						"                    <tr>\r\n" + 
-						"                        <td style=\" text-align: center; \">" + idEmpleado + " </td>\r\n" + 
-						"                        <td class=\" text-align: center; \">" + nombre + " </td>\r\n" + 
-						"                        <td class=\" text-align: center; \">" + apellidos + " </td>\r\n" + 
-						"                        <td class=\" text-align: center; \">" + ventas + " </td>\r\n" + 
-						"                        <td class=\" text-align: center; \">" + ingresos + " </td>\r\n" + 
-						"\r\n" + 
-						"                    </tr>\r\n" + 
-						"                    <tr>\r\n" + 
-						"                        <td>&nbsp;</td>\r\n" + 
-						"                        <td>\r\n" + 
-						"                            <a href=\"#\"></a>\r\n" + 
-						"                        </td>\r\n" + 
-						"                        <td class=\"text-right\"></td>\r\n" + 
-						"                        <td class=\"text-right \"></td>\r\n" + 
-						"                        <td class=\"text-right \"></td>\r\n" + 
-						"                    </tr>\r\n" + 
-						"\r\n" + 
-						"                </tbody>\r\n" + 
-						"            </table>\r\n" + 
-						"            <pre></pre>\r\n" + 
-						"\r\n" + 
-						"\r\n" + 
-						"            <div class=\"row\">\r\n" + 
-						"                <div class=\"col-xs-4\">\r\n" + 
-						"                    <h1>\r\n" + 
-						"                        <a href=\" \"><img alt=\"\" src=\"image/qr.png\" /></a>\r\n" + 
-						"                    </h1>\r\n" + 
-						"                </div>\r\n" + 
-						"                <div class=\"col-xs-8\">\r\n" + 
-						"\r\n" + 
-						"                    <div class=\"panel panel-info\" style=\"text-align: center;\">\r\n" + 
-						"                        <h6> \"LA ALTERACI&Oacute;N, FALSIFICACI&Oacute;N O COMERCIALIZACI&Oacute;N ILEGAL DE ESTE DOCUMENTO ESTA PENADO POR LA LEY\"</h6>\r\n" + 
-						"                    </div>\r\n" + 
-						"\r\n" + 
-						"                </div>\r\n" + 
-						"            </div>\r\n" + 
-						"\r\n" + 
-						"        </div>\r\n" + 
-						"    </div>\r\n" + 
-						"\r\n" + 
-						"</head>\r\n" + 
-						"\r\n" + 
-						"<body>\r\n" + 
-						"\r\n" + 
-						"</body>\r\n" + 
-						"\r\n" + 
-						"</html>");
-				
-
-				writer.close();
-				System.out.println("Archivo Generado");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+	 */
 }
-}
+
