@@ -194,18 +194,6 @@ public class Home extends JFrame {
 		mntmConsultarEscandallo.setFont(new Font("Arial", Font.BOLD, 26));
 		mntmConsultarEscandallo.setBackground(Color.BLUE);
 		menuInventario.add(mntmConsultarEscandallo);
-		
-		JMenuItem mntmGenerarInformeDe = new JMenuItem("        Informe de gastos");
-		mntmGenerarInformeDe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GenerarEscandallo ge= new GenerarEscandallo();
-				nuevoPanel(ge);
-			}
-		});
-		mntmGenerarInformeDe.setForeground(Color.WHITE);
-		mntmGenerarInformeDe.setFont(new Font("Arial", Font.BOLD, 26));
-		mntmGenerarInformeDe.setBackground(Color.BLUE);
-		menuInventario.add(mntmGenerarInformeDe);
 
 		JMenu menuProduccion = new JMenu("   Producci\u00F3n      ");
 		menuProduccion.setFont(new Font("Arial", Font.BOLD, 35));

@@ -76,10 +76,8 @@ public class GestionarVenta extends JPanel {
 		JButton btnGenerarTiket = new JButton("Generar tiket ");
 		btnGenerarTiket.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
 				cargaVenta();
 				insertarVenta();
-
 			}
 		});
 		btnGenerarTiket.setForeground(Color.WHITE);
@@ -112,6 +110,29 @@ public class GestionarVenta extends JPanel {
 		add(lblIdCliente);
 		cargaInventario();
 
+	}
+	
+	public String buscaNombre(int id) {
+		String nombre="";
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		try {
+			try {
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT Nombre from trabajadores where id='"+id+"'");
+				nombre=(String) rs.getObject("ID");
+				conexion.close();
+			} catch (SQLException e) {
+				System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
+			}
+		} finally {
+			System.out.println("Ningun error");
+		}
+		return nombre;
+		
 	}
 
 	public void cargaInventario() {
@@ -172,11 +193,10 @@ public class GestionarVenta extends JPanel {
 
 		try {
 
-			
 			int idCliente = Integer.parseInt(txtIdCliente.getText());
 			int idVehiculo = Integer.parseInt(txtIdVehiculoVendido.getText());
 			int idTrabajador = Integer.parseInt(txtIdTrabajador.getText());
-			
+			String nombre= buscaNombre(idTrabajador);
 			
 			String agregar = "INSERT INTO ventas (ID_Cliente, ID_Trabajador, ID_Vehiculo, Modelo, Precio_Compra, Precio_Venta) VALUES("
 					+ idCliente + ", " + idTrabajador + ", " + idVehiculo + ", '" + modelo + "', " + precio_Compra
