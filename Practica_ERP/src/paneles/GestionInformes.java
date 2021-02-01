@@ -158,7 +158,6 @@ public class GestionInformes extends JPanel {
 					modeloTabla.addRow(new Object[] { rs.getObject("ID_Trabajador"), rs.getObject("Nombre"),
 							rs.getObject("Apellidos"), rs.getObject("Vehiculos_Vendidos"), rs.getObject("Ingresos"), });
 					
-					idEmpleados.add((Integer) rs.getObject("ID_Trabajador"));
 					nombres.add((String) rs.getObject("Nombre"));
 					apellidos.add((String) rs.getObject("Apellidos"));
 					ventas.add((Long) rs.getObject("Vehiculos_Vendidos"));
@@ -199,7 +198,7 @@ public class GestionInformes extends JPanel {
 			
 			documento.add(titulo); 
 			
-			PdfPTable table = new PdfPTable(5);
+			PdfPTable table = new PdfPTable(4);
 			table.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 	        // t.setBorderColor(BaseColor.GRAY);
@@ -207,11 +206,7 @@ public class GestionInformes extends JPanel {
 	        // t.setSpacing(4);
 	        // t.setBorderWidth(1);
 
-	        PdfPCell c1 = new PdfPCell(new Phrase("ID_TRABAJADOR"));
-	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-	        table.addCell(c1);
-
-	        c1 = new PdfPCell(new Phrase("NOMBRE"));
+	        PdfPCell c1 = new PdfPCell(new Phrase("NOMBRE"));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        table.addCell(c1);
 
@@ -230,11 +225,9 @@ public class GestionInformes extends JPanel {
 	        
 	        for(int x = 0; x < nombres.size(); x++) {
 	        	
-	        	idString = idEmpleados.get(x).toString();
 	        	ventasString = ventas.get(x).toString();
 	        	ingresosString = ingresos.get(x).toString();
 	        	
-	        	table.addCell(idString);
 	        	table.addCell(nombres.get(x));
 	        	table.addCell(apellidos.get(x));
 	        	table.addCell(ventasString);
