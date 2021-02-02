@@ -88,7 +88,7 @@ public class GestionInformes extends JPanel {
 		btnInforme2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				informe2();
+				cargarArrayListsVentas();
 
 			}
 		});
@@ -123,14 +123,6 @@ public class GestionInformes extends JPanel {
 	}
 
 	// Metodos
-	public void informe2() {
-
-		modeloTabla.setColumnIdentifiers(new Object[] { "informe2", "DNI", "Nombre", "Apellidos", "ID_Vehiculo",
-				"Precio_Compra", "CP", "Provincia", "Poblacion", "Calle" });
-		table.setModel(modeloTabla);
-
-	}
-
 	public void informe3() {
 
 		modeloTabla.setColumnIdentifiers(new Object[] { "informe3", "DNI", "Nombre", "Apellidos", "ID:_Vehiculo",
@@ -144,6 +136,11 @@ public class GestionInformes extends JPanel {
 		Connection conexion = null;
 		Statement sql = null;
 		ResultSet rs = null;
+		
+		modeloTabla.setColumnIdentifiers(new Object[] { "ID_Trabajador", "Nombre", "Apellidos", "Vehiculos_Vendidos", "Ingresos" });
+		table.setModel(modeloTabla);
+		
+		
 		try {
 			try {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
@@ -177,6 +174,46 @@ public class GestionInformes extends JPanel {
 		
 	}
 	
+public void cargarArrayListsVentas() {
+		
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		
+		try {
+			try {
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT ventas.ID, ventas.ID_Cliente, ventas.ID_Trabajador, ventas.ID_Vehiculo, ventas.Modelo, ventas.Precio_Venta, ventas.Precio_Compra, trabajadores.Nombre from ventas INNER JOIN Trabajadores on ventas.ID_Trabajador = trabajadores.ID ");
+				
+				
+				
+				while (rs.next()) {
+					
+					modeloTabla.addRow(new Object[] { rs.getObject("ventas.ID"), rs.getObject("ventas.ID_Cliente"),
+							rs.getObject("ventas.ID_Trabajador"), rs.getObject("ventas.ID_Vehiculo"), rs.getObject("ventas.Modelo"), });
+
+					
+					nombres.add((String) rs.getObject("Nombre"));
+					ventas.add((Long) rs.getObject("Vehiculos_Vendidos"));
+					
+					//ID_VENTA, ID_Trabajador, Fecha, Nombre de vehiculo, Base_Imponible, Cuota_IVA, Total
+
+				}
+				
+				GenerarArchivoPDFTrabajadores();
+				JOptionPane.showMessageDialog(null, "Archivo Generado");
+				conexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} finally {
+			System.out.println("Ningun error");
+		}
+		
+	}
+	
 	public void GenerarArchivoPDFTrabajadores() {
 
 		Document documento = new Document();
@@ -185,7 +222,73 @@ public class GestionInformes extends JPanel {
 			
 			String idString, ventasString, ingresosString;
 			
-			FileOutputStream ficheroPDF = new FileOutputStream("fichero.pdf");
+			FileOutputStream ficheroPDF = new FileOutputStream("trabajadores.pdf");
+			PdfWriter.getInstance(documento, ficheroPDF);
+			documento.setMargins(10, 10, 10, 10);
+			documento.open();
+			
+			
+			Paragraph titulo = new Paragraph("Informe de trabajadores SOTECARS"
+					+ "\n"
+					+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLUE));
+			titulo.setAlignment(Element.ALIGN_CENTER);
+			
+			documento.add(titulo); 
+			
+			PdfPTable table = new PdfPTable(4);
+			table.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+	        // t.setBorderColor(BaseColor.GRAY);
+	        // t.setPadding(4);
+	        // t.setSpacing(4);
+	        // t.setBorderWidth(1);
+
+	        PdfPCell c1 = new PdfPCell(new Phrase("NOMBRE"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+
+	        c1 = new PdfPCell(new Phrase("APELLIDOS"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("VEHICULOS_VENDIDOS"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        
+	        c1 = new PdfPCell(new Phrase("INGRESOS"));
+	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        table.addCell(c1);
+	        table.setHeaderRows(1);
+	        
+	        for(int x = 0; x < nombres.size(); x++) {
+	        	
+	        	ventasString = ventas.get(x).toString();
+	        	ingresosString = ingresos.get(x).toString();
+	        	
+	        	table.addCell(nombres.get(x));
+	        	table.addCell(apellidos.get(x));
+	        	table.addCell(ventasString);
+	        	table.addCell(ingresosString);
+	        		
+	        }
+
+	        documento.add(table);
+			documento.close();
+			
+		} catch (FileNotFoundException | DocumentException e) {
+			e.printStackTrace();
+		}
+		}
+	
+	public void GenerarArchivoPDFVentas() {
+
+		Document documento = new Document();
+		
+		try {
+			
+			String idString, ventasString, ingresosString;
+			
+			FileOutputStream ficheroPDF = new FileOutputStream("ventas.pdf");
 			PdfWriter.getInstance(documento, ficheroPDF);
 			documento.setMargins(10, 10, 10, 10);
 			documento.open();
