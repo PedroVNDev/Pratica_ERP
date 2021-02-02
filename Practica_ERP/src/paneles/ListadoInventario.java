@@ -191,7 +191,7 @@ public class ListadoInventario extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ID, Modelo, Eficiencia_Energetica, Consumo, Emisiones, Precio_Venta, Precio_Compra, Caja_Cambios, Año, Matricula from modelos WHERE Modelo LIKE %"+modelo+"%");
+						"SELECT ID, Modelo, Eficiencia_Energetica, Consumo, Emisiones, Precio_Venta, Precio_Compra, Caja_Cambios, Año, Matricula from modelos WHERE Modelo LIKE '%"+modelo+"%'");
 
 				while (rs.next()) {
 					modeloTabla.addRow(new Object[] { rs.getObject("ID"), rs.getObject("Modelo"),

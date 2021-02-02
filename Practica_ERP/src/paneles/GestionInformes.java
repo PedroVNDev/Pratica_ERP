@@ -54,6 +54,9 @@ public class GestionInformes extends JPanel {
 	public ArrayList<Long> ventas = new ArrayList<Long>();
 	public ArrayList<Double> ingresos = new ArrayList<Double>();
 
+	
+	public ArrayList<Integer> idVenta=new ArrayList<>();
+	public ArrayList<String> fechas=new ArrayList<>();
 	/**
 	 * Create the panel.
 	 */
@@ -179,30 +182,99 @@ public void cargarArrayListsVentas() {
 		Connection conexion = null;
 		Statement sql = null;
 		ResultSet rs = null;
+		Float precioLoco;
 		
 		try {
 			try {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT ventas.ID, ventas.ID_Cliente, ventas.ID_Trabajador, ventas.ID_Vehiculo, ventas.Modelo, ventas.Precio_Venta, ventas.Precio_Compra, trabajadores.Nombre from ventas INNER JOIN Trabajadores on ventas.ID_Trabajador = trabajadores.ID ");
+						"SELECT ventas.ID, ventas.ID_Cliente, ventas.ID_Trabajador, ventas.Fecha, ventas.ID_Vehiculo, ventas.Modelo, ventas.Precio_Venta, ventas.Precio_Compra, trabajadores.Nombre from ventas INNER JOIN Trabajadores on ventas.ID_Trabajador = trabajadores.ID ");
 				
 				
+				Document documento = new Document();
 				
+				try {
+					
+					String idString, ventasString, ingresosString;
+					
+					FileOutputStream ficheroPDF = new FileOutputStream("ventas.pdf");
+					PdfWriter.getInstance(documento, ficheroPDF);
+					documento.setMargins(10, 10, 10, 10);
+					documento.open();
+					
+					
+					Paragraph titulo = new Paragraph("Informe de trabajadores SOTECARS"
+							+ "\n"
+							+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLUE));
+					titulo.setAlignment(Element.ALIGN_CENTER);
+					
+					documento.add(titulo); 
+					
+					PdfPTable table = new PdfPTable(7);
+					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+			        // t.setBorderColor(BaseColor.GRAY);
+			        // t.setPadding(4);
+			        // t.setSpacing(4);
+			        // t.setBorderWidth(1);
+
+					PdfPCell c1 = new PdfPCell(new Phrase("ID VENTA"));
+				    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				    table.addCell(c1);
+				        
+			        c1 = new PdfPCell(new Phrase("TRABAJADOR"));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+
+			        c1 = new PdfPCell(new Phrase("FECHA"));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+			        
+			        c1 = new PdfPCell(new Phrase("MODELO"));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+			        
+			        c1 = new PdfPCell(new Phrase("BASE IMPONIBLE"));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+			        table.setHeaderRows(1);
+			        
+			        c1 = new PdfPCell(new Phrase("CUOTA IVA"));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+			        table.setHeaderRows(1);
+			        
+			        c1 = new PdfPCell(new Phrase("TOTAL"));
+			        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        table.addCell(c1);
+			        table.setHeaderRows(1);
+			       
+			        
 				while (rs.next()) {
 					
-					modeloTabla.addRow(new Object[] { rs.getObject("ventas.ID"), rs.getObject("ventas.ID_Cliente"),
-							rs.getObject("ventas.ID_Trabajador"), rs.getObject("ventas.ID_Vehiculo"), rs.getObject("ventas.Modelo"), });
-
-					
-					nombres.add((String) rs.getObject("Nombre"));
-					ventas.add((Long) rs.getObject("Vehiculos_Vendidos"));
+					table.addCell(rs.getObject("ventas.id").toString());
+		        	table.addCell(rs.getObject("trabajadores.Nombre").toString());
+		        	table.addCell(rs.getObject("ventas.Fecha").toString());
+		        	table.addCell(rs.getObject("ventas.modelo").toString());
+		        	table.addCell(rs.getObject("ventas.Precio_Venta").toString());
+		        	precioLoco= Float.parseFloat(rs.getObject("ventas.Precio_Venta").toString());
+		        	precioLoco= (float) (precioLoco*0.21);
+		        	table.addCell(precioLoco.toString());
+		        	precioLoco=(precioLoco+ Float.parseFloat(rs.getObject("ventas.Precio_Venta").toString()));
+		        	table.addCell(precioLoco.toString());
+		        	
 					
 					//ID_VENTA, ID_Trabajador, Fecha, Nombre de vehiculo, Base_Imponible, Cuota_IVA, Total
 
 				}
 				
-				GenerarArchivoPDFTrabajadores();
+				documento.add(table);
+				documento.close();
+				
+			} catch (FileNotFoundException | DocumentException e) {
+				e.printStackTrace();
+			}
 				JOptionPane.showMessageDialog(null, "Archivo Generado");
 				conexion.close();
 			} catch (SQLException e) {
