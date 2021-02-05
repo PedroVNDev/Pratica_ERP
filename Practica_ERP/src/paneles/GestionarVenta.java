@@ -11,7 +11,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -34,6 +36,7 @@ public class GestionarVenta extends JPanel {
 	private static float precio_Compra;
 	private static float precio_Venta;
 	private static String modelo;
+	private static String fechaVentas;
 	private JTextField txtIdCliente;
 
 	/**
@@ -109,6 +112,11 @@ public class GestionarVenta extends JPanel {
 		lblIdCliente.setBounds(489, 540, 89, 27);
 		add(lblIdCliente);
 		cargaInventario();
+		
+		Calendar fecha2 = new GregorianCalendar();
+		int mes=fecha2.get(Calendar.MONTH);
+		String fechaVentas = +fecha2.get(Calendar.DAY_OF_MONTH)+ "-"+ (mes+1) +"-"+fecha2.get(Calendar.YEAR);
+		System.out.println(fechaVentas);
 
 	}
 	
@@ -193,14 +201,19 @@ public class GestionarVenta extends JPanel {
 
 		try {
 
+			
+			
+			
 			int idCliente = Integer.parseInt(txtIdCliente.getText());
 			int idVehiculo = Integer.parseInt(txtIdVehiculoVendido.getText());
 			int idTrabajador = Integer.parseInt(txtIdTrabajador.getText());
+			
+			
 			String nombre= buscaNombre(idTrabajador);
 			
 			String agregar = "INSERT INTO ventas (ID_Cliente, ID_Trabajador, ID_Vehiculo, Modelo, Precio_Compra, Precio_Venta) VALUES("
 					+ idCliente + ", " + idTrabajador + ", " + idVehiculo + ", '" + modelo + "', " + precio_Compra
-					+ ", " + precio_Venta + ");";
+					+ ", '" + precio_Venta + "', " + fechaVentas +  ");";
 			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
 					"TRABAJO");
 			

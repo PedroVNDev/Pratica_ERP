@@ -309,6 +309,16 @@ public class GestionInventario extends JPanel {
 			Statement consulta2 = conexion.createStatement();
 
 			consulta.executeUpdate(problemas);
+			
+			
+			String historial = "INSERT INTO historial_vehiculos (modelo, fecha_compra, id_contacto, precio_compra, vendido) VALUES('"
+					+ modelo + "', '" + java.time.LocalDate.now() + "', '" + txtProblemasDescripcion + "', '" + (precio_compra + costes_problemas) + "');";
+			//Connection conexion2 = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO",
+				//	"TRABAJO");
+
+			//Statement consulta2 = conexion.createStatement();
+
+			consulta.executeUpdate(problemas);
 
 
 			conexion.close();
