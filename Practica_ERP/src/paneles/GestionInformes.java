@@ -14,9 +14,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,6 +34,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -292,6 +296,8 @@ public void cargarArrayListsVentas() {
 		
 		try {
 			
+			
+			
 			String idString, ventasString, ingresosString;
 			
 			FileOutputStream ficheroPDF = new FileOutputStream("trabajadores.pdf");
@@ -305,7 +311,7 @@ public void cargarArrayListsVentas() {
 					+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLUE));
 			titulo.setAlignment(Element.ALIGN_CENTER);
 			
-			documento.add(titulo); 
+			documento.add(titulo); 	
 			
 			PdfPTable table = new PdfPTable(4);
 			table.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -314,40 +320,76 @@ public void cargarArrayListsVentas() {
 	        // t.setPadding(4);
 	        // t.setSpacing(4);
 	        // t.setBorderWidth(1);
+		
+			Font fuente = new Font("arial", 16, Font.BOLD);
 
-	        PdfPCell c1 = new PdfPCell(new Phrase("NOMBRE"));
+	        PdfPCell c1 = new PdfPCell(new Phrase("NOMBRE", FontFactory.getFont("arial", 16, Font.BOLD)));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        c1.setPadding(10);
 	        table.addCell(c1);
 
-	        c1 = new PdfPCell(new Phrase("APELLIDOS"));
+	        c1 = new PdfPCell(new Phrase("APELLIDOS", FontFactory.getFont("arial", 16, Font.BOLD)));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        c1.setPadding(10);
 	        table.addCell(c1);
 	        
-	        c1 = new PdfPCell(new Phrase("VEHICULOS_VENDIDOS"));
+	        c1 = new PdfPCell(new Phrase("VEHICULOS_VENDIDOS", FontFactory.getFont("arial", 16, Font.BOLD)));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        c1.setPadding(10);
 	        table.addCell(c1);
 	        
-	        c1 = new PdfPCell(new Phrase("INGRESOS"));
+	        c1 = new PdfPCell(new Phrase("INGRESOS", FontFactory.getFont("arial", 16, Font.BOLD)));
 	        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        c1.setPadding(10);
 	        table.addCell(c1);
 	        table.setHeaderRows(1);
+	        
+	        
 	        
 	        for(int x = 0; x < nombres.size(); x++) {
 	        	
 	        	ventasString = ventas.get(x).toString();
 	        	ingresosString = ingresos.get(x).toString();
 	        	
-	        	table.addCell(nombres.get(x));
-	        	table.addCell(apellidos.get(x));
-	        	table.addCell(ventasString);
-	        	table.addCell(ingresosString);
+	        	PdfPCell c2 = new PdfPCell();
+	        	c2 = new PdfPCell(new Phrase(nombres.get(x), FontFactory.getFont("arial", 12)));
+	        	c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        	
+	        	PdfPCell c3 = new PdfPCell();
+	        	c3 = new PdfPCell(new Phrase(apellidos.get(x), FontFactory.getFont("arial", 12)));
+	        	c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        	
+	        	PdfPCell c4 = new PdfPCell();
+	        	c4 = new PdfPCell(new Phrase(ventasString, FontFactory.getFont("arial", 12)));
+	        	c4.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        	
+	        	PdfPCell c5 = new PdfPCell();
+	        	c5 = new PdfPCell(new Phrase(ingresosString, FontFactory.getFont("arial", 12)));
+	        	c5.setHorizontalAlignment(Element.ALIGN_CENTER);
+	     
+	        	table.addCell(c2);
+	        	table.addCell(c3);
+	        	table.addCell(c4);
+	        	table.addCell(c5);
 	        		
 	        }
-
+	        
 	        documento.add(table);
+	        
+	        Date date = new Date();
+	        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	        int year  = localDate.getYear();
+	        int month = localDate.getMonthValue();
+	        int day   = localDate.getDayOfMonth();
+
+	        Paragraph fecha = new Paragraph("Archivo generado en " + date, FontFactory.getFont("arial", 12, Font.BOLD));
+			fecha.setAlignment(Element.ALIGN_CENTER);
+		
+			documento.add(fecha);
+	        
 			documento.close();
 			
-		} catch (FileNotFoundException | DocumentException e) {
+		} catch (DocumentException | IOException e) {
 			e.printStackTrace();
 		}
 		}
@@ -359,6 +401,7 @@ public void cargarArrayListsVentas() {
 		try {
 			
 			String idString, ventasString, ingresosString;
+			String path = "C:\\Users\\pedro\\git\\PracticaERP\\Practica_ERP\\imagenes\\Sotecars.png";
 			
 			FileOutputStream ficheroPDF = new FileOutputStream("ventas.pdf");
 			PdfWriter.getInstance(documento, ficheroPDF);
