@@ -106,11 +106,11 @@ public class GestionInformes extends JPanel {
 		btnInforme2.setBounds(57, 80, 310, 35);
 		add(btnInforme2);
 
-		JButton btnInforme3 = new JButton("Generar Informe3");
+		JButton btnInforme3 = new JButton("Generar Informe Compras");
 		btnInforme3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				informe3();
+				cargarArrayListsCompras();
 
 			}
 		});
@@ -324,6 +324,186 @@ public class GestionInformes extends JPanel {
 						precioIVA= (float) (precioIVA*0.21);
 
 						precioTotal = Float.parseFloat(rs.getObject("ventas.Precio_Venta").toString());
+						precioTotal = (float) (precioIVA + precioTotal);
+
+						PdfPCell c7 = new PdfPCell();
+						c7 = new PdfPCell(new Phrase(precioIVA.toString(), FontFactory.getFont("arial", 11)));
+						c7.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c8 = new PdfPCell();
+						c8 = new PdfPCell(new Phrase(precioTotal.toString(), FontFactory.getFont("arial", 11)));
+						c8.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						table.addCell(c2);
+						table.addCell(c3);
+						table.addCell(c4);
+						table.addCell(c5);
+						table.addCell(c6);
+						table.addCell(c7);
+						table.addCell(c8);
+
+					}
+
+					documento.add(table);
+
+					documento.close();
+
+				} catch (DocumentException | IOException e) {
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null, "Archivo Generado");
+				conexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} finally {
+			System.out.println("Ningun error");
+		}
+
+	}
+	
+	public void cargarArrayListsCompras() {
+
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		Float precioIVA;
+		Float precioTotal;
+		
+
+		try {
+			try {
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT modelos.ID, modelos.AÑO, contactos_compra.Nombre, contactos_compra.DNI, contactos_compra.Precio_Compra from modelos INNER JOIN contactos_compra on modelos.id = contactos_compra.ID_VEHICULO ");
+
+
+				Document documento = new Document();
+
+				try {
+
+					String idString, ventasString, ingresosString;
+
+					FileOutputStream ficheroPDF = new FileOutputStream("compras.pdf");
+					PdfWriter.getInstance(documento, ficheroPDF);
+					documento.setMargins(0, 0, 200, 0);
+					documento.open();
+					
+					String ruta = "imagenes//SotecarsMediana.png";
+		            Image sotecars = Image.getInstance(ruta);
+		            
+		            String ruta2 = "imagenes//SotecarsOpacidad.png";
+		            Image sotecars2 = Image.getInstance(ruta2);
+		            
+		            float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
+		            float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
+		            sotecars.setAbsolutePosition(x, 690);
+		            
+		            float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
+		            float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
+		            sotecars2.setAbsolutePosition(x2, y2);
+		            
+		            documento.add(sotecars);
+		            documento.add(sotecars2);
+		            
+					Paragraph titulo = new Paragraph("Informe de Compras SOTECARS"
+							+ "\n"
+							+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLACK));
+					titulo.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(titulo); 
+					
+					Date date = new Date();
+					LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					int year  = localDate.getYear();
+					int month = localDate.getMonthValue();
+					int day   = localDate.getDayOfMonth();
+
+					Paragraph fecha = new Paragraph("Archivo generado en " + date + "\n\n\n", FontFactory.getFont("arial", 12, Font.BOLD));
+					fecha.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(fecha);
+					
+					Paragraph lineas = new Paragraph("__________________________________________________________________"
+							+ "\n"
+							+ "\n", FontFactory.getFont("arial", 16, Font.BOLD,BaseColor.BLACK));
+					lineas.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(lineas); 
+
+					PdfPTable table = new PdfPTable(7);
+					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+					// t.setBorderColor(BaseColor.GRAY);
+					// t.setPadding(4);
+					// t.setSpacing(4);
+					// t.setBorderWidth(1);
+
+					PdfPCell c1 = new PdfPCell(new Phrase("ID_MODELO", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("FECHA", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("CONTACTO", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("NIF", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("BASE IMPONIBLE", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+
+					c1 = new PdfPCell(new Phrase("CUOTA IVA", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+
+					c1 = new PdfPCell(new Phrase("TOTAL", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+
+					while (rs.next()) {
+
+						PdfPCell c2 = new PdfPCell();
+						c2 = new PdfPCell(new Phrase(rs.getObject("modelos.ID").toString(), FontFactory.getFont("arial", 11)));
+						c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c3 = new PdfPCell();
+						c3 = new PdfPCell(new Phrase(rs.getObject("modelos.AÑO").toString(), FontFactory.getFont("arial", 11)));
+						c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c4 = new PdfPCell();
+						c4 = new PdfPCell(new Phrase(rs.getObject("contactos_compra.Nombre").toString(), FontFactory.getFont("arial", 11)));
+						c4.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c5 = new PdfPCell();
+						c5 = new PdfPCell(new Phrase(rs.getObject("contactos_compra.DNI").toString(), FontFactory.getFont("arial", 11)));
+						c5.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c6 = new PdfPCell();
+						c6 = new PdfPCell(new Phrase(rs.getObject("contactos_compra.Precio_Compra").toString(), FontFactory.getFont("arial", 11)));
+						c6.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						precioIVA= Float.parseFloat(rs.getObject("contactos_compra.Precio_Compra").toString());
+						precioIVA= (float) (precioIVA*0.21);
+
+						precioTotal = Float.parseFloat(rs.getObject("contactos_compra.Precio_Compra").toString());
 						precioTotal = (float) (precioIVA + precioTotal);
 
 						PdfPCell c7 = new PdfPCell();
