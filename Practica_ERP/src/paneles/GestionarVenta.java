@@ -11,12 +11,28 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import javax.swing.JLabel;
 import java.awt.SystemColor;
 import javax.swing.JScrollPane;
@@ -25,6 +41,8 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.awt.event.ActionEvent;
 
@@ -38,6 +56,11 @@ public class GestionarVenta extends JPanel {
 	private static String modelo;
 	private static String fechaVentas;
 	private JTextField txtIdCliente;
+	
+	private static int idCliente;
+	private static int idVehiculo;
+	private static int idTrabajador;
+	private static String nombre;
 
 	/**
 	 * Create the panel.
@@ -81,6 +104,7 @@ public class GestionarVenta extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				cargaVenta();
 				insertarVenta();
+				generarFactura();
 			}
 		});
 		btnGenerarTiket.setForeground(Color.WHITE);
@@ -117,6 +141,169 @@ public class GestionarVenta extends JPanel {
 		int mes=fecha2.get(Calendar.MONTH);
 		String fechaVentas = +fecha2.get(Calendar.DAY_OF_MONTH)+ "-"+ (mes+1) +"-"+fecha2.get(Calendar.YEAR);
 		System.out.println(fechaVentas);
+
+	}
+	
+	public void generarFactura() {
+
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		Float precioIVA;
+		Float precioTotal;
+		
+
+		try {
+			try {
+				
+				Document documento = new Document();
+
+				try {
+
+					String idString, ventasString, ingresosString;
+
+					FileOutputStream ficheroPDF = new FileOutputStream("Factura.pdf");
+					PdfWriter.getInstance(documento, ficheroPDF);
+					documento.setMargins(0, 0, 200, 0);
+					documento.open();
+					
+					String ruta = "imagenes//SotecarsMediana.png";
+		            Image sotecars = Image.getInstance(ruta);
+		            
+		            String ruta2 = "imagenes//SotecarsOpacidad.png";
+		            Image sotecars2 = Image.getInstance(ruta2);
+		            
+		            float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
+		            float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
+		            sotecars.setAbsolutePosition(x, 690);
+		            
+		            float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
+		            float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
+		            sotecars2.setAbsolutePosition(x2, y2);
+		            
+		            documento.add(sotecars);
+		            documento.add(sotecars2);
+		            
+					Paragraph titulo = new Paragraph("Factura"
+							+ "\n"
+							+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLACK));
+					titulo.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(titulo); 
+					
+					Date date = new Date();
+					LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					int year  = localDate.getYear();
+					int month = localDate.getMonthValue();
+					int day   = localDate.getDayOfMonth();
+
+					Paragraph fecha = new Paragraph("Factura generada en " + date + "\n\n\n", FontFactory.getFont("arial", 12, Font.BOLD));
+					fecha.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(fecha);
+					
+					Paragraph lineas = new Paragraph("__________________________________________________________________"
+							+ "\n"
+							+ "\n", FontFactory.getFont("arial", 16, Font.BOLD,BaseColor.BLACK));
+					lineas.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(lineas); 
+
+					PdfPTable table = new PdfPTable(7);
+					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+					// t.setBorderColor(BaseColor.GRAY);
+					// t.setPadding(4);
+					// t.setSpacing(4);
+					// t.setBorderWidth(1);
+
+					PdfPCell c1 = new PdfPCell(new Phrase("CLIENTE", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("TRABAJADOR", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+
+					c1 = new PdfPCell(new Phrase("MODELO", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("PRECIO BRUTO", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+					
+					c1 = new PdfPCell(new Phrase("PRECIO TOTAL", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+
+					table.addCell(c1);
+					table.setHeaderRows(1);
+
+					table.addCell(c1);
+					table.setHeaderRows(1);
+					
+						String auxiliar= idCliente+" ";
+						PdfPCell c2 = new PdfPCell();
+						c2 = new PdfPCell(new Phrase(auxiliar, FontFactory.getFont("arial", 11)));
+						c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c3 = new PdfPCell();
+						c3 = new PdfPCell(new Phrase(buscaNombre(idTrabajador).toString(), FontFactory.getFont("arial", 11)));
+						c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c4 = new PdfPCell();
+						c4 = new PdfPCell(new Phrase(modelo, FontFactory.getFont("arial", 11)));
+						c4.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						String auxiliar2=precio_Venta+" ";
+						PdfPCell c5 = new PdfPCell();
+						c5 = new PdfPCell(new Phrase(auxiliar2, FontFactory.getFont("arial", 11)));
+						c5.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+
+						precioIVA= (float) (precio_Venta*0.21);
+
+						precioTotal = (float) (precioIVA + precio_Venta);
+
+						PdfPCell c7 = new PdfPCell();
+						c7 = new PdfPCell(new Phrase(precioIVA.toString(), FontFactory.getFont("arial", 11)));
+						c7.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c8 = new PdfPCell();
+						c8 = new PdfPCell(new Phrase(precioTotal.toString(), FontFactory.getFont("arial", 11)));
+						c8.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						table.addCell(c2);
+						table.addCell(c3);
+						table.addCell(c4);
+						table.addCell(c5);
+						table.addCell(c7);
+						table.addCell(c8);
+
+					documento.add(table);
+
+					documento.close();
+
+				} catch (DocumentException | IOException e) {
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null, "Archivo Generado");
+				conexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} finally {
+			System.out.println("Ningun error");
+		}
 
 	}
 	
@@ -201,15 +388,12 @@ public class GestionarVenta extends JPanel {
 
 		try {
 
+			idCliente = Integer.parseInt(txtIdCliente.getText());
+			idVehiculo = Integer.parseInt(txtIdVehiculoVendido.getText());
+			idTrabajador = Integer.parseInt(txtIdTrabajador.getText());
 			
 			
-			
-			int idCliente = Integer.parseInt(txtIdCliente.getText());
-			int idVehiculo = Integer.parseInt(txtIdVehiculoVendido.getText());
-			int idTrabajador = Integer.parseInt(txtIdTrabajador.getText());
-			
-			
-			String nombre= buscaNombre(idTrabajador);
+			nombre= buscaNombre(idTrabajador);
 			
 			String agregar = "INSERT INTO ventas (ID_Cliente, ID_Trabajador, ID_Vehiculo, Modelo, Precio_Compra, Precio_Venta) VALUES("
 					+ idCliente + ", " + idTrabajador + ", " + idVehiculo + ", '" + modelo + "', " + precio_Compra
