@@ -29,6 +29,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -205,7 +206,6 @@ public class GestionarVenta extends JPanel {
 
 				PdfPTable table = new PdfPTable(5);
 				table.setHorizontalAlignment(Element.ALIGN_CENTER);
-
 				// t.setBorderColor(BaseColor.GRAY);
 				// t.setPadding(4);
 				// t.setSpacing(4);
@@ -214,28 +214,33 @@ public class GestionarVenta extends JPanel {
 				PdfPCell c1 = new PdfPCell(new Phrase("CLIENTE", FontFactory.getFont("arial", 11, Font.BOLD)));
 				c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				c1.setPadding(5);
+				c1.setBorderWidth(0);
 				table.addCell(c1);
 
 				c1 = new PdfPCell(new Phrase("TRABAJADOR", FontFactory.getFont("arial", 11, Font.BOLD)));
 				c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				c1.setPadding(5);
+				c1.setBorderWidth(0);
 				table.addCell(c1);
 
 
 				c1 = new PdfPCell(new Phrase("MODELO", FontFactory.getFont("arial", 11, Font.BOLD)));
 				c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				c1.setPadding(5);
+				c1.setBorderWidth(0);
 				table.addCell(c1);
 
 				c1 = new PdfPCell(new Phrase("PRECIO BRUTO", FontFactory.getFont("arial", 11, Font.BOLD)));
 				c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				c1.setPadding(5);
+				c1.setBorderWidth(0);
 				table.addCell(c1);
 				table.setHeaderRows(1);
 				
-				c1 = new PdfPCell(new Phrase("PRECIO TOTAL", FontFactory.getFont("arial", 11, Font.BOLD)));
+				c1 = new PdfPCell(new Phrase("IVA", FontFactory.getFont("arial", 11, Font.BOLD)));
 				c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				c1.setPadding(5);
+				c1.setBorderWidth(0);
 				table.addCell(c1);
 				table.setHeaderRows(1);
 
@@ -246,7 +251,7 @@ public class GestionarVenta extends JPanel {
 					c2 = new PdfPCell(new Phrase(auxiliar, FontFactory.getFont("arial", 11)));
 					c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 					
-					System.out.println(nombre);
+					System.out.println(buscaNombre(idTrabajador));
 
 					PdfPCell c3 = new PdfPCell();
 					c3 = new PdfPCell(new Phrase(buscaNombre(idTrabajador), FontFactory.getFont("arial", 11)));
@@ -270,6 +275,11 @@ public class GestionarVenta extends JPanel {
 					c7 = new PdfPCell(new Phrase(precioIVA.toString(), FontFactory.getFont("arial", 11)));
 					c7.setHorizontalAlignment(Element.ALIGN_CENTER);
 
+					c2.setBorderWidth(0);
+					c3.setBorderWidth(0);
+					c4.setBorderWidth(0);
+					c5.setBorderWidth(0);
+					c7.setBorderWidth(0);
 					table.addCell(c2);
 					table.addCell(c3);
 					table.addCell(c4);
@@ -277,6 +287,14 @@ public class GestionarVenta extends JPanel {
 					table.addCell(c7);
 
 				documento.add(table);
+				
+				float precio=precio_Venta+precioIVA;
+				
+				Paragraph precioo = new Paragraph("\n Precio Total: "+precio+"                   ");
+				precioo.setAlignment(Element.ALIGN_RIGHT);
+				documento.add(precioo);
+				
+				
 
 				documento.close();
 
@@ -300,8 +318,10 @@ public class GestionarVenta extends JPanel {
 				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
 				sql = conexion.createStatement();
 				rs = sql.executeQuery(
-						"SELECT Nombre from trabajadores where id='"+id+"'");
-				nombre=(String) rs.getObject("ID");
+						"SELECT Nombre from trabajadores WHERE ID="+id);
+				while (rs.next()) {
+					nombre=(String) rs.getObject("Nombre");
+				}
 				conexion.close();
 			} catch (SQLException e) {
 				System.out.println("ERROR AL EJECUTAR LA SENTENCIA SQL");
