@@ -177,7 +177,6 @@ public class GestionInformes extends JPanel {
 				e.printStackTrace();
 			}
 		} finally {
-			System.out.println("Ningun error");
 		}
 
 	}
@@ -357,7 +356,7 @@ public class GestionInformes extends JPanel {
 				e.printStackTrace();
 			}
 		} finally {
-			System.out.println("Ningun error");
+			
 		}
 
 	}
@@ -537,7 +536,6 @@ public class GestionInformes extends JPanel {
 				e.printStackTrace();
 			}
 		} finally {
-			System.out.println("Ningun error");
 		}
 
 	}

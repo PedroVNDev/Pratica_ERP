@@ -29,18 +29,18 @@ public class GestionEscandallos extends JPanel {
 		
 		JLabel lblSotecars2 = new JLabel("THE POWER OF DREAMS");
 		lblSotecars2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblSotecars2.setBounds(517, 70, 152, 22);
+		lblSotecars2.setBounds(608, 75, 152, 22);
 		add(lblSotecars2);
 		
 		JLabel lblSotecars1 = new JLabel("SOTECARS");
 		lblSotecars1.setForeground(Color.BLUE);
 		lblSotecars1.setFont(new Font("Sitka Text", Font.BOLD | Font.ITALIC, 41));
 		lblSotecars1.setBackground(Color.WHITE);
-		lblSotecars1.setBounds(483, 31, 228, 52);
+		lblSotecars1.setBounds(574, 36, 228, 52);
 		add(lblSotecars1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(288, 247, 620, 402);
+		scrollPane.setBounds(42, 191, 1182, 454);
 		add(scrollPane);
 
 		table = new JTable();
