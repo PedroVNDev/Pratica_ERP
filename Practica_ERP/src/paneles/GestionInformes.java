@@ -550,24 +550,53 @@ public class GestionInformes extends JPanel {
 
 			FileOutputStream ficheroPDF = new FileOutputStream("trabajadores.pdf");
 			PdfWriter.getInstance(documento, ficheroPDF);
-			documento.setMargins(10, 10, 10, 10);
+			documento.setMargins(0, 0, 200, 0);
 			documento.open();
-
-
-			Paragraph titulo = new Paragraph("Informe de trabajadores SOTECARS"
+			
+			String ruta = "imagenes//SotecarsMediana.png";
+            Image sotecars = Image.getInstance(ruta);
+            
+            String ruta2 = "imagenes//SotecarsOpacidad.png";
+            Image sotecars2 = Image.getInstance(ruta2);
+            
+            float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
+            float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
+            sotecars.setAbsolutePosition(x, 690);
+            
+            float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
+            float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
+            sotecars2.setAbsolutePosition(x2, y2);
+            
+            documento.add(sotecars);
+            documento.add(sotecars2);
+            
+			Paragraph titulo = new Paragraph("Informe de Trabajadores SOTECARS"
 					+ "\n"
-					+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLUE));
+					+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLACK));
 			titulo.setAlignment(Element.ALIGN_CENTER);
 
-			documento.add(titulo); 	
+			documento.add(titulo); 
+			
+			Date date = new Date();
+			LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			int year  = localDate.getYear();
+			int month = localDate.getMonthValue();
+			int day   = localDate.getDayOfMonth();
+
+			Paragraph fecha = new Paragraph("Archivo generado en " + date + "\n\n\n", FontFactory.getFont("arial", 12, Font.BOLD));
+			fecha.setAlignment(Element.ALIGN_CENTER);
+
+			documento.add(fecha);
+			
+			Paragraph lineas = new Paragraph("__________________________________________________________________"
+					+ "\n"
+					+ "\n", FontFactory.getFont("arial", 16, Font.BOLD,BaseColor.BLACK));
+			lineas.setAlignment(Element.ALIGN_CENTER);
+
+			documento.add(lineas); 
 
 			PdfPTable table = new PdfPTable(4);
 			table.setHorizontalAlignment(Element.ALIGN_CENTER);
-
-			// t.setBorderColor(BaseColor.GRAY);
-			// t.setPadding(4);
-			// t.setSpacing(4);
-			// t.setBorderWidth(1);
 
 			Font fuente = new Font("arial", 16, Font.BOLD);
 
@@ -594,17 +623,17 @@ public class GestionInformes extends JPanel {
 
 
 
-			for(int x = 0; x < nombres.size(); x++) {
+			for(int i = 0; i < nombres.size(); i++) {
 
-				ventasString = ventas.get(x).toString();
-				ingresosString = ingresos.get(x).toString();
+				ventasString = ventas.get(i).toString();
+				ingresosString = ingresos.get(i).toString();
 
 				PdfPCell c2 = new PdfPCell();
-				c2 = new PdfPCell(new Phrase(nombres.get(x), FontFactory.getFont("arial", 12)));
+				c2 = new PdfPCell(new Phrase(nombres.get(i), FontFactory.getFont("arial", 12)));
 				c2.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 				PdfPCell c3 = new PdfPCell();
-				c3 = new PdfPCell(new Phrase(apellidos.get(x), FontFactory.getFont("arial", 12)));
+				c3 = new PdfPCell(new Phrase(apellidos.get(i), FontFactory.getFont("arial", 12)));
 				c3.setHorizontalAlignment(Element.ALIGN_CENTER);
 
 				PdfPCell c4 = new PdfPCell();
@@ -623,17 +652,6 @@ public class GestionInformes extends JPanel {
 			}
 
 			documento.add(table);
-
-			Date date = new Date();
-			LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			int year  = localDate.getYear();
-			int month = localDate.getMonthValue();
-			int day   = localDate.getDayOfMonth();
-
-			Paragraph fecha = new Paragraph("Archivo generado en " + date, FontFactory.getFont("arial", 12, Font.BOLD));
-			fecha.setAlignment(Element.ALIGN_CENTER);
-
-			documento.add(fecha);
 
 			documento.close();
 
