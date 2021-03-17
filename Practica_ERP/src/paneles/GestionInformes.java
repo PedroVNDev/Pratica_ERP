@@ -128,6 +128,20 @@ public class GestionInformes extends JPanel {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 
+		JButton btnInforme4 = new JButton("Informe Examen");
+		btnInforme4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				cargarArrayListsExamen();
+
+			}
+		});
+		btnInforme4.setForeground(Color.WHITE);
+		btnInforme4.setFont(new Font("Arial", Font.BOLD, 18));
+		btnInforme4.setBackground(Color.BLUE);
+		btnInforme4.setBounds(965, 126, 310, 35);
+		add(btnInforme4);
+
 	}
 
 	// Metodos
@@ -188,7 +202,7 @@ public class GestionInformes extends JPanel {
 		ResultSet rs = null;
 		Float precioIVA;
 		Float precioTotal;
-		
+
 
 		try {
 			try {
@@ -208,31 +222,31 @@ public class GestionInformes extends JPanel {
 					PdfWriter.getInstance(documento, ficheroPDF);
 					documento.setMargins(0, 0, 200, 0);
 					documento.open();
-					
+
 					String ruta = "imagenes//SotecarsMediana.png";
-		            Image sotecars = Image.getInstance(ruta);
-		            
-		            String ruta2 = "imagenes//SotecarsOpacidad.png";
-		            Image sotecars2 = Image.getInstance(ruta2);
-		            
-		            float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
-		            float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
-		            sotecars.setAbsolutePosition(x, 690);
-		            
-		            float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
-		            float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
-		            sotecars2.setAbsolutePosition(x2, y2);
-		            
-		            documento.add(sotecars);
-		            documento.add(sotecars2);
-		            
+					Image sotecars = Image.getInstance(ruta);
+
+					String ruta2 = "imagenes//SotecarsOpacidad.png";
+					Image sotecars2 = Image.getInstance(ruta2);
+
+					float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
+					float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
+					sotecars.setAbsolutePosition(x, 690);
+
+					float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
+					float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
+					sotecars2.setAbsolutePosition(x2, y2);
+
+					documento.add(sotecars);
+					documento.add(sotecars2);
+
 					Paragraph titulo = new Paragraph("Informe de Ventas SOTECARS"
 							+ "\n"
 							+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLACK));
 					titulo.setAlignment(Element.ALIGN_CENTER);
 
 					documento.add(titulo); 
-					
+
 					Date date = new Date();
 					LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 					int year  = localDate.getYear();
@@ -243,7 +257,7 @@ public class GestionInformes extends JPanel {
 					fecha.setAlignment(Element.ALIGN_CENTER);
 
 					documento.add(fecha);
-					
+
 					Paragraph lineas = new Paragraph("__________________________________________________________________"
 							+ "\n"
 							+ "\n", FontFactory.getFont("arial", 16, Font.BOLD,BaseColor.BLACK));
@@ -356,11 +370,11 @@ public class GestionInformes extends JPanel {
 				e.printStackTrace();
 			}
 		} finally {
-			
+
 		}
 
 	}
-	
+
 	public void cargarArrayListsCompras() {
 
 		Connection conexion = null;
@@ -368,7 +382,7 @@ public class GestionInformes extends JPanel {
 		ResultSet rs = null;
 		Float precioIVA;
 		Float precioTotal;
-		
+
 
 		try {
 			try {
@@ -388,31 +402,31 @@ public class GestionInformes extends JPanel {
 					PdfWriter.getInstance(documento, ficheroPDF);
 					documento.setMargins(0, 0, 200, 0);
 					documento.open();
-					
+
 					String ruta = "imagenes//SotecarsMediana.png";
-		            Image sotecars = Image.getInstance(ruta);
-		            
-		            String ruta2 = "imagenes//SotecarsOpacidad.png";
-		            Image sotecars2 = Image.getInstance(ruta2);
-		            
-		            float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
-		            float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
-		            sotecars.setAbsolutePosition(x, 690);
-		            
-		            float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
-		            float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
-		            sotecars2.setAbsolutePosition(x2, y2);
-		            
-		            documento.add(sotecars);
-		            documento.add(sotecars2);
-		            
+					Image sotecars = Image.getInstance(ruta);
+
+					String ruta2 = "imagenes//SotecarsOpacidad.png";
+					Image sotecars2 = Image.getInstance(ruta2);
+
+					float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
+					float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
+					sotecars.setAbsolutePosition(x, 690);
+
+					float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
+					float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
+					sotecars2.setAbsolutePosition(x2, y2);
+
+					documento.add(sotecars);
+					documento.add(sotecars2);
+
 					Paragraph titulo = new Paragraph("Informe de Compras SOTECARS"
 							+ "\n"
 							+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLACK));
 					titulo.setAlignment(Element.ALIGN_CENTER);
 
 					documento.add(titulo); 
-					
+
 					Date date = new Date();
 					LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 					int year  = localDate.getYear();
@@ -423,7 +437,7 @@ public class GestionInformes extends JPanel {
 					fecha.setAlignment(Element.ALIGN_CENTER);
 
 					documento.add(fecha);
-					
+
 					Paragraph lineas = new Paragraph("__________________________________________________________________"
 							+ "\n"
 							+ "\n", FontFactory.getFont("arial", 16, Font.BOLD,BaseColor.BLACK));
@@ -552,31 +566,31 @@ public class GestionInformes extends JPanel {
 			PdfWriter.getInstance(documento, ficheroPDF);
 			documento.setMargins(0, 0, 200, 0);
 			documento.open();
-			
+
 			String ruta = "imagenes//SotecarsMediana.png";
-            Image sotecars = Image.getInstance(ruta);
-            
-            String ruta2 = "imagenes//SotecarsOpacidad.png";
-            Image sotecars2 = Image.getInstance(ruta2);
-            
-            float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
-            float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
-            sotecars.setAbsolutePosition(x, 690);
-            
-            float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
-            float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
-            sotecars2.setAbsolutePosition(x2, y2);
-            
-            documento.add(sotecars);
-            documento.add(sotecars2);
-            
+			Image sotecars = Image.getInstance(ruta);
+
+			String ruta2 = "imagenes//SotecarsOpacidad.png";
+			Image sotecars2 = Image.getInstance(ruta2);
+
+			float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
+			float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
+			sotecars.setAbsolutePosition(x, 690);
+
+			float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
+			float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
+			sotecars2.setAbsolutePosition(x2, y2);
+
+			documento.add(sotecars);
+			documento.add(sotecars2);
+
 			Paragraph titulo = new Paragraph("Informe de Trabajadores SOTECARS"
 					+ "\n"
 					+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLACK));
 			titulo.setAlignment(Element.ALIGN_CENTER);
 
 			documento.add(titulo); 
-			
+
 			Date date = new Date();
 			LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 			int year  = localDate.getYear();
@@ -587,7 +601,7 @@ public class GestionInformes extends JPanel {
 			fecha.setAlignment(Element.ALIGN_CENTER);
 
 			documento.add(fecha);
-			
+
 			Paragraph lineas = new Paragraph("__________________________________________________________________"
 					+ "\n"
 					+ "\n", FontFactory.getFont("arial", 16, Font.BOLD,BaseColor.BLACK));
@@ -660,34 +674,211 @@ public class GestionInformes extends JPanel {
 		}
 	}
 
+	public void cargarArrayListsExamen() {
+
+		Connection conexion = null;
+		Statement sql = null;
+		ResultSet rs = null;
+		Float precioIVA;
+		Float precioTotal;
 
 
-	/* Generar archivo y elegir su destino
-	 * public void GenerarArchivo() {
-
-		JFileChooser fileChooser = new JFileChooser();
-		int returnVal = fileChooser.showSaveDialog(GestionInformes.this);
-		if (returnVal == JFileChooser.APPROVE_OPTION) {
+		try {
 			try {
-				File file = fileChooser.getSelectedFile();
-				PrintWriter writer = new PrintWriter(file);
+				conexion = DriverManager.getConnection("jdbc:mysql://localhost/SotecarsBBDD", "TRABAJO", "TRABAJO");
+				sql = conexion.createStatement();
+				rs = sql.executeQuery(
+						"SELECT ID, MODELO, EFICIENCIA_ENERGETICA, CONSUMO, EMISIONES, PRECIO_VENTA, PRECIO_COMPRA, CAJA_CAMBIOS, AÑO, MATRICULA from modelos");
 
-				for (int row = 0; row < table.getRowCount(); row++) {
-					for (int col = 0; col < table.getColumnCount(); col++) {
-						writer.print(table.getColumnName(col));
-						writer.print(": ");
-						writer.println(table.getValueAt(row, col));
+
+				Document documento = new Document();
+
+				try {
+
+					String idString, ventasString, ingresosString;
+
+					FileOutputStream ficheroPDF = new FileOutputStream("Examen.pdf");
+					PdfWriter.getInstance(documento, ficheroPDF);
+					documento.setMargins(0, 0, 200, 0);
+					documento.open();
+
+					String ruta = "imagenes//SotecarsMediana.png";
+					Image sotecars = Image.getInstance(ruta);
+
+					String ruta2 = "imagenes//SotecarsOpacidad.png";
+					Image sotecars2 = Image.getInstance(ruta2);
+
+					float x = (PageSize.A4.getWidth() - sotecars.getScaledWidth()) / 2;
+					float y = (PageSize.A4.getHeight() - sotecars.getScaledHeight()) / 2;
+					sotecars.setAbsolutePosition(x, 690);
+
+					float x2 = (PageSize.A4.getWidth() - sotecars2.getScaledWidth()) / 2;
+					float y2 = (PageSize.A4.getHeight() - sotecars2.getScaledHeight()) / 2;
+					sotecars2.setAbsolutePosition(x2, y2);
+
+					documento.add(sotecars);
+					documento.add(sotecars2);
+
+					Paragraph titulo = new Paragraph("Informe de Inventario SOTECARS"
+							+ "\n"
+							+ "\n", FontFactory.getFont("arial", 22, Font.BOLD,BaseColor.BLACK));
+					titulo.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(titulo); 
+
+					Date date = new Date();
+					LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+					int year  = localDate.getYear();
+					int month = localDate.getMonthValue();
+					int day   = localDate.getDayOfMonth();
+
+					Paragraph fecha = new Paragraph("Archivo generado en " + date + "\n\n\n", FontFactory.getFont("arial", 12, Font.BOLD));
+					fecha.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(fecha);
+
+					Paragraph lineas = new Paragraph("__________________________________________________________________"
+							+ "\n"
+							+ "\n", FontFactory.getFont("arial", 16, Font.BOLD,BaseColor.BLACK));
+					lineas.setAlignment(Element.ALIGN_CENTER);
+
+					documento.add(lineas); 
+
+					//Importante tamaño del PDF El numero 10 indica los campos 
+					PdfPTable table = new PdfPTable(10);
+					table.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+					// t.setBorderColor(BaseColor.GRAY);
+					// t.setPadding(4);
+					// t.setSpacing(4);
+					// t.setBorderWidth(1);
+
+					PdfPCell c1 = new PdfPCell(new Phrase("ID", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("MODELO", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("EFICIENCIA_ENERGETICA", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("CONSUMO", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+
+					c1 = new PdfPCell(new Phrase("EMISIONES", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+
+					c1 = new PdfPCell(new Phrase("PRECIO_VENTA", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+
+					c1 = new PdfPCell(new Phrase("PRECIO_COMPRA", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+					
+					c1 = new PdfPCell(new Phrase("CAJA_CAMBIOS", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+					
+					c1 = new PdfPCell(new Phrase("AÑO", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+					
+					c1 = new PdfPCell(new Phrase("MATRICULA*", FontFactory.getFont("arial", 11, Font.BOLD)));
+					c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+					c1.setPadding(5);
+					table.addCell(c1);
+					table.setHeaderRows(1);
+
+					while (rs.next()) {
+
+						PdfPCell c2 = new PdfPCell();
+						c2 = new PdfPCell(new Phrase(rs.getObject("ID").toString(), FontFactory.getFont("arial", 11)));
+						c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c3 = new PdfPCell();
+						c3 = new PdfPCell(new Phrase(rs.getObject("MODELO").toString(), FontFactory.getFont("arial", 11)));
+						c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c4 = new PdfPCell();
+						c4 = new PdfPCell(new Phrase(rs.getObject("EFICIENCIA_ENERGETICA").toString(), FontFactory.getFont("arial", 11)));
+						c4.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c5 = new PdfPCell();
+						c5 = new PdfPCell(new Phrase(rs.getObject("CONSUMO").toString(), FontFactory.getFont("arial", 11)));
+						c5.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c6 = new PdfPCell();
+						c6 = new PdfPCell(new Phrase(rs.getObject("EMISIONES").toString(), FontFactory.getFont("arial", 11)));
+						c6.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c7 = new PdfPCell();
+						c7 = new PdfPCell(new Phrase(rs.getObject("PRECIO_VENTA").toString(), FontFactory.getFont("arial", 11)));
+						c7.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						PdfPCell c8 = new PdfPCell();
+						c8 = new PdfPCell(new Phrase(rs.getObject("PRECIO_COMPRA").toString(), FontFactory.getFont("arial", 11)));
+						c8.setHorizontalAlignment(Element.ALIGN_CENTER);
+						
+						PdfPCell c9 = new PdfPCell();
+						c9 = new PdfPCell(new Phrase(rs.getObject("CAJA_CAMBIOS").toString(), FontFactory.getFont("arial", 11)));
+						c9.setHorizontalAlignment(Element.ALIGN_CENTER);
+						
+						PdfPCell c10 = new PdfPCell();
+						c10 = new PdfPCell(new Phrase(rs.getObject("AÑO").toString(), FontFactory.getFont("arial", 11)));
+						c10.setHorizontalAlignment(Element.ALIGN_CENTER);
+						
+						PdfPCell c11 = new PdfPCell();
+						c11 = new PdfPCell(new Phrase(rs.getObject("MATRICULA").toString(), FontFactory.getFont("arial", 11)));
+						c11.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+						table.addCell(c2);
+						table.addCell(c3);
+						table.addCell(c4);
+						table.addCell(c5);
+						table.addCell(c6);
+						table.addCell(c7);
+						table.addCell(c8);
+						table.addCell(c9);
+						table.addCell(c10);
+						table.addCell(c11);
+
 					}
-					writer.println("");
-				}
 
-				writer.close();
-				System.out.println("Archivo Generado");
-			} catch (IOException e) {
+					documento.add(table);
+
+					documento.close();
+
+				} catch (DocumentException | IOException e) {
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null, "Archivo Generado");
+				conexion.close();
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		} finally {
+
 		}
 	}
-	 */
 }
 
